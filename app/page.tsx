@@ -111,7 +111,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       <header className="bg-background/80 backdrop-blur-sm border-b border-border">
-        <nav className="container mx-auto px-6 py-4">
+        <nav className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-xl font-semibold text-foreground">
               Joss Tripoli
@@ -131,7 +131,7 @@ export default function HomePage() {
         </nav>
       </header>
 
-      <section className="container mx-auto px-6 pt-20 pb-20 overflow-hidden">
+      <section className="px-6 pt-20 pb-20 overflow-hidden">
         <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
           <div
             ref={heroImageRef}
@@ -164,6 +164,14 @@ export default function HomePage() {
             <h1 className="text-4xl md:text-5xl font-bold text-foreground leading-tight text-balance">
               Full-Stack Software Engineer building educational technology
             </h1>
+            <div className="flex flex-wrap gap-4">
+              <Button size="lg" className="rounded-full" asChild>
+                <a href="#work">See selected work</a>
+              </Button>
+              <Button size="lg" variant="outline" className="rounded-full" asChild>
+                <a href="#contact">Contact</a>
+              </Button>
+            </div>
             <div className="flex gap-4 pt-4">
               <Button variant="default" size="icon" asChild className="rounded-full bg-primary hover:bg-primary/90">
                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
@@ -185,16 +193,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section
-        id="about"
-        ref={(el) => {
-          aboutRef.current = el
-          sectionRefs.current[0] = el
-        }}
-        className="bg-primary py-20 opacity-0 transition-all duration-700 animate-in"
-      >
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
+        <section
+          id="about"
+          ref={(el) => {
+            aboutRef.current = el
+            sectionRefs.current[0] = el
+          }}
+          className="bg-primary py-20 opacity-0 translate-y-8 transition-all duration-700"
+        >
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
             <div className="relative inline-block mb-8">
               <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground">About</h2>
               <div className="absolute -bottom-2 left-0 w-20 h-1 bg-primary-foreground/80"></div>
@@ -214,14 +222,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section
-        id="work"
-        ref={(el) => {
-          sectionRefs.current[1] = el
-        }}
-        className="container mx-auto px-6 py-20 opacity-0 transition-all duration-700 animate-in"
-      >
-        <div className="max-w-6xl mx-auto">
+        <section
+          id="work"
+          ref={(el) => {
+            sectionRefs.current[1] = el
+          }}
+          className="px-6 py-20 opacity-0 translate-y-8 transition-all duration-700"
+        >
+          <div className="max-w-6xl mx-auto">
           <div className="relative inline-block mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">Work</h2>
             <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 h-1 bg-primary"></div>
@@ -234,8 +242,8 @@ export default function HomePage() {
                 ref={(el) => {
                   workItemRefs.current[index] = el
                 }}
-                className="block group py-16 opacity-0 transition-all duration-700 animate-in"
-              >
+                  className="block group py-16 opacity-0 translate-y-8 transition-all duration-700"
+                >
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                   <div className="relative">
                     <div className="relative aspect-video bg-muted rounded-lg overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-300">
@@ -279,15 +287,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section
-        id="contact"
-        ref={(el) => {
-          sectionRefs.current[2] = el
-        }}
-        className="bg-primary py-20 opacity-0 transition-all duration-700 animate-in"
-      >
-        <div className="container mx-auto px-6">
-          <div className="max-w-2xl mx-auto">
+        <section
+          id="contact"
+          ref={(el) => {
+            sectionRefs.current[2] = el
+          }}
+          className="bg-primary py-20 opacity-0 translate-y-8 transition-all duration-700"
+        >
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-2xl mx-auto">
             <div className="relative inline-block mb-8 mx-auto block text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground">Let's Connect</h2>
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 h-1 bg-primary-foreground/80"></div>
@@ -341,8 +349,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="border-t border-border mt-20">
-        <div className="container mx-auto px-6 py-8">
+        <footer className="border-t border-border mt-20">
+          <div className="max-w-6xl mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} Joss Tripoli. All rights reserved.
