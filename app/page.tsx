@@ -2,52 +2,29 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { motion, useInView, useMotionValueEvent, useScroll, useTransform } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { ArrowUp, Linkedin, Github, Mail, ExternalLink } from "lucide-react"
-import { useRef, useState } from "react"
+import { ArrowUp, Linkedin, Github, Mail, ExternalLink } from 'lucide-react'
+import { useState } from "react"
+import { motion, useScroll, useTransform } from "motion/react"
 
 export default function HomePage() {
   const [showScrollTop, setShowScrollTop] = useState(false)
-  const aboutRef = useRef<HTMLElement>(null)
   const { scrollY } = useScroll()
-  const heroParallax = useTransform(scrollY, (value) => value * 0.35)
-  const aboutInView = useInView(aboutRef, { amount: 0.2, margin: "-20% 0px" })
+  
+  const parallaxOffset = useTransform(scrollY, [0, 500], [0, 250])
+  const imageOpacity = useTransform(scrollY, [0, 300, 500], [1, 0.5, 0])
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setShowScrollTop(latest > 500)
+  useState(() => {
+    if (typeof window !== 'undefined') {
+      const handleScroll = () => {
+        setShowScrollTop(window.scrollY > 500)
+      }
+      window.addEventListener("scroll", handleScroll, { passive: true })
+      return () => window.removeEventListener("scroll", handleScroll)
+    }
   })
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 24 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  }
-
-  const sectionReveal = {
-    hidden: { opacity: 0, y: 32 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
-  }
-
-  const staggeredChildren = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.12 } },
-  }
-
-  const projectCard = {
-    hidden: { opacity: 0, y: 32, scale: 0.98 },
-    visible: (index: number) => ({
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.65,
-        ease: "easeOut",
-        delay: index * 0.08,
-      },
-    }),
-  }
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -96,6 +73,20 @@ export default function HomePage() {
     },
   ]
 
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  }
+
   return (
     <div className="min-h-screen">
       <header className="bg-background/80 backdrop-blur-sm border-b border-border">
@@ -123,37 +114,35 @@ export default function HomePage() {
         <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
           <motion.div
             className="order-2 md:order-1"
-            style={{ y: heroParallax }}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: aboutInView ? 0 : 1, y: 0 }}
+            style={{ y: parallaxOffset, opacity: imageOpacity }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <motion.div
-              className="transition-transform duration-700"
-              whileHover={{ scale: 1.02 }}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-            >
-              <Image
-                src="/headshot.png"
-                alt="Joss Tripoli"
-                width={400}
-                height={500}
-                className="rounded-lg shadow-lg w-full"
-              />
-            </motion.div>
+            <Image
+              src="/headshot.png"
+              alt="Joss Tripoli"
+              width={400}
+              height={500}
+              className="rounded-lg shadow-lg w-full"
+            />
           </motion.div>
           <motion.div
             className="order-1 md:order-2 space-y-6"
-            variants={fadeInUp}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.2 }}
+            initial="initial"
+            animate="animate"
+            variants={staggerContainer}
           >
-            <p className="text-muted-foreground text-lg">Hello, I'm</p>
-            <div className="space-y-4">
-
+            <motion.p
+              className="text-muted-foreground text-lg"
+              variants={fadeInUp}
+            >
+              Hello, I'm
+            </motion.p>
+            <motion.div
+              className="space-y-4"
+              variants={fadeInUp}
+            >
               <svg width="293" height="230" viewBox="0 0 293 230" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M292.701 141.666C288.457 149.722 282.071 157.408 274.099 161.92C269.676 164.423 260.164 168.67 260.304 159.837C260.311 159.533 261.056 155.868 260.017 156.897C258.711 160.559 253.664 164.829 250.06 165.976C246.8 167.014 243.891 164.138 243.441 161.01C242.317 153.202 250.455 143.222 251.376 135.45C248.365 135.881 246.768 139.441 245.678 141.982C243.094 147.996 242.492 151.902 237.967 157.21C229.322 167.353 217.061 167.299 218.061 151.445C218.392 146.184 220.164 143.468 221.397 138.956C221.509 138.55 221.741 137.789 221.005 137.939C220.072 139.007 218.364 139.895 217.443 140.876C215.072 143.41 214.868 149.562 213.281 153.154C210.707 158.987 200.698 168.475 194.041 164.487C190.039 162.09 191.505 158.341 194.01 155.487C199.761 148.936 210.206 145.216 210.665 134.977C210.283 134.005 211.545 129.752 210.509 129.541C202.884 133.833 196.858 141.496 192.623 149.115C184.925 162.962 178.501 178.203 171.051 192.331C167.75 198.592 159.503 215.402 154.519 219.182C150.492 222.237 146.152 219.949 146.611 214.945C147.809 201.931 163.865 184.073 171.449 173.46C175.91 167.219 181.085 159.853 183.698 152.598C182.264 151.608 171.111 165.192 165.745 164.713C162.349 164.411 160.727 158.568 161.052 154.902C161.154 153.758 161.506 151.608 161.323 151.608C160.596 150.201 153.267 158.705 148.379 162.336C145.444 163.908 140.837 165.039 138.377 162.15C135.337 158.574 137.781 153.237 139.377 149.534C141.847 143.797 145.323 138.284 147.742 132.49C147.621 131.04 141.076 133.5 140.238 133.932C137.179 135.507 133.533 143.794 131.418 147.111C128.967 150.952 125.985 155.097 123.079 158.597C121.976 159.926 117.209 165.624 115.826 165.602C113.423 165.564 116.623 162.397 116.909 162.013C118.907 159.361 120.845 156.625 122.722 153.883C124.207 151.713 134.531 136.137 134.432 135.028C134.104 133.817 132.749 133.318 132.316 132.206C131.01 128.86 134.763 122.989 138.192 122.52C140.499 122.203 141.439 123.504 141.602 125.645C141.684 126.725 140.9 129.883 141.783 130.145C145.483 129.381 148.943 126.975 152.617 126.204C156.094 125.476 158.429 125.623 156.215 129.518C154.543 132.463 136.082 162.15 146.008 158.705C153.178 154.714 162.215 144.599 166.201 137.409C167.444 135.165 171.605 124.517 173.266 124.015C175.276 123.408 176.997 125.441 177.29 127.288C178.033 131.96 170.315 143.97 169.391 145.906C168.722 147.309 163.843 160.939 170.707 158.108C173.173 157.088 180.021 148.421 181.984 145.852C186.83 139.508 189.118 133.999 192.964 127.393C194.446 124.846 196.785 122.261 199.726 124.878C202.422 127.275 200.813 130.087 200.497 132.963C203.751 130.515 210.034 122.766 214.479 125.862C217.44 127.927 215.611 133.018 216.532 136.073C216.962 136.153 217.293 135.987 217.676 135.827C226.505 132.155 234.156 117.924 244.286 126.898C245.94 128.362 246.583 130.269 248.183 131.669C248.741 131.771 254.495 128.413 255.082 127.754C256.649 126 257.178 122.414 258.016 120.235C261.289 111.74 270.144 88.6636 277.788 84.5283C284.165 81.08 283.304 93.9718 282.731 97.2762C280.226 111.708 269.102 118.768 260.776 128.918C257.551 132.848 251.914 149.281 250.136 154.867C249.575 156.635 248.795 158.418 248.909 160.313C250.136 162.505 254.279 159.837 257.943 154.516C260.769 151.339 263.319 146.354 265.501 142.691C268.133 138.278 270.013 132.74 272.833 128.636C274.535 126.16 276.396 124.319 278.77 127.572C281.099 130.765 278.83 133.938 277.333 136.897C274.191 143.116 270.125 148.91 267.146 155.225C265.83 158.018 262.541 163.496 268.414 161.166C273.229 159.255 284.267 150.329 286.191 145.516C286.981 143.541 285.965 141.493 287.144 139.639C288.619 137.329 291.602 137.732 292.695 140.106V141.659L292.701 141.666ZM280.111 88.9384C279.334 88.7914 279.12 89.3283 278.69 89.7821C276.769 91.7955 272.83 99.4685 271.371 102.297C268.484 107.896 266.123 113.779 263.717 119.599C264.431 120.276 267.984 117.026 268.481 116.422C277.333 108.752 280.589 98.6855 281.067 93.2527C281.109 92.7743 281.227 89.5775 280.111 88.9384ZM137.583 126.438C136.72 125.645 135.678 126.802 135.286 127.288C134.429 128.352 133.664 130.464 135.12 131.583C136.812 132.433 137.94 127.591 137.58 126.438H137.583ZM238.639 127.432C237.291 127.844 237.339 130.717 237.518 131.861C237.935 134.501 241.437 134.75 243.368 133.75C244.799 130.883 241.956 126.415 238.639 127.432ZM233.958 133.286C229.765 136.408 226.782 142.794 225.161 147.725C224.224 150.575 223.111 160.313 226.725 159.559C236.116 158.191 240.417 146.367 241.692 141.733C243.368 136.3 240.099 137.738 238.187 137.099C237.231 136.859 235.325 135.395 233.958 133.289V133.286ZM207.587 148.504L200.966 153.484C198.665 155.89 195.421 158.392 194.943 161.866C198.216 162.419 200.746 160.409 202.811 158.143C205.092 155.637 207.335 151.921 207.584 148.504H207.587ZM165.239 187.848C164.563 187.148 159.787 194.917 159.357 195.466C156.151 199.595 148.551 210.682 148.965 215.795C149.01 216.348 149.153 216.718 149.606 217.054C150.791 217.597 154.338 211.308 154.908 210.25C158.241 204.037 161.023 197.138 164.104 190.772L165.239 187.848Z" fill="black"/>
                 <path d="M116.913 0C119.892 0.661526 118.834 5.0653 116.448 4.98861C115.689 4.96304 115.24 4.47089 114.583 4.36863C110.215 3.69751 105.48 10.463 104.259 14.1317C100.203 26.3236 109.456 35.7096 120 39.6276C121.779 40.2892 123.48 41.1872 124.468 39.1674C125.784 36.4766 126.676 32.3349 127.96 29.3212C129.961 24.6235 132.775 18.577 137.609 16.356C147.436 11.8467 152.668 22.4407 149.835 30.852C147.637 37.3778 140.416 42.5645 133.938 44.0442C132.259 44.4277 129.522 44.1081 128.671 45.5718C127.938 46.8341 126.807 52.3372 126.377 54.1396C125.787 56.6068 125.488 59.0867 124.844 61.6082C123.818 65.6348 121.132 72.0775 120.737 75.8358C120.737 75.8358 123.082 79.6547 124.442 81.4603C125.918 83.4193 130.991 95.1287 131.564 97.5926C132.323 100.855 129.26 100.712 127.581 98.5034C125.115 95.2629 123.748 88.6221 121.708 84.8415C118.694 78.6161 117.55 86.0559 116.352 88.7946C107.497 109.065 96.2198 117.838 74.6696 122.622C54.5056 127.096 11.5614 124.932 2.04973 102.255C1.04599 99.8616 0.606253 97.3178 0.0390594 94.7995C0.125094 93.5915 -0.0820268 92.2525 0.0390594 91.07C1.94457 72.3012 26.079 63.2668 41.5398 59.0803C68.3763 51.8131 89.0024 53.7849 112.203 69.2429C112.946 69.7382 114.443 71.2626 115.202 71.1923C116.457 70.8663 116.757 69.4826 117.072 68.38C119.156 61.0649 120.227 53.379 122.39 46.0735C122.534 44.8783 122.645 44.613 121.648 43.8748C119.258 42.1075 115.058 40.6375 112.251 38.7392C107.111 35.2654 101.65 29.7175 100.343 23.3899C98.565 14.7964 104.326 1.31666 113.835 0.00319578H116.919L116.913 0ZM144.865 20.0024C140.266 15.7744 134.795 27.0139 133.419 30.1585C132.855 31.4464 129.844 39.4582 130.478 40.0942C133.992 39.9312 138.033 37.9115 140.658 35.5914C144.332 32.3445 149.542 24.3039 144.861 20.0024H144.865ZM112.484 73.7713C109.887 71.1188 100.381 65.9161 96.7647 64.283C74.4083 54.1716 40.2365 60.4481 19.5626 72.6751C-3.74967 86.4649 1.54626 108.081 26.0089 115.703C43.9392 121.289 61.5063 121.714 79.4461 115.936C98.1858 109.903 106.608 100.456 112.821 81.8183C113.752 79.0283 114.845 76.1873 112.48 73.7713H112.484Z" fill="black"/>
@@ -164,19 +153,28 @@ export default function HomePage() {
                 <path d="M178.17 106.95C179.6 106.467 182.64 108.474 183.344 109.74C185.556 113.722 180.231 120.899 176.321 117.128C174.336 115.211 176.347 113.888 176.962 111.961C177.284 110.957 177.542 107.164 178.17 106.95Z" fill="black"/>
               </svg>
 
-            </div>
-            <h1 className="text-xl md:text-2xl font-bold text-foreground leading-tight text-balance">
+            </motion.div>
+            <motion.h1
+              className="text-xl md:text-2xl font-bold text-foreground leading-tight text-balance"
+              variants={fadeInUp}
+            >
               Full-Stack Software Engineer building educational technology
-            </h1>
-            <div className="flex flex-wrap gap-4">
+            </motion.h1>
+            <motion.div
+              className="flex flex-wrap gap-4"
+              variants={fadeInUp}
+            >
               <Button size="lg" className="rounded-full" asChild>
                 <a href="#work">See selected work</a>
               </Button>
               <Button size="lg" variant="outline" className="rounded-full" asChild>
                 <a href="#contact">Contact</a>
               </Button>
-            </div>
-            <div className="flex gap-4 pt-4">
+            </motion.div>
+            <motion.div
+              className="flex gap-4 pt-4"
+              variants={fadeInUp}
+            >
               <Button variant="default" size="icon" asChild className="rounded-full bg-primary hover:bg-primary/90">
                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                   <Linkedin className="h-5 w-5" />
@@ -192,27 +190,38 @@ export default function HomePage() {
                   <Mail className="h-5 w-5" />
                 </a>
               </Button>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       <motion.section
         id="about"
-        ref={aboutRef}
         className="bg-primary py-20"
-        variants={sectionReveal}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.35 }}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <div className="max-w-6xl mx-auto">
-          <motion.div variants={staggeredChildren} className="space-y-8 px-6">
-            <motion.div variants={fadeInUp} className="relative inline-block">
+        <div className="max-w-6xl mx-auto px-6">
+          <div>
+            <motion.div
+              className="relative inline-block mb-8"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground">About</h2>
               <div className="absolute -bottom-2 left-0 w-20 h-1 bg-primary-foreground/80"></div>
             </motion.div>
-            <motion.div variants={fadeInUp} className="space-y-4 text-lg text-primary-foreground/90 leading-relaxed">
+            <motion.div
+              className="space-y-4 text-lg text-primary-foreground/90 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
               <p>
                 I'm a full-stack software engineer with a strong focus on education technology. I've built production
                 learning platforms with interactive simulations, assessments, and large-scale content systems, owning
@@ -223,33 +232,34 @@ export default function HomePage() {
                 complex digital environments.
               </p>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </motion.section>
 
-      <motion.section
-        id="work"
-        className="px-6 py-20"
-        variants={sectionReveal}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
+      <section id="work" className="px-6 py-20">
         <div className="max-w-6xl mx-auto">
-          <motion.div variants={fadeInUp} className="relative inline-block mb-12">
+          <motion.div
+            className="relative inline-block mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">Work</h2>
             <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 h-1 bg-primary"></div>
           </motion.div>
-          <motion.div variants={staggeredChildren} className="space-y-0">
+          <div className="space-y-0">
             {projects.map((project, index) => (
-              <Link key={project.id} href={`/projects/${project.id}`} className="block group">
-                <motion.div
-                  className="py-16"
-                  variants={projectCard}
-                  custom={index}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.35 }}
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <Link
+                  href={`/projects/${project.id}`}
+                  className="block group py-16"
                 >
                   <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div className="relative">
@@ -288,32 +298,50 @@ export default function HomePage() {
                     </div>
                   </div>
                   {index < projects.length - 1 && <div className="mt-16 border-b border-border/50"></div>}
-                </motion.div>
-              </Link>
+                </Link>
+              </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       <motion.section
         id="contact"
         className="bg-primary py-20"
-        variants={sectionReveal}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.35 }}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <div className="max-w-6xl mx-auto px-6">
-          <motion.div variants={staggeredChildren} className="max-w-2xl mx-auto">
-            <motion.div variants={fadeInUp} className="relative inline-block mb-8 mx-auto block text-center">
+          <div className="max-w-2xl mx-auto">
+            <motion.div
+              className="relative inline-block mb-8 mx-auto block text-center"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
               <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground">Let's Connect</h2>
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 h-1 bg-primary-foreground/80"></div>
             </motion.div>
-            <motion.p variants={fadeInUp} className="text-lg text-primary-foreground/90 text-center mb-12 leading-relaxed">
+            <motion.p
+              className="text-lg text-primary-foreground/90 text-center mb-12 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               I'm always interested in hearing about new projects and opportunities. Whether you have a question or just
               want to say hi, feel free to reach out!
             </motion.p>
-            <motion.form variants={fadeInUp} className="space-y-6">
+            <motion.form
+              className="space-y-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium text-primary-foreground">
                   Name
@@ -354,12 +382,12 @@ export default function HomePage() {
                 Send Message
               </Button>
             </motion.form>
-          </motion.div>
+          </div>
         </div>
       </motion.section>
 
-        <footer className="border-t border-border mt-20">
-          <div className="max-w-6xl mx-auto px-6 py-8">
+      <footer className="border-t border-border mt-20">
+        <div className="max-w-6xl mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} Joss Tripoli. All rights reserved.
@@ -393,14 +421,21 @@ export default function HomePage() {
       </footer>
 
       {showScrollTop && (
-        <Button
-          onClick={scrollToTop}
-          size="icon"
-          className="fixed bottom-8 right-8 rounded-full shadow-lg z-50"
-          aria-label="Scroll to top"
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.3 }}
         >
-          <ArrowUp className="h-5 w-5" />
-        </Button>
+          <Button
+            onClick={scrollToTop}
+            size="icon"
+            className="fixed bottom-8 right-8 rounded-full shadow-lg z-50"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp className="h-5 w-5" />
+          </Button>
+        </motion.div>
       )}
     </div>
   )
