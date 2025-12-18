@@ -19,6 +19,8 @@
   --primary: oklch(0.45 0.15 285);
   --primary-foreground: oklch(0.98 0.005 240);
 
+  --secondary-purple: #ECE5FF;
+
   --secondary: oklch(0.95 0.01 240);
   --secondary-foreground: oklch(0.2 0.02 260);
 
@@ -109,6 +111,7 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-secondary-purple: var(--secondary-purple);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
