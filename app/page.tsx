@@ -2,64 +2,52 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { motion, useInView, useMotionValueEvent, useScroll, useTransform } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { ArrowUp, Linkedin, Github, Mail, ExternalLink } from "lucide-react"
-import { useEffect, useState, useRef } from "react"
+import { useRef, useState } from "react"
 
 export default function HomePage() {
   const [showScrollTop, setShowScrollTop] = useState(false)
-  const [parallaxOffset, setParallaxOffset] = useState(0)
-  const heroImageRef = useRef<HTMLDivElement>(null)
   const aboutRef = useRef<HTMLElement>(null)
-  const workItemRefs = useRef<(HTMLAnchorElement | null)[]>([])
-  const sectionRefs = useRef<(HTMLElement | null)[]>([])
+  const { scrollY } = useScroll()
+  const heroParallax = useTransform(scrollY, (value) => value * 0.35)
+  const aboutInView = useInView(aboutRef, { amount: 0.2, margin: "-20% 0px" })
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 500)
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setShowScrollTop(latest > 500)
+  })
 
-      if (heroImageRef.current && aboutRef.current) {
-        const heroRect = heroImageRef.current.getBoundingClientRect()
-        const aboutRect = aboutRef.current.getBoundingClientRect()
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  }
 
-        const offset = window.scrollY * 0.5
-        setParallaxOffset(offset)
+  const sectionReveal = {
+    hidden: { opacity: 0, y: 32 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  }
 
-        if (aboutRect.top <= heroRect.bottom) {
-          heroImageRef.current.style.opacity = "0"
-        } else {
-          heroImageRef.current.style.opacity = "1"
-        }
-      }
+  const staggeredChildren = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.12 } },
+  }
 
-      sectionRefs.current.forEach((section) => {
-        if (section && !section.classList.contains("animate-in")) {
-          const rect = section.getBoundingClientRect()
-          const windowHeight = window.innerHeight
-          if (rect.top < windowHeight * 0.75) {
-            section.classList.add("animate-in")
-          }
-        }
-      })
-
-      workItemRefs.current.forEach((item, index) => {
-        if (item && !item.classList.contains("animate-in")) {
-          const rect = item.getBoundingClientRect()
-          const windowHeight = window.innerHeight
-          if (rect.top < windowHeight * 0.75) {
-            item.style.transitionDelay = `${index * 150}ms`
-            item.classList.add("animate-in")
-          }
-        }
-      })
-    }
-
-    handleScroll()
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  const projectCard = {
+    hidden: { opacity: 0, y: 32, scale: 0.98 },
+    visible: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.65,
+        ease: "easeOut",
+        delay: index * 0.08,
+      },
+    }),
+  }
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -133,20 +121,36 @@ export default function HomePage() {
 
       <section className="px-6 pt-20 pb-20 overflow-hidden">
         <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-          <div
-            ref={heroImageRef}
-            className="order-2 md:order-1 transition-opacity duration-500"
-            style={{ transform: `translateY(${parallaxOffset}px)` }}
+          <motion.div
+            className="order-2 md:order-1"
+            style={{ y: heroParallax }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: aboutInView ? 0 : 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <Image
-              src="/headshot.png"
-              alt="Joss Tripoli"
-              width={400}
-              height={500}
-              className="rounded-lg shadow-lg w-full animate-fade-in-up"
-            />
-          </div>
-          <div className="order-1 md:order-2 space-y-6 animate-fade-in-up [animation-delay:200ms]">
+            <motion.div
+              className="transition-transform duration-700"
+              whileHover={{ scale: 1.02 }}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+            >
+              <Image
+                src="/headshot.png"
+                alt="Joss Tripoli"
+                width={400}
+                height={500}
+                className="rounded-lg shadow-lg w-full"
+              />
+            </motion.div>
+          </motion.div>
+          <motion.div
+            className="order-1 md:order-2 space-y-6"
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.2 }}
+          >
             <p className="text-muted-foreground text-lg">Hello, I'm</p>
             <div className="space-y-4">
 
@@ -193,21 +197,22 @@ export default function HomePage() {
         </div>
       </section>
 
-        <section
-          id="about"
-          ref={(el) => {
-            aboutRef.current = el
-            sectionRefs.current[0] = el
-          }}
-          className="bg-primary py-20 opacity-0 translate-y-8 transition-all duration-700"
-        >
-          <div className="max-w-6xl mx-auto">
-            <div>
-            <div className="relative inline-block mb-8">
+      <motion.section
+        id="about"
+        ref={aboutRef}
+        className="bg-primary py-20"
+        variants={sectionReveal}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.35 }}
+      >
+        <div className="max-w-6xl mx-auto">
+          <motion.div variants={staggeredChildren} className="space-y-8 px-6">
+            <motion.div variants={fadeInUp} className="relative inline-block">
               <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground">About</h2>
               <div className="absolute -bottom-2 left-0 w-20 h-1 bg-primary-foreground/80"></div>
-            </div>
-            <div className="space-y-4 text-lg text-primary-foreground/90 leading-relaxed">
+            </motion.div>
+            <motion.div variants={fadeInUp} className="space-y-4 text-lg text-primary-foreground/90 leading-relaxed">
               <p>
                 I'm a full-stack software engineer with a strong focus on education technology. I've built production
                 learning platforms with interactive simulations, assessments, and large-scale content systems, owning
@@ -217,94 +222,98 @@ export default function HomePage() {
                 I'm especially interested in systems that help people acquire skills, build confidence, and navigate
                 complex digital environments.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-        <section
-          id="work"
-          ref={(el) => {
-            sectionRefs.current[1] = el
-          }}
-          className="px-6 py-20 opacity-0 translate-y-8 transition-all duration-700"
-        >
-          <div className="max-w-6xl mx-auto">
-          <div className="relative inline-block mb-12">
+      <motion.section
+        id="work"
+        className="px-6 py-20"
+        variants={sectionReveal}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <div className="max-w-6xl mx-auto">
+          <motion.div variants={fadeInUp} className="relative inline-block mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">Work</h2>
             <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 h-1 bg-primary"></div>
-          </div>
-          <div className="space-y-0">
+          </motion.div>
+          <motion.div variants={staggeredChildren} className="space-y-0">
             {projects.map((project, index) => (
-              <Link
-                key={project.id}
-                href={`/projects/${project.id}`}
-                ref={(el) => {
-                  workItemRefs.current[index] = el
-                }}
-                  className="block group py-16 opacity-0 translate-y-8 transition-all duration-700"
+              <Link key={project.id} href={`/projects/${project.id}`} className="block group">
+                <motion.div
+                  className="py-16"
+                  variants={projectCard}
+                  custom={index}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.35 }}
                 >
-                <div className="grid md:grid-cols-2 gap-12 items-center">
-                  <div className="relative">
-                    <div className="relative aspect-video bg-muted rounded-lg overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-300">
-                      <Image
-                        src={project.image || "/placeholder.svg"}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                      />
+                  <div className="grid md:grid-cols-2 gap-12 items-center">
+                    <div className="relative">
+                      <div className="relative aspect-video bg-muted rounded-lg overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                        <Image
+                          src={project.image || "/placeholder.svg"}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="absolute -bottom-6 -right-6 w-32 h-40 bg-muted rounded-lg shadow-lg overflow-hidden transform group-hover:scale-105 transition-transform duration-300">
+                        <Image
+                          src={project.image || "/placeholder.svg"}
+                          alt={`${project.title} mobile`}
+                          fill
+                          className="object-cover rounded-lg"
+                        />
+                      </div>
                     </div>
-                    <div className="absolute -bottom-6 -right-6 w-32 h-40 bg-muted rounded-lg shadow-lg overflow-hidden transform group-hover:scale-105 transition-transform duration-300">
-                      <Image
-                        src={project.image || "/placeholder.svg"}
-                        alt={`${project.title} mobile`}
-                        fill
-                        className="object-cover rounded-lg"
-                      />
+                    <div className="flex flex-col justify-center space-y-4">
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+                          {project.title}
+                        </h3>
+                        <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                      </div>
+                      <p className="text-foreground/70 leading-relaxed">{project.description}</p>
+                      <div className="flex flex-wrap gap-2 pt-2">
+                        {project.tech.map((tech) => (
+                          <span key={tech} className="px-3 py-1 text-sm bg-primary/10 text-primary rounded-full">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  <div className="flex flex-col justify-center space-y-4">
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
-                        {project.title}
-                      </h3>
-                      <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                    </div>
-                    <p className="text-foreground/70 leading-relaxed">{project.description}</p>
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      {project.tech.map((tech) => (
-                        <span key={tech} className="px-3 py-1 text-sm bg-primary/10 text-primary rounded-full">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                {index < projects.length - 1 && <div className="mt-16 border-b border-border/50"></div>}
+                  {index < projects.length - 1 && <div className="mt-16 border-b border-border/50"></div>}
+                </motion.div>
               </Link>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-        <section
-          id="contact"
-          ref={(el) => {
-            sectionRefs.current[2] = el
-          }}
-          className="bg-primary py-20 opacity-0 translate-y-8 transition-all duration-700"
-        >
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="max-w-2xl mx-auto">
-            <div className="relative inline-block mb-8 mx-auto block text-center">
+      <motion.section
+        id="contact"
+        className="bg-primary py-20"
+        variants={sectionReveal}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.35 }}
+      >
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div variants={staggeredChildren} className="max-w-2xl mx-auto">
+            <motion.div variants={fadeInUp} className="relative inline-block mb-8 mx-auto block text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground">Let's Connect</h2>
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 h-1 bg-primary-foreground/80"></div>
-            </div>
-            <p className="text-lg text-primary-foreground/90 text-center mb-12 leading-relaxed">
+            </motion.div>
+            <motion.p variants={fadeInUp} className="text-lg text-primary-foreground/90 text-center mb-12 leading-relaxed">
               I'm always interested in hearing about new projects and opportunities. Whether you have a question or just
               want to say hi, feel free to reach out!
-            </p>
-            <form className="space-y-6">
+            </motion.p>
+            <motion.form variants={fadeInUp} className="space-y-6">
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium text-primary-foreground">
                   Name
@@ -344,10 +353,10 @@ export default function HomePage() {
               >
                 Send Message
               </Button>
-            </form>
-          </div>
+            </motion.form>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
         <footer className="border-t border-border mt-20">
           <div className="max-w-6xl mx-auto px-6 py-8">
