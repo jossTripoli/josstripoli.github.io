@@ -161,7 +161,7 @@ export default function HomePage() {
               </svg>
 
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground leading-tight text-balance">
+            <h1 className="text-xl md:text-2xl font-bold text-foreground leading-tight text-balance">
               Full-Stack Software Engineer building educational technology
             </h1>
             <div className="flex flex-wrap gap-4">
@@ -201,8 +201,8 @@ export default function HomePage() {
           }}
           className="bg-primary py-20 opacity-0 translate-y-8 transition-all duration-700"
         >
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
+            <div>
             <div className="relative inline-block mb-8">
               <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground">About</h2>
               <div className="absolute -bottom-2 left-0 w-20 h-1 bg-primary-foreground/80"></div>
