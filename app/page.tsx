@@ -88,11 +88,12 @@ export default function HomePage() {
   const heroTimings = {
     image: { delay: 0.0, duration: 0.8 },
     hello: { delay: 0.85, duration: 0.45 },
-    signature: { delay: 1.25, duration: 0.8 }, // mask reveal
-    headline: { delay: 2.90, duration: 0.5 },
-    ctas: { delay: 3.45, duration: 0.5 },
-    socialsStart: 4.05,
-    socialsStagger: 0.14,
+    signature: { delay: 1.20, duration: 0.15 }, 
+    headline: { delay: 2.4, duration: 0.5 },
+    ctas: { delay: 2.4, duration: 0.5 },
+    socialsStart: 2.8,
+    socialsStagger: 0.2,
+    socialsDuration: 0.45,
   }
 
   const fadeIn = {
@@ -116,8 +117,12 @@ export default function HomePage() {
       <header className="bg-background/80 backdrop-blur-sm border-b border-border">
         <nav className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-xl font-semibold text-foreground">
+            <Link href="/" className="text-base font-semibold text-foreground uppercase tracking-widest">
               Joss Tripoli
+              {/* purple pill labeled portfolio */}
+              <span className="px-3 py-1 text-xs bg-secondary-purple text-primary rounded-full tracking-wide ml-4">
+                Portfolio
+              </span>
             </Link>
             <div className="flex gap-8">
               <a href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -134,7 +139,7 @@ export default function HomePage() {
         </nav>
       </header>
 
-      <section className="px-6 overflow-hidden">
+      <section className="overflow-hidden">
 
         <div className="particle-container">
             <div className="circle-container">
@@ -444,7 +449,7 @@ export default function HomePage() {
 
 
         
-        <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-20 items-center max-w-6xl mx-auto">
           <motion.div
             className="order-2 md:order-1"
             style={{ y: parallaxOffset, opacity: imageOpacity }}
@@ -457,17 +462,17 @@ export default function HomePage() {
               alt="Joss Tripoli"
               width={400}
               height={500}
-              className="w-full"
+              className="w-full ml-6"
             />
           </motion.div>
           
 <motion.div className="order-1 md:order-2 space-y-6">
   {/* 1) "Hello I'm" fade in */}
   <motion.p
-    className="text-muted-foreground text-lg"
+    className="text-muted-foreground text-xl uppercase tracking-wider"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    transition={{ delay: 0.85, duration: 0.45, ease: "easeOut" }}
+    transition={{ delay: heroTimings.hello.delay, duration: heroTimings.hello.duration, ease: "easeOut" }}
   >
     Hello, I'm
   </motion.p>
@@ -477,13 +482,14 @@ export default function HomePage() {
     className="space-y-4"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    transition={{ delay: 1.35, duration: 0.2, ease: "easeOut" }}
+    transition={{ delay: heroTimings.signature.delay, duration: heroTimings.signature.duration, ease: "easeOut" }}
   >
     <motion.svg
       width="293"
       height="230"
       viewBox="0 0 293 230"
       xmlns="http://www.w3.org/2000/svg"
+      className="ml-4"
     >
       <defs>
         <mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width="293" height="230">
@@ -494,7 +500,7 @@ export default function HomePage() {
             height="230"
             initial={{ width: 0 }}
             animate={{ width: 293 }}
-            transition={{ duration: 1.4, ease: "easeInOut", delay: SIGNATURE_DELAY }}
+            transition={{ duration: heroTimings.signature.delay, ease: "easeInOut", delay: SIGNATURE_DELAY }}
             fill="white"
           />
         </mask>
@@ -518,7 +524,7 @@ export default function HomePage() {
         className="text-xl md:text-2xl font-bold text-foreground leading-tight text-balance"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.9, duration: 0.5, ease: "easeOut" }}
+        transition={{ delay: heroTimings.headline.delay, duration: heroTimings.headline.duration, ease: "easeOut" }}
       >
         <span className="text-primary">Full-Stack Software Engineer</span> building educational technology
       </motion.h1>
@@ -528,12 +534,12 @@ export default function HomePage() {
         className="flex flex-wrap gap-4"
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 3.45, duration: 0.5, ease: "easeOut" }}
+        transition={{ delay: heroTimings.ctas.delay, duration: heroTimings.ctas.duration, ease: "easeOut" }}
       >
-        <Button size="lg" className="rounded-full" asChild>
-          <a href="#work">See selected work</a>
+        <Button size="lg" className="rounded-full uppercase tracking-wide shadow-lg shadow-secondary-purple" asChild>
+          <a href="#work">View selected work</a>
         </Button>
-        <Button size="lg" variant="outline" className="rounded-full" asChild>
+        <Button size="lg" variant="outline" className="rounded-full uppercase tracking-wide shadow-sm" asChild>
           <a href="#contact">Contact</a>
         </Button>
       </motion.div>
@@ -542,7 +548,7 @@ export default function HomePage() {
       <div className="flex gap-4 pt-4">
         {[
           {
-            href: "https://linkedin.com",
+            href: "https://www.linkedin.com/in/joss-tripoli/",
             label: "LinkedIn",
             icon: <Linkedin className="h-5 w-5" />,
             external: true,
@@ -564,7 +570,7 @@ export default function HomePage() {
             key={s.label}
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 4.05 + i * 0.14, duration: 0.45, ease: "easeOut" }}
+            transition={{ delay: heroTimings.socialsStart + i * 0.14, duration: heroTimings.socialsDuration, ease: "easeOut" }}
           >
             <Button
               variant="default"
