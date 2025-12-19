@@ -449,7 +449,7 @@ export default function HomePage() {
 
 
         
-        <div className="grid md:grid-cols-2 gap-20 items-center max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 items-center max-w-6xl mx-auto">
           <motion.div
             className="order-2 md:order-1"
             style={{ y: parallaxOffset, opacity: imageOpacity }}
@@ -462,11 +462,11 @@ export default function HomePage() {
               alt="Joss Tripoli"
               width={400}
               height={500}
-              className="w-full ml-6"
+              className="w-full ml-12"
             />
           </motion.div>
           
-<motion.div className="order-1 md:order-2 space-y-6">
+<motion.div className="order-1 md:order-2 space-y-6 ml-24">
   {/* 1) "Hello I'm" fade in */}
   <motion.p
     className="text-muted-foreground text-xl uppercase tracking-wider"
