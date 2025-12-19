@@ -526,7 +526,7 @@ export default function HomePage() {
         animate={{ opacity: 1 }}
         transition={{ delay: heroTimings.headline.delay, duration: heroTimings.headline.duration, ease: "easeOut" }}
       >
-        <span className="text-primary">Full-Stack Software Engineer</span> building educational technology
+        <span className="text-primary">Full-Stack Software Engineer</span> building web applications
       </motion.h1>
 
       {/* 4) CTA buttons fade in */}
@@ -612,24 +612,22 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground">About</h2>
-              <div className="absolute -bottom-2 left-0 w-20 h-1 bg-[#ECE5FF]"></div>
+              <h3 className="text-base uppercase tracking-widest text-primary-foreground mb-4">About</h3>
+              <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground">Designing & Building Web Applications</h2>
+              <div className="absolute -bottom-3 left-0 w-20 h-1 bg-[#ECE5FF]"></div>
             </motion.div>
             <motion.div
-              className="space-y-4 text-lg text-primary-foreground/90 leading-relaxed"
+              className="mt-4 space-y-4 text-lg text-primary-foreground/90 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <p>
-                I'm a full-stack software engineer with a strong focus on education technology. I've built production
-                learning platforms with interactive simulations, assessments, and large-scale content systems, owning
-                everything from UX design to backend architecture and deployment.
+                I'm a full-stack software engineer with significant experience in education technology. I've built production learning platforms with interactive simulations, assessments, and large-scale content systems, owning everything from UX design to backend architecture and deployment.
               </p>
               <p>
-                I'm especially interested in systems that help people acquire skills, build confidence, and navigate
-                complex digital environments.
+                I’ve also built mobile apps and a range of marketing, ecommerce, and technical documentation websites. These projects use modern Content Management Systems (CMS) and tools like WordPress, Payload, and Shopify to help businesses launch, scale, and operate online.
               </p>
             </motion.div>
           </div>
