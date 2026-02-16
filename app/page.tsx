@@ -115,15 +115,44 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       <header className="bg-background/80 backdrop-blur-sm border-b border-border">
-        <nav className="max-w-6xl mx-auto px-6 py-4">
+        <nav className="max-w-6xl mx-auto px-6 py-2">
           <div className="flex items-center justify-between">
+
             <Link href="/" className="text-base font-semibold text-foreground uppercase tracking-widest">
-              Joss Tripoli
-              {/* purple pill labeled portfolio */}
+
+            {/* <div className="relative">
+              <Image
+                src="/initials-logo.svg"
+                alt="Logo"
+                width={80}
+                height={80}
+                className="absolute -top-2 w-20 h-20"
+              />
+              <span className="ml-24">
+                Joss Tripoli
+              </span>
               <span className="px-3 py-1 text-xs bg-secondary-purple text-primary rounded-full tracking-wide ml-4">
                 Portfolio
               </span>
+
+
+            </div> */}
+            <div className="flex items-center gap-2">
+              <Image
+              src="/initials-logo.svg"
+              alt="Logo"
+              width={80}
+              height={80}
+              className="w-14 h-14"
+              />
+              <span className="ml-2">Joss Tripoli</span>
+              <span className="px-3 py-1 text-xs bg-secondary-purple text-primary rounded-full tracking-wide">
+              Portfolio
+              </span>
+            </div>
             </Link>
+
+
             <div className="flex gap-8">
               <a href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 About
