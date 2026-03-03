@@ -175,7 +175,7 @@ export default function HomePage() {
               />
               <span className="ml-2">Joss Tripoli</span>
               <span className="px-3 py-1 text-xs bg-secondary-purple text-primary rounded-full tracking-wide">
-              Portfolio
+                Portfolio
               </span>
             </div>
             </Link>
@@ -613,7 +613,7 @@ export default function HomePage() {
             external: true,
           },
           {
-            href: "https://github.com",
+            href: "https://github.com/jossTripoli",
             label: "GitHub",
             icon: <Github className="h-5 w-5" />,
             external: true,
