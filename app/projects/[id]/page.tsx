@@ -64,6 +64,7 @@ const projectData: Record<string, Project> = {
     description:
       "E-learning platform designed to help older adults build confidence online and recognize digital scams.",
     image: "/demo/dart.gif",
+    liveUrl: "https://app.dartacademy.net/",
     tech: [
       "Next.js",
       "React",
@@ -129,6 +130,7 @@ const projectData: Record<string, Project> = {
     description:
       "A nonprofit web platform for urban biodiversity programs, volunteers, and educational outreach.",
     image: "/demo/mininature.gif",
+    liveUrl: "https://mininaturereserve.org/",
     tech: ["Next.js", "Payload CMS", "Shopify", "TypeScript", "Tailwind CSS", "Vercel", "Lexical"],
     sections: [
       {
@@ -201,6 +203,7 @@ const projectData: Record<string, Project> = {
     description:
       "Course documentation ecosystem that helps students find the right answer quickly across multiple classes.",
     image: "/demo/sics.gif",
+    liveUrl: "https://docs.cse.lehigh.edu/",
     tech: ["Moodle LMS", "MkDocs", "Markdown", "HTML", "CSS", "JavaScript"],
     sections: [
       {
@@ -411,11 +414,11 @@ export default async function ProjectPage({
                 {actionLinks.map((link) => {
                   const Icon = link.icon === "github" ? Github : Globe
                   return (
-                    <Button key={link.href + link.label} variant={link.icon === "github" ? "outline" : "default"} asChild>
+                    <Button key={link.href + link.label} className="h-12 px-10 text-xl" variant={link.icon === "github" ? "outline" : "default"} asChild>
                       <a href={link.href} target="_blank" rel="noopener noreferrer">
-                        <Icon className="mr-2 h-4 w-4" />
+                        <Icon className="mr-2 h-5! w-5!" />
                         {link.label}
-                        <ExternalLink className="ml-2 h-3.5 w-3.5" />
+                        <ExternalLink className="ml-2 h-5! w-5!" />
                       </a>
                     </Button>
                   )

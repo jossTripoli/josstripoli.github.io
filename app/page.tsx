@@ -41,19 +41,6 @@ export default function HomePage() {
     return () => window.removeEventListener("resize", check)
   }, [])
 
-
-
-
-  useState(() => {
-    if (typeof window !== 'undefined') {
-      const handleScroll = () => {
-        setShowScrollTop(window.scrollY > 500)
-      }
-      window.addEventListener("scroll", handleScroll, { passive: true })
-      return () => window.removeEventListener("scroll", handleScroll)
-    }
-  })
-
   useEffect(() => {
     if (typeof window === "undefined") return
 
