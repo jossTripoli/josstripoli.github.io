@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowRight, ExternalLink, Github, Globe } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { SiteHeader } from "@/components/site-header"
 
 type ProjectSection =
   | {
@@ -380,33 +381,7 @@ export default async function ProjectPage({
 
   return (
     <div className="min-h-screen">
-      <header className="top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
-        <nav className="max-w-6xl mx-auto px-6 py-2">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="text-base font-semibold text-foreground uppercase tracking-widest">
-              <div className="flex items-center gap-2">
-                <Image src="/initials-logo.svg" alt="Logo" width={80} height={80} className="w-14 h-14" />
-                <span className="ml-2">Joss Tripoli</span>
-                <span className="px-3 py-1 text-xs bg-secondary-purple text-primary rounded-full tracking-wide">
-                  Portfolio
-                </span>
-              </div>
-            </Link>
-
-            <div className="hidden md:flex gap-8">
-              <a href="/#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                About
-              </a>
-              <a href="/#work" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Work
-              </a>
-              <a href="/#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Contact
-              </a>
-            </div>
-          </div>
-        </nav>
-      </header>
+      <SiteHeader sectionBasePath="/" />
 
       <div className="container mx-auto px-6 pt-5">
         <Link

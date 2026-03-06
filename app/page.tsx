@@ -5,14 +5,13 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { ArrowUp, Linkedin, Github, Mail, ExternalLink, Menu, X } from 'lucide-react'
+import { ArrowUp, Linkedin, Github, Mail, ExternalLink } from 'lucide-react'
 import { useState, useEffect, useId, useRef } from "react"
 import { motion, useScroll, useTransform } from "motion/react"
+import { SiteHeader } from "@/components/site-header"
 
 export default function HomePage() {
   const [showScrollTop, setShowScrollTop] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
   // const { scrollY } = useScroll()
   // const parallaxOffset = useTransform(scrollY, [0, 500], [0, 250])
   // const imageOpacity = useTransform(scrollY, [0, 300, 500], [1, 0.5, 0])
@@ -143,90 +142,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <header className="top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
-        <nav className="max-w-6xl mx-auto px-6 py-2">
-          <div className="flex items-center justify-between">
-
-            <Link href="/" className="text-base font-semibold text-foreground uppercase tracking-widest">
-            <div className="flex items-center gap-2">
-              <Image
-              src="/initials-logo.svg"
-              alt="Logo"
-              width={80}
-              height={80}
-              className="w-14 h-14"
-              />
-              <span className="ml-2">Joss Tripoli</span>
-              <span className="px-3 py-1 text-xs bg-secondary-purple text-primary rounded-full tracking-wide">
-                Portfolio
-              </span>
-            </div>
-            </Link>
-
-            {/* Desktop nav links */}
-            <div className="hidden md:flex gap-8">
-              <a href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                About
-              </a>
-              <a href="#work" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Work
-              </a>
-              <a href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Contact
-              </a>
-            </div>
-
-            {/* Mobile burger button */}
-            <button
-              className="md:hidden p-2 rounded-md text-foreground hover:bg-accent transition-colors"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
-
-          {/* Mobile menu dropdown */}
-          <div
-            className={`md:hidden grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
-              mobileMenuOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-            }`}
-          >
-            <div className="overflow-hidden">
-              <div className="border-t border-border mt-2 pt-4 pb-4 flex flex-col gap-4">
-                <a
-                  href="#about"
-                  className={`text-sm text-muted-foreground hover:text-foreground transition-all px-2 py-1 ${
-                    mobileMenuOpen ? "translate-y-0 opacity-100 delay-100" : "-translate-y-2 opacity-0"
-                  } duration-300`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  About
-                </a>
-                <a
-                  href="#work"
-                  className={`text-sm text-muted-foreground hover:text-foreground transition-all px-2 py-1 ${
-                    mobileMenuOpen ? "translate-y-0 opacity-100 delay-150" : "-translate-y-2 opacity-0"
-                  } duration-300`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Work
-                </a>
-                <a
-                  href="#contact"
-                  className={`text-sm text-muted-foreground hover:text-foreground transition-all px-2 py-1 ${
-                    mobileMenuOpen ? "translate-y-0 opacity-100 delay-200" : "-translate-y-2 opacity-0"
-                  } duration-300`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Contact
-                </a>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <section className="overflow-hidden">
 
