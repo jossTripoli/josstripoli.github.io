@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { notFound } from "next/navigation"
-import { ArrowLeft, ArrowRight, ExternalLink, Github } from "lucide-react"
+import { ArrowLeft, ArrowRight, ExternalLink, Github, Globe } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 
@@ -40,6 +40,12 @@ type ProjectSection =
       attribution: string
     }
 
+type ProjectLink = {
+  label: string
+  href: string
+  icon: "live" | "github"
+}
+
 type Project = {
   title: string
   description: string
@@ -47,6 +53,7 @@ type Project = {
   tech: string[]
   liveUrl?: string
   githubUrl?: string
+  links?: ProjectLink[]
   sections: ProjectSection[]
 }
 
@@ -365,6 +372,12 @@ export default async function ProjectPage({
     notFound()
   }
 
+  const actionLinks: ProjectLink[] = [
+    ...(project.liveUrl ? [{ label: "Live Site", href: project.liveUrl, icon: "live" as const }] : []),
+    ...(project.githubUrl ? [{ label: "GitHub", href: project.githubUrl, icon: "github" as const }] : []),
+    ...(project.links ?? []),
+  ]
+
   return (
     <div className="min-h-screen">
       <header className="top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
@@ -395,6 +408,16 @@ export default async function ProjectPage({
         </nav>
       </header>
 
+      <div className="container mx-auto px-6 pt-5">
+        <Link
+          href="/#work"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to All Projects
+        </Link>
+      </div>
+
       <div className="container mx-auto px-6 py-12">
         <div className="mx-auto max-w-5xl">
           <div className="relative mb-8 aspect-video overflow-hidden rounded-lg bg-muted">
@@ -408,24 +431,22 @@ export default async function ProjectPage({
           <div className="space-y-4">
             <h1 className="text-balance text-4xl font-bold text-foreground md:text-5xl">{project.title}</h1>
             <p className="text-xl text-foreground/70">{project.description}</p>
-            <div className="flex gap-3 pt-2">
-              {project.liveUrl && (
-                <Button asChild>
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    View Live
-                  </a>
-                </Button>
-              )}
-              {project.githubUrl && (
-                <Button variant="outline" asChild>
-                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                    <Github className="mr-2 h-4 w-4" />
-                    View Code
-                  </a>
-                </Button>
-              )}
-            </div>
+            {actionLinks.length > 0 && (
+              <div className="flex flex-wrap gap-3 pt-2">
+                {actionLinks.map((link) => {
+                  const Icon = link.icon === "github" ? Github : Globe
+                  return (
+                    <Button key={link.href + link.label} variant={link.icon === "github" ? "outline" : "default"} asChild>
+                      <a href={link.href} target="_blank" rel="noopener noreferrer">
+                        <Icon className="mr-2 h-4 w-4" />
+                        {link.label}
+                        <ExternalLink className="ml-2 h-3.5 w-3.5" />
+                      </a>
+                    </Button>
+                  )
+                })}
+              </div>
+            )}
           </div>
 
           <section className="space-y-3">
@@ -465,10 +486,6 @@ export default async function ProjectPage({
                 <span />
               )}
             </div>
-
-            <Button variant="ghost" asChild>
-              <Link href="/#work">Back to All Projects</Link>
-            </Button>
           </div>
         </div>
       </article>
