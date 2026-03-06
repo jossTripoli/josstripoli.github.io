@@ -5,12 +5,13 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { ArrowUp, Linkedin, Github, Mail, ExternalLink } from 'lucide-react'
+import { ArrowUp, Linkedin, Github, Mail, ExternalLink, Menu, X } from 'lucide-react'
 import { useState, useEffect, useId, useRef } from "react"
 import { motion, useScroll, useTransform } from "motion/react"
 
 export default function HomePage() {
   const [showScrollTop, setShowScrollTop] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   // const { scrollY } = useScroll()
   // const parallaxOffset = useTransform(scrollY, [0, 500], [0, 250])
@@ -73,41 +74,41 @@ export default function HomePage() {
       id: "dart-academy",
       title: "DART Academy",
       description:
-        "A comprehensive learning platform with interactive simulations, real-time assessments, and adaptive content delivery for computer science education.",
-      tech: ["Next.js", "React", "PostgreSQL", "Node.js", "TypeScript"],
-      image: "/learning-platform-dashboard.png",
+        "E-learning platform designed to empower older adults to recognize scams, improve their online awareness, and hone their digital skills.",
+      tech: ["Next.js", "React", "PostgreSQL", "Prisma ORM", "Node.js", "TypeScript", "Tailwind CSS", "Shadcn/ui", "Figma", "Adobe Illustrator", "Zustand", "Docker", "AWS", "TipTap", "OpenAI API", "HubSpot API", "Stripe API"],
+      image: "/demo/dart.gif",
     },
     {
       id: "miniature-reserve",
-      title: "Miniature Reserve",
+      title: "MiniNature Reserve",
       description:
-        "E-commerce platform for miniature collectibles with inventory management, user authentication, and payment processing.",
-      tech: ["React", "Express", "MongoDB", "Stripe", "AWS"],
-      image: "/ecommerce-miniatures-store.jpg",
+        "Nonprofit website for a community-driven initiative restoring urban biodiversity through native plant gardens and environmental education.",
+      tech: ["Payload CMS", "Shopify", "Next.js", "React", "Figma", "Canva", "Tailwind CSS", "Shadcn/ui", "Node.js", "TypeScript", "Vercel", "Lexical"],
+      image: "/demo/mininature.gif",
     },
     {
       id: "online-trolling-education",
       title: "Online Trolling Education Module",
       description:
         "Interactive educational module teaching digital citizenship and online safety through scenario-based learning and quizzes.",
-      tech: ["Vue.js", "Firebase", "Tailwind CSS", "Chart.js"],
-      image: "/educational-module-interface.jpg",
+      tech: ["Node.js", "Express.js", "Passport.js", "MongoDB", "Mongoose", "Semantic UI", "jQuery", "Intro.js", "Slick.js", "Video.js"],
+      image: "/demo/troll.gif",
     },
     {
       id: "cs-documentation-site",
-      title: "CS Documentation Site",
+      title: "Lehigh University Computer Science Documentation Websites",
       description:
         "Comprehensive documentation platform for computer science courses with search functionality, code examples, and version control.",
-      tech: ["Next.js", "MDX", "Algolia", "Vercel"],
-      image: "/documentation-website.jpg",
+      tech: ["Moodle LMS", "MkDocs", "Bootstrap", "Markdown", "HTML", "CSS", "JavaScript"],
+      image: "/demo/sics.gif",
     },
     {
-      id: "success-in-cs-moodle",
-      title: "Success in CS Moodle Site",
+      id: "collaboreat",
+      title: "Collaboreat",
       description:
         "Custom Moodle learning management system with integrated assessments, progress tracking, and student analytics.",
       tech: ["PHP", "MySQL", "Moodle", "JavaScript", "CSS"],
-      image: "/moodle-learning-management-system.jpg",
+      image: "/demo/collaboreat.png",
     },
   ]
 
@@ -142,29 +143,11 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <header className="bg-background/80 backdrop-blur-sm border-b border-border">
+      <header className="top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
         <nav className="max-w-6xl mx-auto px-6 py-2">
           <div className="flex items-center justify-between">
 
             <Link href="/" className="text-base font-semibold text-foreground uppercase tracking-widest">
-
-            {/* <div className="relative">
-              <Image
-                src="/initials-logo.svg"
-                alt="Logo"
-                width={80}
-                height={80}
-                className="absolute -top-2 w-20 h-20"
-              />
-              <span className="ml-24">
-                Joss Tripoli
-              </span>
-              <span className="px-3 py-1 text-xs bg-secondary-purple text-primary rounded-full tracking-wide ml-4">
-                Portfolio
-              </span>
-
-
-            </div> */}
             <div className="flex items-center gap-2">
               <Image
               src="/initials-logo.svg"
@@ -180,8 +163,8 @@ export default function HomePage() {
             </div>
             </Link>
 
-
-            <div className="flex gap-8">
+            {/* Desktop nav links */}
+            <div className="hidden md:flex gap-8">
               <a href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 About
               </a>
@@ -191,6 +174,55 @@ export default function HomePage() {
               <a href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Contact
               </a>
+            </div>
+
+            {/* Mobile burger button */}
+            <button
+              className="md:hidden p-2 rounded-md text-foreground hover:bg-accent transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+
+          {/* Mobile menu dropdown */}
+          <div
+            className={`md:hidden grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+              mobileMenuOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+            }`}
+          >
+            <div className="overflow-hidden">
+              <div className="border-t border-border mt-2 pt-4 pb-4 flex flex-col gap-4">
+                <a
+                  href="#about"
+                  className={`text-sm text-muted-foreground hover:text-foreground transition-all px-2 py-1 ${
+                    mobileMenuOpen ? "translate-y-0 opacity-100 delay-100" : "-translate-y-2 opacity-0"
+                  } duration-300`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  About
+                </a>
+                <a
+                  href="#work"
+                  className={`text-sm text-muted-foreground hover:text-foreground transition-all px-2 py-1 ${
+                    mobileMenuOpen ? "translate-y-0 opacity-100 delay-150" : "-translate-y-2 opacity-0"
+                  } duration-300`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Work
+                </a>
+                <a
+                  href="#contact"
+                  className={`text-sm text-muted-foreground hover:text-foreground transition-all px-2 py-1 ${
+                    mobileMenuOpen ? "translate-y-0 opacity-100 delay-200" : "-translate-y-2 opacity-0"
+                  } duration-300`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Contact
+                </a>
+              </div>
             </div>
           </div>
         </nav>
@@ -748,42 +780,42 @@ export default function HomePage() {
                   href={`/projects/${project.id}`}
                   className="block group py-16"
                 >
-                  <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="relative">
-                      <div className="relative aspect-video bg-muted rounded-lg overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-300">
-                        <Image
-                          src={project.image || "/placeholder.svg"}
-                          alt={project.title}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="absolute -bottom-6 -right-6 w-32 h-40 bg-muted rounded-lg shadow-lg overflow-hidden transform group-hover:scale-105 transition-transform duration-300">
-                        <Image
-                          src={project.image || "/placeholder.svg"}
-                          alt={`${project.title} mobile`}
-                          fill
-                          className="object-cover rounded-lg"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex flex-col justify-center space-y-4">
-                      <div className="flex items-center gap-2">
-                        <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
-                          {project.title}
-                        </h3>
-                        <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                      </div>
-                      <p className="text-foreground/70 leading-relaxed">{project.description}</p>
-                      <div className="flex flex-wrap gap-2 pt-2">
-                        {project.tech.map((tech) => (
-                          <span key={tech} className="px-3 py-1 text-sm bg-primary/10 text-primary rounded-full">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="relative">
+                {/* 16:9 container for 1280x720 demos */}
+                <div className="relative aspect-video bg-muted rounded-lg overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                  <Image
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.title}
+                    fill
+                    // Use contain to ensure the full 1280x720 fits without cropping
+                    className="object-contain"
+                    // optional: improves perceived quality while loading
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    priority={false}
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col justify-center space-y-4">
+                <div className="flex items-center gap-2">
+                  <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                  <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                </div>
+
+                <p className="text-foreground/70 leading-relaxed">{project.description}</p>
+
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {project.tech.map((tech) => (
+                    <span key={tech} className="px-3 py-1 text-sm bg-primary/10 text-primary rounded-full">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
                   {index < projects.length - 1 && <div className="mt-16 border-b border-border/50"></div>}
                 </Link>
               </motion.div>
