@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, ExternalLink, Github, Globe } from "lucide-react
 
 import { Button } from "@/components/ui/button"
 import { ProjectSections } from "@/components/project-sections"
+import { StickyBackLink } from "@/components/sticky-back-link"
 import { SiteHeader } from "@/components/site-header"
 import type { Project, ProjectLink } from "@/lib/project-types"
 
@@ -250,15 +251,7 @@ export default async function ProjectPage({
     <div className="min-h-screen">
       <SiteHeader sectionBasePath="/" />
 
-      <div className="container sticky top-20 z-40 mx-auto px-6 pt-5">
-        <Link
-          href="/#work"
-          className="inline-flex items-center gap-2 rounded-full border border-border bg-background/95 px-4 py-2 text-sm font-medium text-foreground shadow-sm backdrop-blur transition-colors hover:bg-muted"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to All Projects
-        </Link>
-      </div>
+      <StickyBackLink />
 
       <div className="container mx-auto px-6 py-12">
         <div className="mx-auto max-w-5xl">

@@ -2,12 +2,49 @@
 
 import Image from "next/image"
 import { Expand, X } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import type { ProjectSection } from "@/lib/project-types"
 
+const FBI_REPORT_TEXT = "FBI’s Annual Internet Crime Report"
+const FBI_REPORT_URL = "https://www.fbi.gov/news/press-releases/fbi-releases-annual-internet-crime-report"
+
+function renderParagraph(paragraph: string) {
+  if (!paragraph.includes(FBI_REPORT_TEXT)) {
+    return paragraph
+  }
+
+  const [before, after] = paragraph.split(FBI_REPORT_TEXT)
+
+  return (
+    <>
+      {before}
+      <a
+        href={FBI_REPORT_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-medium text-primary underline underline-offset-4"
+      >
+        {FBI_REPORT_TEXT}
+      </a>
+      {after}
+    </>
+  )
+}
+
 export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
   const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null)
+
+  useEffect(() => {
+    if (!selectedImage) return
+
+    const originalOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+
+    return () => {
+      document.body.style.overflow = originalOverflow
+    }
+  }, [selectedImage])
 
   return (
     <>
@@ -18,7 +55,7 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
               <h2 className="text-2xl font-bold text-foreground">{section.heading}</h2>
               <div className="space-y-4 text-foreground/80 leading-relaxed">
                 {section.paragraphs.map((paragraph, paragraphIndex) => (
-                  <p key={paragraphIndex}>{paragraph}</p>
+                  <p key={paragraphIndex}>{renderParagraph(paragraph)}</p>
                 ))}
               </div>
             </section>
@@ -85,12 +122,19 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
           return (
             <section key={index} className="space-y-2">
               <div className="relative overflow-hidden rounded-lg border border-border bg-muted/50">
-                <Image src={section.src} alt={section.alt} width={1400} height={900} className="h-auto w-full object-cover" />
+                <button
+                  type="button"
+                  onClick={() => setSelectedImage({ src: section.src, alt: section.alt })}
+                  className="block w-full cursor-zoom-in"
+                  aria-label="View image fullscreen"
+                >
+                  <Image src={section.src} alt={section.alt} width={1400} height={900} className="h-auto w-full object-cover" />
+                </button>
                 <button
                   type="button"
                   onClick={() => setSelectedImage({ src: section.src, alt: section.alt })}
                   className="absolute right-3 top-3 rounded-full border border-white/50 bg-black/45 p-2 text-white transition hover:bg-black/65"
-                  aria-label="View image fullscreen"
+                  aria-label="Open fullscreen image"
                 >
                   <Expand className="h-4 w-4" />
                 </button>
@@ -112,27 +156,29 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
 
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+          className="fixed inset-0 z-50 h-[100dvh] w-screen bg-black/70"
           onClick={() => setSelectedImage(null)}
           role="dialog"
           aria-modal="true"
         >
           <button
             type="button"
-            className="absolute right-5 top-5 rounded-full border border-white/40 bg-black/55 p-2 text-white hover:bg-black/75"
+            className="absolute right-5 top-5 z-10 rounded-full border border-white/40 bg-black/55 p-2 text-white hover:bg-black/75"
             onClick={() => setSelectedImage(null)}
             aria-label="Close fullscreen image"
           >
             <X className="h-5 w-5" />
           </button>
-          <div className="relative max-h-[90vh] w-full max-w-6xl" onClick={(event) => event.stopPropagation()}>
-            <Image
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              width={1920}
-              height={1200}
-              className="max-h-[90vh] w-full rounded-lg object-contain"
-            />
+          <div className="flex h-full w-full items-center justify-center p-2 sm:p-4">
+            <div onClick={(event) => event.stopPropagation()}>
+              <Image
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                width={2400}
+                height={1600}
+                className="h-auto max-h-[100dvh] w-auto max-w-[100vw] object-contain"
+              />
+            </div>
           </div>
         </div>
       )}
