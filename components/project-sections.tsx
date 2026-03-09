@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { Expand, X } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import type { ProjectSection } from "@/lib/project-types"
 
@@ -34,6 +34,17 @@ function renderParagraph(paragraph: string) {
 
 export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
   const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null)
+
+  useEffect(() => {
+    if (!selectedImage) return
+
+    const originalOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+
+    return () => {
+      document.body.style.overflow = originalOverflow
+    }
+  }, [selectedImage])
 
   return (
     <>
@@ -145,7 +156,7 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
 
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
+          className="fixed inset-0 z-50 h-[100dvh] w-screen bg-black/70"
           onClick={() => setSelectedImage(null)}
           role="dialog"
           aria-modal="true"
@@ -158,13 +169,13 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
           >
             <X className="h-5 w-5" />
           </button>
-          <div className="relative flex h-full w-full items-center justify-center" onClick={(event) => event.stopPropagation()}>
+          <div className="absolute inset-0 flex items-center justify-center p-2 sm:p-4" onClick={(event) => event.stopPropagation()}>
             <Image
               src={selectedImage.src}
               alt={selectedImage.alt}
               width={2400}
               height={1600}
-              className="h-auto max-h-screen w-auto max-w-screen object-contain"
+              className="h-auto max-h-[100dvh] w-auto max-w-[100vw] object-contain"
             />
           </div>
         </div>

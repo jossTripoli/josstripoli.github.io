@@ -4,33 +4,34 @@ import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 
+const STICKY_TOP_OFFSET = 80
+
 export function StickyBackLink() {
-  const sentinelRef = useRef<HTMLDivElement | null>(null)
+  const thresholdRef = useRef<HTMLDivElement | null>(null)
   const [isStuck, setIsStuck] = useState(false)
 
   useEffect(() => {
-    const sentinel = sentinelRef.current
-    if (!sentinel) return
+    const updateStickyState = () => {
+      const thresholdEl = thresholdRef.current
+      if (!thresholdEl) return
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsStuck(!entry.isIntersecting)
-      },
-      {
-        root: null,
-        threshold: 0,
-        rootMargin: "-80px 0px 0px 0px",
-      },
-    )
+      const thresholdTop = thresholdEl.getBoundingClientRect().top + window.scrollY
+      setIsStuck(window.scrollY >= thresholdTop - STICKY_TOP_OFFSET)
+    }
 
-    observer.observe(sentinel)
-    return () => observer.disconnect()
+    updateStickyState()
+    window.addEventListener("scroll", updateStickyState, { passive: true })
+    window.addEventListener("resize", updateStickyState)
+
+    return () => {
+      window.removeEventListener("scroll", updateStickyState)
+      window.removeEventListener("resize", updateStickyState)
+    }
   }, [])
 
   return (
-    <>
-      <div ref={sentinelRef} className="h-px" aria-hidden />
-      <div className="container sticky top-20 z-40 mx-auto px-6 pt-5">
+    <div className="container mx-auto px-6 pt-5">
+      <div className="sticky top-20 z-40 inline-block">
         <Link
           href="/#work"
           className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-foreground transition-all ${
@@ -43,6 +44,7 @@ export function StickyBackLink() {
           Back to All Projects
         </Link>
       </div>
-    </>
+      <div ref={thresholdRef} className="mt-2 h-px" aria-hidden />
+    </div>
   )
 }
