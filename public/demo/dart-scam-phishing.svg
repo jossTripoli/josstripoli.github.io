@@ -1,0 +1,12 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="900" rx="48" fill="#1E293B"/>
+<rect x="120" y="140" width="960" height="620" rx="28" fill="#0F172A" stroke="#334155" stroke-width="8"/>
+<rect x="190" y="240" width="500" height="44" rx="12" fill="#F97316"/>
+<rect x="190" y="314" width="820" height="24" rx="12" fill="#475569"/>
+<rect x="190" y="364" width="760" height="24" rx="12" fill="#475569"/>
+<rect x="190" y="414" width="690" height="24" rx="12" fill="#475569"/>
+<circle cx="932" cy="256" r="66" fill="#DC2626"/>
+<path d="M932 224V268" stroke="white" stroke-width="14" stroke-linecap="round"/>
+<circle cx="932" cy="300" r="8" fill="white"/>
+<text x="190" y="210" fill="#CBD5E1" font-family="Arial" font-size="38" font-weight="700">Suspicious Email Alert</text>
+</svg>

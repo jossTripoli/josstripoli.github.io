@@ -1,0 +1,10 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="900" rx="48" fill="#1F2937"/>
+<rect x="140" y="160" width="920" height="580" rx="30" fill="#111827" stroke="#374151" stroke-width="8"/>
+<text x="200" y="260" fill="#F9FAFB" font-family="Arial" font-size="48" font-weight="700">7 Day Streak</text>
+<rect x="200" y="320" width="760" height="40" rx="20" fill="#374151"/>
+<rect x="200" y="320" width="620" height="40" rx="20" fill="#F59E0B"/>
+<circle cx="860" cy="340" r="56" fill="#F97316"/>
+<path d="M860 298C840 326 840 346 860 378C880 346 880 326 860 298Z" fill="#FFF7ED"/>
+<text x="200" y="430" fill="#D1D5DB" font-family="Arial" font-size="30">Keep going to unlock bonus lesson content.</text>
+</svg>

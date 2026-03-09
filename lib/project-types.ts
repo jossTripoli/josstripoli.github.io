@@ -38,6 +38,17 @@ export type ProjectSection =
       alt: string
       caption?: string
     }
+  | {
+      type: "gallery"
+      heading: string
+      intro?: string
+      categories: string[]
+      images: {
+        src: string
+        alt: string
+        category: string
+      }[]
+    }
 
 export type ProjectLink = {
   label: string

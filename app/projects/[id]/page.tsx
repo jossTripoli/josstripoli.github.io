@@ -69,6 +69,28 @@ const projectData: Record<string, Project> = {
         alt: "DART Academy learning platform interface",
         caption: "Image 3",
       },
+      {
+        type: "gallery",
+        heading: "DART Academy illustration gallery",
+        intro: "Custom visual assets created for DART Academy experiences, grouped by instructional purpose.",
+        categories: ["Scam", "Gamification", "User Interface Elements"],
+        images: [
+          { src: "/demo/dart-scam-phishing.svg", alt: "Phishing email scam illustration", category: "Scam" },
+          { src: "/demo/dart-scam-smishing.svg", alt: "Smishing text scam illustration", category: "Scam" },
+          { src: "/demo/dart-gamification-badges.svg", alt: "Progress badge gamification illustration", category: "Gamification" },
+          { src: "/demo/dart-gamification-streak.svg", alt: "Daily streak gamification illustration", category: "Gamification" },
+          {
+            src: "/demo/dart-ui-notification.svg",
+            alt: "Security notification UI element illustration",
+            category: "User Interface Elements",
+          },
+          {
+            src: "/demo/dart-ui-dashboard.svg",
+            alt: "Learning dashboard UI element illustration",
+            category: "User Interface Elements",
+          },
+        ],
+      },
     ],
   },
   "miniature-reserve": {

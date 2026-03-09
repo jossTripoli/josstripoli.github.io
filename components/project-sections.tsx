@@ -1,13 +1,18 @@
 "use client"
 
 import Image from "next/image"
-import { Expand, X } from "lucide-react"
-import { useEffect, useState } from "react"
+import { ChevronLeft, ChevronRight, Expand, X } from "lucide-react"
+import { useEffect, useMemo, useState } from "react"
 
 import type { ProjectSection } from "@/lib/project-types"
 
 const FBI_REPORT_TEXT = "FBI’s Annual Internet Crime Report"
 const FBI_REPORT_URL = "https://www.fbi.gov/news/press-releases/fbi-releases-annual-internet-crime-report"
+
+type ModalState = {
+  images: { src: string; alt: string }[]
+  index: number
+}
 
 function renderParagraph(paragraph: string) {
   if (!paragraph.includes(FBI_REPORT_TEXT)) {
@@ -33,10 +38,11 @@ function renderParagraph(paragraph: string) {
 }
 
 export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
-  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null)
+  const [modalState, setModalState] = useState<ModalState | null>(null)
+  const [activeFilters, setActiveFilters] = useState<Record<number, string>>({})
 
   useEffect(() => {
-    if (!selectedImage) return
+    if (!modalState) return
 
     const originalOverflow = document.body.style.overflow
     document.body.style.overflow = "hidden"
@@ -44,7 +50,39 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
     return () => {
       document.body.style.overflow = originalOverflow
     }
-  }, [selectedImage])
+  }, [modalState])
+
+  useEffect(() => {
+    if (!modalState) return
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setModalState(null)
+      }
+
+      if (event.key === "ArrowRight") {
+        setModalState((current) => {
+          if (!current) return current
+          return { ...current, index: (current.index + 1) % current.images.length }
+        })
+      }
+
+      if (event.key === "ArrowLeft") {
+        setModalState((current) => {
+          if (!current) return current
+          return { ...current, index: (current.index - 1 + current.images.length) % current.images.length }
+        })
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [modalState])
+
+  const activeModalImage = useMemo(() => {
+    if (!modalState) return null
+    return modalState.images[modalState.index]
+  }, [modalState])
 
   return (
     <>
@@ -124,7 +162,7 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
               <div className="relative overflow-hidden rounded-lg border border-border bg-muted/50">
                 <button
                   type="button"
-                  onClick={() => setSelectedImage({ src: section.src, alt: section.alt })}
+                  onClick={() => setModalState({ images: [{ src: section.src, alt: section.alt }], index: 0 })}
                   className="block w-full cursor-zoom-in"
                   aria-label="View image fullscreen"
                 >
@@ -132,7 +170,7 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setSelectedImage({ src: section.src, alt: section.alt })}
+                  onClick={() => setModalState({ images: [{ src: section.src, alt: section.alt }], index: 0 })}
                   className="absolute right-3 top-3 rounded-full border border-white/50 bg-black/45 p-2 text-white transition hover:bg-black/65"
                   aria-label="Open fullscreen image"
                 >
@@ -140,6 +178,70 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
                 </button>
               </div>
               {section.caption && <p className="text-sm text-muted-foreground">{section.caption}</p>}
+            </section>
+          )
+        }
+
+        if (section.type === "gallery") {
+          const activeFilter = activeFilters[index] ?? "All"
+          const filterCategories = ["All", ...section.categories]
+          const filteredImages =
+            activeFilter === "All" ? section.images : section.images.filter((image) => image.category === activeFilter)
+
+          return (
+            <section key={index} className="space-y-5">
+              <h2 className="text-2xl font-bold text-foreground">{section.heading}</h2>
+              {section.intro && <p className="text-foreground/80">{section.intro}</p>}
+
+              <div className="flex flex-wrap gap-2">
+                {filterCategories.map((category) => {
+                  const isActive = category === activeFilter
+
+                  return (
+                    <button
+                      key={category}
+                      type="button"
+                      onClick={() => setActiveFilters((current) => ({ ...current, [index]: category }))}
+                      className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
+                        isActive
+                          ? "border-primary bg-primary text-primary-foreground"
+                          : "border-border bg-background text-foreground hover:border-primary/60 hover:text-primary"
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  )
+                })}
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {filteredImages.map((image, imageIndex) => (
+                  <button
+                    key={`${image.src}-${image.alt}`}
+                    type="button"
+                    onClick={() =>
+                      setModalState({
+                        images: filteredImages.map((galleryImage) => ({ src: galleryImage.src, alt: galleryImage.alt })),
+                        index: imageIndex,
+                      })
+                    }
+                    className="group relative overflow-hidden rounded-lg border border-border bg-muted/40 text-left"
+                    aria-label={`Open ${image.alt}`}
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      width={1000}
+                      height={700}
+                      className="aspect-[4/3] w-full object-cover transition duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/0 transition group-hover:bg-black/25" />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-3 py-2 text-xs text-white">
+                      {image.category}
+                    </div>
+                  </button>
+                ))}
+              </div>
             </section>
           )
         }
@@ -154,31 +256,63 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
         )
       })}
 
-      {selectedImage && (
+      {modalState && activeModalImage && (
         <div
-          className="fixed inset-0 z-50 h-[100dvh] w-screen bg-black/70"
-          onClick={() => setSelectedImage(null)}
+          className="fixed inset-0 z-50 h-[100dvh] w-screen bg-black/80 shadow-[0_0_120px_rgba(0,0,0,0.8)]"
+          onClick={() => setModalState(null)}
           role="dialog"
           aria-modal="true"
         >
           <button
             type="button"
             className="absolute right-5 top-5 z-10 rounded-full border border-white/40 bg-black/55 p-2 text-white hover:bg-black/75"
-            onClick={() => setSelectedImage(null)}
+            onClick={() => setModalState(null)}
             aria-label="Close fullscreen image"
           >
             <X className="h-5 w-5" />
           </button>
-          <div className="flex h-full w-full items-center justify-center p-2 sm:p-4">
-            <div onClick={(event) => event.stopPropagation()}>
-              <Image
-                src={selectedImage.src}
-                alt={selectedImage.alt}
-                width={2400}
-                height={1600}
-                className="h-auto max-h-[100dvh] w-auto max-w-[100vw] object-contain"
-              />
-            </div>
+
+          {modalState.images.length > 1 && (
+            <>
+              <button
+                type="button"
+                className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/40 bg-black/55 p-2 text-white hover:bg-black/75 sm:left-6"
+                onClick={(event) => {
+                  event.stopPropagation()
+                  setModalState((current) => {
+                    if (!current) return current
+                    return { ...current, index: (current.index - 1 + current.images.length) % current.images.length }
+                  })
+                }}
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/40 bg-black/55 p-2 text-white hover:bg-black/75 sm:right-6"
+                onClick={(event) => {
+                  event.stopPropagation()
+                  setModalState((current) => {
+                    if (!current) return current
+                    return { ...current, index: (current.index + 1) % current.images.length }
+                  })
+                }}
+                aria-label="Next image"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </>
+          )}
+
+          <div className="flex h-full w-full items-center justify-center p-4" onClick={(event) => event.stopPropagation()}>
+            <Image
+              src={activeModalImage.src}
+              alt={activeModalImage.alt}
+              width={2400}
+              height={1600}
+              className="h-auto max-h-[90dvh] w-auto max-w-[90vw] rounded-md object-contain"
+            />
           </div>
         </div>
       )}

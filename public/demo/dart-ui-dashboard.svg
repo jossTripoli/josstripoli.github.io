@@ -1,0 +1,10 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="900" rx="48" fill="#312E81"/>
+<rect x="130" y="150" width="940" height="600" rx="34" fill="#EEF2FF"/>
+<rect x="190" y="230" width="240" height="440" rx="20" fill="#C7D2FE"/>
+<rect x="470" y="230" width="540" height="180" rx="20" fill="#4F46E5"/>
+<rect x="470" y="440" width="255" height="230" rx="20" fill="#818CF8"/>
+<rect x="755" y="440" width="255" height="230" rx="20" fill="#A5B4FC"/>
+<text x="500" y="300" fill="#EEF2FF" font-family="Arial" font-size="34" font-weight="700">Learner Dashboard Widget</text>
+<text x="220" y="290" fill="#3730A3" font-family="Arial" font-size="28" font-weight="700">Modules</text>
+</svg>

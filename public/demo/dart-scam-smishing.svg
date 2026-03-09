@@ -1,0 +1,10 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="900" rx="48" fill="#111827"/>
+<rect x="400" y="120" width="400" height="660" rx="40" fill="#1F2937" stroke="#4B5563" stroke-width="10"/>
+<rect x="450" y="210" width="300" height="90" rx="20" fill="#EF4444"/>
+<rect x="450" y="330" width="250" height="50" rx="14" fill="#6B7280"/>
+<rect x="450" y="400" width="290" height="50" rx="14" fill="#6B7280"/>
+<rect x="450" y="470" width="220" height="50" rx="14" fill="#6B7280"/>
+<circle cx="600" cy="690" r="28" fill="#9CA3AF"/>
+<text x="450" y="180" fill="#E5E7EB" font-family="Arial" font-size="32" font-weight="700">Smishing Text</text>
+</svg>

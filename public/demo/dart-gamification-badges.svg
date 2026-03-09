@@ -1,0 +1,13 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="900" rx="48" fill="#052E16"/>
+<circle cx="360" cy="430" r="170" fill="#22C55E"/>
+<circle cx="360" cy="430" r="110" fill="#14532D"/>
+<circle cx="360" cy="430" r="48" fill="#FACC15"/>
+<circle cx="620" cy="430" r="170" fill="#0EA5E9"/>
+<circle cx="620" cy="430" r="110" fill="#075985"/>
+<path d="M620 375L645 425L700 433L660 470L670 525L620 497L570 525L580 470L540 433L595 425L620 375Z" fill="#F8FAFC"/>
+<rect x="790" y="290" width="290" height="280" rx="24" fill="#14532D" stroke="#4ADE80" stroke-width="6"/>
+<text x="835" y="370" fill="#DCFCE7" font-family="Arial" font-size="36" font-weight="700">Badges</text>
+<text x="835" y="430" fill="#86EFAC" font-family="Arial" font-size="24">+ Motivation</text>
+<text x="835" y="470" fill="#86EFAC" font-family="Arial" font-size="24">+ Milestones</text>
+</svg>
