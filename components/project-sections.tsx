@@ -155,28 +155,24 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
       })}
 
       {selectedImage && (
-        <div
-          className="fixed inset-0 z-50 h-[100dvh] w-screen bg-black/70"
-          onClick={() => setSelectedImage(null)}
-          role="dialog"
-          aria-modal="true"
-        >
+        <div className="fixed inset-0 z-50 h-[100dvh] w-screen" role="dialog" aria-modal="true">
+          <div className="absolute inset-0 bg-black/70" onClick={() => setSelectedImage(null)} />
           <button
             type="button"
-            className="absolute right-5 top-5 z-10 rounded-full border border-white/40 bg-black/55 p-2 text-white hover:bg-black/75"
+            className="absolute right-5 top-5 z-20 rounded-full border border-white/40 bg-black/55 p-2 text-white hover:bg-black/75"
             onClick={() => setSelectedImage(null)}
             aria-label="Close fullscreen image"
           >
             <X className="h-5 w-5" />
           </button>
-          <div className="flex h-full w-full items-center justify-center p-2 sm:p-4">
-            <div onClick={(event) => event.stopPropagation()}>
+          <div className="relative z-10 h-full w-full overflow-auto p-2 sm:p-4">
+            <div className="mx-auto w-fit" onClick={(event) => event.stopPropagation()}>
               <Image
                 src={selectedImage.src}
                 alt={selectedImage.alt}
                 width={2400}
                 height={1600}
-                className="h-auto max-h-[100dvh] w-auto max-w-[100vw] object-contain"
+                className="block h-auto max-w-none"
               />
             </div>
           </div>
