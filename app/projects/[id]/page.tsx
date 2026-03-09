@@ -38,7 +38,7 @@ const projectData: Record<string, Project> = {
       },
       {
         type: "image",
-        src: "/demo/dart.gif",
+        src: "/dart/scam_stats.png",
         alt: "DART Academy platform overview",
         caption: "Image 1",
       },
@@ -46,12 +46,12 @@ const projectData: Record<string, Project> = {
         type: "richText",
         heading: "Research collaboration",
         paragraphs: [
-          "To address this problem, a multi-university research collaboration led by the University at Buffalo launched the Deception Awareness and Resilience Training (DART) initiative, supported by a $5 million National Science Foundation Convergence Accelerator grant. The project brings together researchers from institutions including Cornell University, Clemson University, Lehigh University, Northeastern University, and the University of Illinois to develop tools that help people recognize and resist online deception.",
+          "To address this problem, a multi-university research collaboration led by the University at Buffalo launched the Deception Awareness and Resilience Training (DART) initiative, supported by a $5 million National Science Foundation Convergence Accelerator grant. The project brings together researchers from institutions including Cornell University, Clemson University, Lehigh University, and the University of Illinois to develop tools that help people recognize and resist online deception.",
         ],
       },
       {
         type: "image",
-        src: "/demo/dart.gif",
+        src: "/dart/dart_team.png",
         alt: "DART initiative research collaboration",
         caption: "Image 2",
       },
@@ -59,16 +59,44 @@ const projectData: Record<string, Project> = {
         type: "richText",
         heading: "My role",
         paragraphs: [
-          "As a technical lead and founding engineer, I worked with researchers and educators across the collaboration to design and build DART Academy, an interactive learning system that teaches users to identify scams through realistic simulations, structured lessons, and hands-on practice. I led product design and prototyping in Figma and participated in 100+ customer discovery interviews through the NSF I-Corps program, translating user insights into the platform’s learning flows and features.",
+          "As a technical lead and founding engineer, I worked with researchers and educators across the collaboration to design and build DART Academy, an interactive learning system that teaches users to identify scams through realistic simulations, structured lessons, and hands-on practice. I led product design and prototyping in Figma and participated in 100+ customer discovery interviews through the NSF National I-Corps program, translating user insights into the platform’s learning flows and features.",
           "I architected and built the system’s learning management infrastructure, including the course player, content authoring tools, and interactive training framework. I also assembled and led a rotating development team of student engineers over multiple years, mentoring developers through system design, implementation, and deployment as the platform evolved.",
         ],
       },
       {
         type: "image",
-        src: "/demo/dart.gif",
+        src: "/dart/dart_architecture.png",
         alt: "DART Academy learning platform interface",
         caption: "Image 3",
       },
+      
+      {
+        type: "gallery",
+        heading: "DART Academy illustration gallery",
+        intro: "Custom visual assets created for DART Academy experiences, grouped by instructional purpose.",
+        categories: ["Scam", "Gamification", "Decorative"],
+        images: [
+          { src: "/dart/gallery/badges1.svg", alt: "Badges", category: "Gamification" },
+          { src: "/dart/gallery/badges2.svg", alt: "Badges", category: "Gamification" },
+          { src: "/dart/gallery/badges3.svg", alt: "Badges", category: "Gamification" },
+          { src: "/dart/gallery/badges4.svg", alt: "Badges", category: "Gamification" },
+
+          { src: "/dart/gallery/supplement.svg", alt: "Smishing text scam illustration", category: "Scam" },
+          { src: "/dart/gallery/dont-close-browser.svg", alt: "Progress badge gamification illustration", category: "Scam" },
+          { src: "/dart/gallery/emotional_words.png", alt: "Daily streak gamification illustration", category: "Scam" },
+          {
+            src: "/dart/gallery/dart-ui-notification.svg",
+            alt: "Security notification UI element illustration",
+            category: "Decorative",
+          },
+          {
+            src: "/dart/gallery/dart-ui-dashboard.svg",
+            alt: "Learning dashboard UI element illustration",
+            category: "Decorative",
+          },
+        ],
+      },
+
     ],
   },
   "miniature-reserve": {
