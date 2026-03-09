@@ -250,10 +250,10 @@ export default async function ProjectPage({
     <div className="min-h-screen">
       <SiteHeader sectionBasePath="/" />
 
-      <div className="container mx-auto px-6 pt-5">
+      <div className="container sticky top-20 z-40 mx-auto px-6 pt-5">
         <Link
           href="/#work"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+          className="inline-flex items-center gap-2 rounded-full border border-border bg-background/95 px-4 py-2 text-sm font-medium text-foreground shadow-sm backdrop-blur transition-colors hover:bg-muted"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to All Projects
