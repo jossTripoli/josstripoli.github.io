@@ -4,59 +4,10 @@ import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowRight, ExternalLink, Github, Globe } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { ProjectSections } from "@/components/project-sections"
+import { StickyBackLink } from "@/components/sticky-back-link"
 import { SiteHeader } from "@/components/site-header"
-
-type ProjectSection =
-  | {
-      type: "richText"
-      heading: string
-      paragraphs: string[]
-    }
-  | {
-      type: "bullets"
-      heading: string
-      intro?: string
-      items: string[]
-    }
-  | {
-      type: "timeline"
-      heading: string
-      steps: {
-        title: string
-        detail: string
-      }[]
-    }
-  | {
-      type: "stats"
-      heading: string
-      stats: {
-        label: string
-        value: string
-        detail?: string
-      }[]
-    }
-  | {
-      type: "quote"
-      quote: string
-      attribution: string
-    }
-
-type ProjectLink = {
-  label: string
-  href: string
-  icon: "live" | "github"
-}
-
-type Project = {
-  title: string
-  description: string
-  image: string
-  tech: string[]
-  liveUrl?: string
-  githubUrl?: string
-  links?: ProjectLink[]
-  sections: ProjectSection[]
-}
+import type { Project, ProjectLink } from "@/lib/project-types"
 
 const projectData: Record<string, Project> = {
   "dart-academy": {
@@ -82,46 +33,41 @@ const projectData: Record<string, Project> = {
         type: "richText",
         heading: "Project Story",
         paragraphs: [
-          "DART Academy started as a response to a growing pattern: older adults were being targeted by increasingly sophisticated phishing, romance, and impersonation scams.",
-          "Rather than designing another static awareness site, the goal was to create a guided learning experience that feels supportive, practical, and confidence-building.",
+          "Online scams are a rapidly growing threat, particularly for older adults. In a single year 147,127 Americans aged 60+ reported being victims of online scams, resulting in $4.8 billion in losses, according to the FBI’s Annual Internet Crime Report.",
         ],
       },
       {
-        type: "timeline",
-        heading: "How the experience is structured",
-        steps: [
-          {
-            title: "Onboarding",
-            detail: "Learners set goals and complete a lightweight baseline assessment.",
-          },
-          {
-            title: "Scenario-driven modules",
-            detail: "Lessons use realistic simulations (emails, texts, calls) and immediate feedback.",
-          },
-          {
-            title: "Practice & reinforcement",
-            detail: "Spaced review and mini challenges reinforce pattern recognition over time.",
-          },
-          {
-            title: "Reflection",
-            detail: "Learners receive plain-language summaries of growth and areas to revisit.",
-          },
+        type: "image",
+        src: "/demo/dart.gif",
+        alt: "DART Academy platform overview",
+        caption: "Image 1",
+      },
+      {
+        type: "richText",
+        heading: "Research collaboration",
+        paragraphs: [
+          "To address this problem, a multi-university research collaboration led by the University at Buffalo launched the Deception Awareness and Resilience Training (DART) initiative, supported by a $5 million National Science Foundation Convergence Accelerator grant. The project brings together researchers from institutions including Cornell University, Clemson University, Lehigh University, Northeastern University, and the University of Illinois to develop tools that help people recognize and resist online deception.",
         ],
       },
       {
-        type: "stats",
-        heading: "Outcome snapshot",
-        stats: [
-          { label: "Learner completion rate", value: "87%" },
-          { label: "Confidence increase", value: "+41%", detail: "Self-reported after module completion." },
-          { label: "Avg. time per lesson", value: "9 min" },
+        type: "image",
+        src: "/demo/dart.gif",
+        alt: "DART initiative research collaboration",
+        caption: "Image 2",
+      },
+      {
+        type: "richText",
+        heading: "My role",
+        paragraphs: [
+          "As a technical lead and founding engineer, I worked with researchers and educators across the collaboration to design and build DART Academy, an interactive learning system that teaches users to identify scams through realistic simulations, structured lessons, and hands-on practice. I led product design and prototyping in Figma and participated in 100+ customer discovery interviews through the NSF I-Corps program, translating user insights into the platform’s learning flows and features.",
+          "I architected and built the system’s learning management infrastructure, including the course player, content authoring tools, and interactive training framework. I also assembled and led a rotating development team of student engineers over multiple years, mentoring developers through system design, implementation, and deployment as the platform evolved.",
         ],
       },
       {
-        type: "quote",
-        quote:
-          "This project proved that digital safety education works best when it respects people’s pace and lived experience.",
-        attribution: "Design principle used throughout DART Academy",
+        type: "image",
+        src: "/demo/dart.gif",
+        alt: "DART Academy learning platform interface",
+        caption: "Image 3",
       },
     ],
   },
@@ -277,87 +223,6 @@ const projectOrder = [
   "collaboreat",
 ] as const
 
-function renderProjectSection(section: ProjectSection, index: number) {
-  if (section.type === "richText") {
-    return (
-      <section key={index} className="space-y-4">
-        <h2 className="text-2xl font-bold text-foreground">{section.heading}</h2>
-        <div className="space-y-4 text-foreground/80 leading-relaxed">
-          {section.paragraphs.map((paragraph, paragraphIndex) => (
-            <p key={paragraphIndex}>{paragraph}</p>
-          ))}
-        </div>
-      </section>
-    )
-  }
-
-  if (section.type === "bullets") {
-    return (
-      <section key={index} className="space-y-4">
-        <h2 className="text-2xl font-bold text-foreground">{section.heading}</h2>
-        {section.intro && <p className="text-foreground/80">{section.intro}</p>}
-        <ul className="space-y-3 text-foreground/80">
-          {section.items.map((item) => (
-            <li key={item} className="flex items-start gap-3">
-              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-    )
-  }
-
-  if (section.type === "timeline") {
-    return (
-      <section key={index} className="space-y-4">
-        <h2 className="text-2xl font-bold text-foreground">{section.heading}</h2>
-        <ol className="space-y-4 border-l border-border pl-6">
-          {section.steps.map((step, stepIndex) => (
-            <li key={step.title} className="relative">
-              <span
-                className="absolute -left-[29px] top-2 h-3 w-3 rounded-full border border-primary bg-background"
-                aria-hidden
-              />
-              <p className="font-semibold text-foreground">
-                {stepIndex + 1}. {step.title}
-              </p>
-              <p className="text-foreground/80">{step.detail}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-    )
-  }
-
-  if (section.type === "stats") {
-    return (
-      <section key={index} className="space-y-4">
-        <h2 className="text-2xl font-bold text-foreground">{section.heading}</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {section.stats.map((stat) => (
-            <article key={stat.label} className="rounded-lg border border-border bg-card p-5">
-              <p className="text-2xl font-bold text-foreground">{stat.value}</p>
-              <p className="mt-1 text-sm font-medium text-foreground/80">{stat.label}</p>
-              {stat.detail && <p className="mt-2 text-sm text-muted-foreground">{stat.detail}</p>}
-            </article>
-          ))}
-        </div>
-      </section>
-    )
-  }
-
-  return (
-    <section key={index} className="rounded-lg border-l-4 border-primary bg-primary/5 px-6 py-5">
-      <blockquote className="space-y-3">
-        <p className="text-lg italic text-foreground/90">“{section.quote}”</p>
-        <footer className="text-sm text-muted-foreground">— {section.attribution}</footer>
-      </blockquote>
-    </section>
-  )
-}
-
-
 export async function generateStaticParams() {
   return Object.keys(projectData).map((id) => ({ id }))
 }
@@ -386,15 +251,7 @@ export default async function ProjectPage({
     <div className="min-h-screen">
       <SiteHeader sectionBasePath="/" />
 
-      <div className="container mx-auto px-6 pt-5">
-        <Link
-          href="/#work"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to All Projects
-        </Link>
-      </div>
+      <StickyBackLink />
 
       <div className="container mx-auto px-6 py-12">
         <div className="mx-auto max-w-5xl">
@@ -438,7 +295,7 @@ export default async function ProjectPage({
             </div>
           </section>
 
-          {project.sections.map((section, index) => renderProjectSection(section, index))}
+          <ProjectSections sections={project.sections} />
 
           <div className="border-t border-border pt-8 space-y-4">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
