@@ -163,20 +163,22 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
         >
           <button
             type="button"
-            className="absolute right-5 top-5 rounded-full border border-white/40 bg-black/55 p-2 text-white hover:bg-black/75"
+            className="absolute right-5 top-5 z-10 rounded-full border border-white/40 bg-black/55 p-2 text-white hover:bg-black/75"
             onClick={() => setSelectedImage(null)}
             aria-label="Close fullscreen image"
           >
             <X className="h-5 w-5" />
           </button>
-          <div className="absolute inset-0 flex items-center justify-center p-2 sm:p-4" onClick={(event) => event.stopPropagation()}>
-            <Image
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              width={2400}
-              height={1600}
-              className="h-auto max-h-[100dvh] w-auto max-w-[100vw] object-contain"
-            />
+          <div className="flex h-full w-full items-center justify-center p-2 sm:p-4">
+            <div onClick={(event) => event.stopPropagation()}>
+              <Image
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                width={2400}
+                height={1600}
+                className="h-auto max-h-[100dvh] w-auto max-w-[100vw] object-contain"
+              />
+            </div>
           </div>
         </div>
       )}
