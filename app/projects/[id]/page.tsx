@@ -37,7 +37,7 @@ const projectData: Record<string, Project> = {
         ],
       },
       {
-        type: "image",
+        type: "infographic",
         src: "/demo/dart.gif",
         alt: "DART Academy platform overview",
         caption: "Image 1",
@@ -50,7 +50,7 @@ const projectData: Record<string, Project> = {
         ],
       },
       {
-        type: "image",
+        type: "infographic",
         src: "/demo/dart.gif",
         alt: "DART initiative research collaboration",
         caption: "Image 2",
@@ -64,7 +64,7 @@ const projectData: Record<string, Project> = {
         ],
       },
       {
-        type: "image",
+        type: "infographic",
         src: "/demo/dart.gif",
         alt: "DART Academy learning platform interface",
         caption: "Image 3",
