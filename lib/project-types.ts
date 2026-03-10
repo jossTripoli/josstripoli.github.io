@@ -46,13 +46,13 @@ export type ProjectSection =
       type: "image"
       src: string
       alt: string
-      caption?: string
+      caption?: RichTextParagraph
     }
   | {
       type: "infographic"
       src: string
       alt: string
-      caption?: string
+      caption?: RichTextParagraph
     }
   | {
       type: "gallery"
