@@ -2,39 +2,54 @@
 
 import Image from "next/image"
 import { ChevronLeft, ChevronRight, Expand, X } from "lucide-react"
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useState, type ReactNode } from "react"
 
-import type { ProjectSection } from "@/lib/project-types"
+import type { ProjectSection, RichTextParagraph } from "@/lib/project-types"
 
-const FBI_REPORT_TEXT = "FBI’s Annual Internet Crime Report"
-const FBI_REPORT_URL = "https://www.fbi.gov/news/press-releases/fbi-releases-annual-internet-crime-report"
 
 type ModalState = {
   images: { src: string; alt: string }[]
   index: number
 }
 
-function renderParagraph(paragraph: string) {
-  if (!paragraph.includes(FBI_REPORT_TEXT)) {
+function renderParagraph(paragraph: RichTextParagraph) {
+  if (typeof paragraph === "string") {
     return paragraph
   }
 
-  const [before, after] = paragraph.split(FBI_REPORT_TEXT)
+  if (!paragraph.links.length) {
+    return paragraph.text
+  }
 
-  return (
-    <>
-      {before}
+  let remainingText = paragraph.text
+  const nodes: ReactNode[] = []
+
+  paragraph.links.forEach((link, index) => {
+    const [before, ...afterParts] = remainingText.split(link.label)
+
+    if (!afterParts.length) {
+      return
+    }
+
+    nodes.push(before)
+    nodes.push(
       <a
-        href={FBI_REPORT_URL}
+        key={`${link.href}-${index}`}
+        href={link.href}
         target="_blank"
         rel="noopener noreferrer"
         className="font-medium text-primary underline underline-offset-4"
       >
-        {FBI_REPORT_TEXT}
-      </a>
-      {after}
-    </>
-  )
+        {link.label}
+      </a>,
+    )
+
+    remainingText = afterParts.join(link.label)
+  })
+
+  nodes.push(remainingText)
+
+  return <>{nodes}</>
 }
 
 export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
