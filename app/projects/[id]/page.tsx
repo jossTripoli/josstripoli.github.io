@@ -46,7 +46,7 @@ const projectData: Record<string, Project> = {
             text: "Reporting by *The New York Times* has revealed that many of these scams are not isolated efforts by individual fraudsters, but highly organized, industrial-scale operations run by transnational crime syndicates. They run detailed internal \"playbooks\" that train workers step by step in how to manipulate victims and defraud them of their money. If criminal networks rely on structured training to carry out fraud at scale, people need equally structured education to recognize and resist these tactics.",
             links: [
               {
-                label: "Reporting by The New York Times",
+                label: "Reporting by *The New York Times*",
                 href: "https://www.nytimes.com/2026/01/13/world/asia/myanmar-scam-complex-fraud.html",
               },
             ],
@@ -57,7 +57,7 @@ const projectData: Record<string, Project> = {
         type: "image",
         src: "/dart/scam_stats.png",
         alt: "DART Academy platform overview",
-        caption: "Image 1",
+        caption: "Online scam complaints and losses by age group. Adults 60+ experience the greatest financial losses. Source: FBI Internet Crime Report.",
       },
       {
         type: "richText",
