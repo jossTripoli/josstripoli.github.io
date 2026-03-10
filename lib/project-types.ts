@@ -1,8 +1,18 @@
+export type RichTextParagraph =
+  | string
+  | {
+      text: string
+      links: {
+        label: string
+        href: string
+      }[]
+    }
+
 export type ProjectSection =
   | {
       type: "richText"
       heading: string
-      paragraphs: string[]
+      paragraphs: RichTextParagraph[]
     }
   | {
       type: "bullets"

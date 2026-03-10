@@ -33,7 +33,15 @@ const projectData: Record<string, Project> = {
         type: "richText",
         heading: "Project Story",
         paragraphs: [
-          "Online scams are a rapidly growing threat, particularly for older adults. In a single year 147,127 Americans aged 60+ reported being victims of online scams, resulting in $4.8 billion in losses, according to the FBI's Annual Internet Crime Report.",
+          {
+            text: "Online scams are a rapidly growing threat, particularly for older adults. In a single year 147,127 Americans aged 60+ reported being victims of online scams, resulting in $4.8 billion in losses, according to the FBI's Annual Internet Crime Report.",
+            links: [
+              {
+                label: "FBI's Annual Internet Crime Report",
+                href: "https://www.fbi.gov/news/press-releases/fbi-releases-annual-internet-crime-report",
+              },
+            ],
+          },
         ],
       },
       {
