@@ -39,6 +39,12 @@ export type ProjectSection =
       caption?: string
     }
   | {
+      type: "infographic"
+      src: string
+      alt: string
+      caption?: string
+    }
+  | {
       type: "gallery"
       heading: string
       intro?: string

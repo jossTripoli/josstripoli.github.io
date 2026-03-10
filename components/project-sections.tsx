@@ -39,10 +39,11 @@ function renderParagraph(paragraph: string) {
 
 export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
   const [modalState, setModalState] = useState<ModalState | null>(null)
+  const [infographicState, setInfographicState] = useState<{ src: string; alt: string } | null>(null)
   const [activeFilters, setActiveFilters] = useState<Record<number, string>>({})
 
   useEffect(() => {
-    if (!modalState) return
+    if (!modalState && !infographicState) return
 
     const originalOverflow = document.body.style.overflow
     document.body.style.overflow = "hidden"
@@ -50,7 +51,7 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
     return () => {
       document.body.style.overflow = originalOverflow
     }
-  }, [modalState])
+  }, [modalState, infographicState])
 
   useEffect(() => {
     if (!modalState) return
@@ -156,6 +157,32 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
           )
         }
 
+        if (section.type === "infographic") {
+          return (
+            <section key={index} className="space-y-2">
+              <div className="relative overflow-hidden rounded-lg border border-border bg-muted/50">
+                <button
+                  type="button"
+                  onClick={() => setInfographicState({ src: section.src, alt: section.alt })}
+                  className="block w-full cursor-zoom-in"
+                  aria-label="View infographic fullscreen"
+                >
+                  <Image src={section.src} alt={section.alt} width={1400} height={900} className="h-auto w-full object-cover" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setInfographicState({ src: section.src, alt: section.alt })}
+                  className="absolute right-3 top-3 rounded-full border border-white/50 bg-black/45 p-2 text-white transition hover:bg-black/65"
+                  aria-label="Open infographic fullscreen"
+                >
+                  <Expand className="h-4 w-4" />
+                </button>
+              </div>
+              {section.caption && <p className="text-sm text-muted-foreground">{section.caption}</p>}
+            </section>
+          )
+        }
+
         if (section.type === "image") {
           return (
             <section key={index} className="space-y-2">
@@ -202,7 +229,7 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
                       key={category}
                       type="button"
                       onClick={() => setActiveFilters((current) => ({ ...current, [index]: category }))}
-                      className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
+                      className={`rounded-full border px-4 py-2 text-sm font-medium transition cursor-pointer ${
                         isActive
                           ? "border-primary bg-primary text-primary-foreground"
                           : "border-border bg-background text-foreground hover:border-primary/60 hover:text-primary"
@@ -313,6 +340,31 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
               height={1600}
               className="h-auto max-h-[90dvh] w-auto max-w-[90vw] rounded-md object-contain"
             />
+          </div>
+        </div>
+      )}
+
+      {infographicState && (
+        <div className="fixed inset-0 z-50 h-[100dvh] w-screen " role="dialog" aria-modal="true">
+          <div className="absolute inset-0 bg-black/70" onClick={() => setInfographicState(null)} />
+          <button
+            type="button"
+            className="absolute right-5 top-5 z-20 rounded-full border border-white/40 bg-black/55 p-2 text-white hover:bg-black/75"
+            onClick={() => setInfographicState(null)}
+            aria-label="Close infographic"
+          >
+            <X className="h-5 w-5" />
+          </button>
+          <div className="relative z-10 h-full w-full overflow-auto p-2 sm:p-4">
+            <div className="mx-auto w-fit" onClick={(event) => event.stopPropagation()}>
+              <Image
+                src={infographicState.src}
+                alt={infographicState.alt}
+                width={2400}
+                height={1600}
+                className="block h-auto max-w-full"
+              />
+            </div>
           </div>
         </div>
       )}

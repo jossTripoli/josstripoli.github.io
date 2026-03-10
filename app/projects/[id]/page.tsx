@@ -33,7 +33,7 @@ const projectData: Record<string, Project> = {
         type: "richText",
         heading: "Project Story",
         paragraphs: [
-          "Online scams are a rapidly growing threat, particularly for older adults. In a single year 147,127 Americans aged 60+ reported being victims of online scams, resulting in $4.8 billion in losses, according to the FBI’s Annual Internet Crime Report.",
+          "Online scams are a rapidly growing threat, particularly for older adults. In a single year 147,127 Americans aged 60+ reported being victims of online scams, resulting in $4.8 billion in losses, according to the FBI's Annual Internet Crime Report.",
         ],
       },
       {
@@ -59,12 +59,12 @@ const projectData: Record<string, Project> = {
         type: "richText",
         heading: "My role",
         paragraphs: [
-          "As a technical lead and founding engineer, I worked with researchers and educators across the collaboration to design and build DART Academy, an interactive learning system that teaches users to identify scams through realistic simulations, structured lessons, and hands-on practice. I led product design and prototyping in Figma and participated in 100+ customer discovery interviews through the NSF National I-Corps program, translating user insights into the platform’s learning flows and features.",
-          "I architected and built the system’s learning management infrastructure, including the course player, content authoring tools, and interactive training framework. I also assembled and led a rotating development team of student engineers over multiple years, mentoring developers through system design, implementation, and deployment as the platform evolved.",
+          "As a technical lead and founding engineer, I worked with researchers and educators across the collaboration to design and build DART Academy, an interactive learning system that teaches users to identify scams through realistic simulations, structured lessons, and hands-on practice. I led product design and prototyping in Figma and participated in 100+ customer discovery interviews through the NSF National I-Corps program, translating user insights into the platform's learning flows and features.",
+          "I architected and built the system's learning management infrastructure, including the course player, content authoring tools, and interactive training framework. I also assembled and led a rotating development team of student engineers over multiple years, mentoring developers through system design, implementation, and deployment as the platform evolved.",
         ],
       },
       {
-        type: "image",
+        type: "infographic",
         src: "/dart/dart_architecture.png",
         alt: "DART Academy learning platform interface",
         caption: "Image 3",
@@ -81,19 +81,39 @@ const projectData: Record<string, Project> = {
           { src: "/dart/gallery/badges3.svg", alt: "Badges", category: "Gamification" },
           { src: "/dart/gallery/badges4.svg", alt: "Badges", category: "Gamification" },
 
+          { src: "/dart/gallery/search_result_scam.png", alt: "Malicious search result illustration", category: "Scam" },
+          { src: "/dart/gallery/identity_theft_phishing.png", alt: "Identity theft and phishing illustration", category: "Scam" },
+          { src: "/dart/gallery/medical_information_identity_theft.svg", alt: "Medical information identity theft illustration", category: "Decorative" },
+          { src: "/dart/gallery/credit_card.svg", alt: "Credit card security illustration", category: "Decorative" },
+          { src: "/dart/gallery/megaphone.png", alt: "Megaphone communication illustration", category: "Decorative" },
+          { src: "/dart/gallery/phishing_call.png", alt: "Phishing call illustration", category: "Scam" },
+          { src: "/dart/gallery/grandparent_scam.png", alt: "Grandparent scam illustration", category: "Scam" },
+
+          // { src: "/dart/gallery/female.png", alt: "Female character", category: "Scam" },
+          // { src: "/dart/gallery/male.png", alt: "Male character", category: "Scam" },
           { src: "/dart/gallery/supplement.svg", alt: "Smishing text scam illustration", category: "Scam" },
-          { src: "/dart/gallery/dont-close-browser.svg", alt: "Progress badge gamification illustration", category: "Scam" },
-          { src: "/dart/gallery/emotional_words.png", alt: "Daily streak gamification illustration", category: "Scam" },
-          {
-            src: "/dart/gallery/dart-ui-notification.svg",
-            alt: "Security notification UI element illustration",
-            category: "Decorative",
-          },
-          {
-            src: "/dart/gallery/dart-ui-dashboard.svg",
-            alt: "Learning dashboard UI element illustration",
-            category: "Decorative",
-          },
+          { src: "/dart/gallery/check_url.svg", alt: "Check URL scam recognition illustration", category: "Scam" },
+          { src: "/dart/gallery/legal.svg", alt: "Legal threat scam illustration", category: "Decorative" },
+          { src: "/dart/gallery/giftcard.svg", alt: "Gift card scam illustration", category: "Decorative" },
+
+          { src: "/dart/gallery/progress.png", alt: "Progress tracking illustration", category: "Gamification" },
+          { src: "/dart/gallery/progress2.png", alt: "Progress tracking illustration", category: "Gamification" },
+          { src: "/dart/gallery/progress3.png", alt: "Progress tracking illustration", category: "Gamification" },
+          { src: "/dart/gallery/red_flag.png", alt: "Red flag warning illustration", category: "Decorative" },
+          { src: "/dart/gallery/reflection.svg", alt: "Reflection activity illustration", category: "Decorative" },
+          { src: "/dart/gallery/sweepstake.svg", alt: "Sweepstake scam illustration", category: "Scam" },
+          { src: "/dart/gallery/target.png", alt: "Target audience illustration", category: "Scam" },
+          // { src: "/dart/gallery/anonymous_profiles.png", alt: "anonymous_profiles.png", category: "Decorative" },
+          { src: "/dart/gallery/tax.png", alt: "IRS Tax Scam Mail", category: "Scam" },
+          { src: "/dart/gallery/dont-close-browser.svg", alt: "Cross through mouse clicking the top right x button in the browser demonstrating not to click fake popups", category: "Scam" },
+          { src: "/dart/gallery/romace_word_cloud.png", alt: "Word cloud of the emotional effects of romance scams", category: "Decorative" },
+          { src: "/dart/gallery/emotional_words.png", alt: "Emotional words", category: "Decorative" },
+          { src: "/dart/gallery/cert.png", alt: "Certificate example", category: "Decorative" },
+
+          // { src: "/dart/gallery/fake_site.png", alt: "Certificate example", category: "Decorative" },
+          // { src: "/dart/gallery/aging_scam.png", alt: "Certificate example", category: "Decorative" },
+          // { src: "/dart/gallery/activity.png", alt: "Certificate example", category: "Decorative" },
+
         ],
       },
 
@@ -148,7 +168,7 @@ const projectData: Record<string, Project> = {
         type: "richText",
         heading: "Why this module exists",
         paragraphs: [
-          "Students often understand that trolling is harmful but don’t always recognize subtler forms like dogpiling, baiting, or sarcastic harassment.",
+          "Students often understand that trolling is harmful but don't always recognize subtler forms like dogpiling, baiting, or sarcastic harassment.",
           "The module is built around realistic social contexts where learners can safely practice decision-making before facing these moments in real life.",
         ],
       },
