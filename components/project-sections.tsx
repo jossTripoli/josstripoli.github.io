@@ -12,13 +12,47 @@ type ModalState = {
   index: number
 }
 
+function renderInlineStyles(text: string, keyPrefix: string) {
+  const formattedNodes: ReactNode[] = []
+  const inlinePattern = /(\*\*[^*]+\*\*|\*[^*]+\*|__[^_]+__)/g
+  let lastIndex = 0
+  let match: RegExpExecArray | null
+
+  while ((match = inlinePattern.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      formattedNodes.push(text.slice(lastIndex, match.index))
+    }
+
+    const token = match[0]
+    const tokenKey = `${keyPrefix}-${match.index}`
+
+    if (token.startsWith("**") && token.endsWith("**")) {
+      formattedNodes.push(<strong key={tokenKey}>{token.slice(2, -2)}</strong>)
+    } else if (token.startsWith("__") && token.endsWith("__")) {
+      formattedNodes.push(<u key={tokenKey}>{token.slice(2, -2)}</u>)
+    } else if (token.startsWith("*") && token.endsWith("*")) {
+      formattedNodes.push(<em key={tokenKey}>{token.slice(1, -1)}</em>)
+    } else {
+      formattedNodes.push(token)
+    }
+
+    lastIndex = inlinePattern.lastIndex
+  }
+
+  if (lastIndex < text.length) {
+    formattedNodes.push(text.slice(lastIndex))
+  }
+
+  return formattedNodes
+}
+
 function renderParagraph(paragraph: RichTextParagraph) {
   if (typeof paragraph === "string") {
-    return paragraph
+    return renderInlineStyles(paragraph, "paragraph")
   }
 
   if (!paragraph.links.length) {
-    return paragraph.text
+    return renderInlineStyles(paragraph.text, "paragraph")
   }
 
   let remainingText = paragraph.text
@@ -31,7 +65,7 @@ function renderParagraph(paragraph: RichTextParagraph) {
       return
     }
 
-    nodes.push(before)
+    nodes.push(...renderInlineStyles(before, `before-${index}`))
     nodes.push(
       <a
         key={`${link.href}-${index}`}
@@ -40,14 +74,14 @@ function renderParagraph(paragraph: RichTextParagraph) {
         rel="noopener noreferrer"
         className="font-medium text-primary underline underline-offset-4"
       >
-        {link.label}
+        {renderInlineStyles(link.label, `link-${index}`)}
       </a>,
     )
 
     remainingText = afterParts.join(link.label)
   })
 
-  nodes.push(remainingText)
+  nodes.push(...renderInlineStyles(remainingText, "remaining"))
 
   return <>{nodes}</>
 }
