@@ -227,7 +227,7 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
                   <Expand className="h-4 w-4" />
                 </button>
               </div>
-              {section.caption && <p className="text-sm text-muted-foreground">{section.caption}</p>}
+              {section.caption && <p className="text-sm text-muted-foreground">{renderParagraph(section.caption)}</p>}
             </section>
           )
         }
@@ -253,7 +253,7 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
                   <Expand className="h-4 w-4" />
                 </button>
               </div>
-              {section.caption && <p className="text-sm text-muted-foreground">{section.caption}</p>}
+              {section.caption && <p className="text-sm text-muted-foreground">{renderParagraph(section.caption)}</p>}
             </section>
           )
         }

@@ -57,7 +57,15 @@ const projectData: Record<string, Project> = {
         type: "image",
         src: "/dart/scam_stats.png",
         alt: "DART Academy platform overview",
-        caption: "Online scam complaints and losses by age group. Adults 60+ experience the greatest financial losses. Source: FBI Internet Crime Report.",
+        caption: {
+          text: "Online scam complaints and losses by age group. Adults 60+ experience the greatest financial losses. Source: FBI Internet Crime Report.",
+          links: [
+            {
+              label: "FBI Internet Crime Report",
+              href: "https://www.fbi.gov/news/press-releases/fbi-releases-annual-internet-crime-report",
+            },
+          ],
+        },
       },
       {
         type: "richText",
