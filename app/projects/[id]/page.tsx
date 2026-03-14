@@ -69,22 +69,46 @@ const projectData: Record<string, Project> = {
       },
       {
         type: "richText",
-        heading: "Research collaboration",
+        heading: "Building Defenses Through Research Collaboration",
         paragraphs: [
-          "To address this problem, a multi-university research collaboration led by the University at Buffalo launched the Deception Awareness and Resilience Training (DART) initiative, supported by a $5 million National Science Foundation Convergence Accelerator grant. The project brings together researchers from institutions including Cornell University, Clemson University, Lehigh University, and the University of Illinois to develop tools that help people recognize and resist online deception.",
+          {
+            text: "To address this problem, a multi-university research collaboration led by the University at Buffalo launched DART Collective (Deception Awareness and Resilience Training), a nonprofit supported by a $5 million National Science Foundation Convergence Accelerator grant. The project brings together researchers from institutions including Cornell University, Lehigh University, Clemson University, Northeastern University, and the University of Illinois to develop tools that help people recognize and resist online deception.",
+            links: [
+              {
+                label: "DART Collective (Deception Awareness and Resilience Training)",
+                href: "https://dartcollective.net/",
+              },
+                            {
+                label: "$5 million National Science Foundation Convergence Accelerator grant",
+                href: "https://arts-sciences.buffalo.edu/news-and-events/recent-news/2022/october/dart-online-scams.html",
+              },
+            ],
+          },
         ],
       },
       {
         type: "image",
         src: "/dart/dart_team.png",
         alt: "DART initiative research collaboration",
-        caption: "Image 2",
+        caption: "Partner institutions collaborating on the DART project to research and develop tools that help people recognize and resist online scams.",
       },
       {
         type: "richText",
-        heading: "My role",
+        heading: "Product Design and Development",
         paragraphs: [
-          "As a technical lead and founding engineer, I worked with researchers and educators across the collaboration to design and build DART Academy, an interactive learning system that teaches users to identify scams through realistic simulations, structured lessons, and hands-on practice. I led product design and prototyping in Figma and participated in 100+ customer discovery interviews through the NSF National I-Corps program, translating user insights into the platform's learning flows and features.",
+          "As a technical lead and founding engineer, I worked with researchers and educators across the collaboration to design and build **DART Academy**, an interactive learning system that teaches users to identify scams through realistic simulations, structured lessons, and hands-on practice. I led product design and prototyping in Figma and contributed to NSF National I-Corps customer discovery interviews, translating insights from 109 interviews into the platform’s user flows and features.",
+        ],
+      },
+      {
+        type: "infographic",
+        src: "/dart/interviews.png",
+        alt: "DART Academy learning platform interface",
+        caption: "Organizations interviewed during the NSF National I-Corps customer discovery process, including stakeholders across aging services, education, and financial services sectors. Insights from these 109 interviews informed the design of the DART Academy platform.",
+      },
+      {
+        type: "richText",
+        heading: "Platform Architecture & Engineering Leadership",
+        paragraphs: [
           "I architected and built the system's learning management infrastructure, including the course player, content authoring tools, and interactive training framework. I also assembled and led a rotating development team of student engineers over multiple years, mentoring developers through system design, implementation, and deployment as the platform evolved.",
         ],
       },
