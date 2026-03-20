@@ -301,7 +301,7 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
                         index: imageIndex,
                       })
                     }
-                    className="group relative overflow-hidden rounded-lg border border-border bg-muted/40 text-left"
+                    className="group relative overflow-hidden rounded-lg border border-border bg-muted/40 text-left cursor-pointer"
                     aria-label={`Open ${image.alt}`}
                   >
                     <Image

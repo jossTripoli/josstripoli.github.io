@@ -102,8 +102,14 @@ const projectData: Record<string, Project> = {
       {
         type: "infographic",
         src: "/dart/interviews.png",
-        alt: "DART Academy learning platform interface",
+        alt: "DART Academy NSF National I-Corps customer discovery interviews infographic",
         caption: "Organizations interviewed during the NSF National I-Corps customer discovery process, including stakeholders across aging services, education, and financial services sectors. Insights from these 109 interviews informed the design of the DART Academy platform.",
+      },
+      {
+        type: "infographic",
+        src: "/dart/website_design_system.png",
+        alt: "DART Academy design system",
+        caption: "DART Academy design system and UI component library.",
       },
       {
         type: "richText",
@@ -115,14 +121,15 @@ const projectData: Record<string, Project> = {
       {
         type: "infographic",
         src: "/dart/dart_architecture.png",
-        alt: "DART Academy learning platform interface",
-        caption: "Image 3",
+        alt: "DART Academy learning platform architecture diagram",
+        caption: "High-level architecture of the DART Academy platform, including frontend, backend, infrastructure, and content systems supporting scalable, interactive learning experiences.",
       },
+
       
       {
         type: "gallery",
-        heading: "DART Academy illustration gallery",
-        intro: "Custom visual assets created for DART Academy experiences, grouped by instructional purpose.",
+        heading: "DART Academy Illustration Gallery",
+        intro: "Visual assets created for DART Academy, grouped by instructional purpose.",
         categories: ["Scam", "Gamification", "Decorative"],
         images: [
           { src: "/dart/gallery/badges1.svg", alt: "Badges", category: "Gamification" },
@@ -178,32 +185,34 @@ const projectData: Record<string, Project> = {
     sections: [
       {
         type: "richText",
-        heading: "Narrative focus",
+        heading: "About",
         paragraphs: [
-          "This site was intentionally designed like a campaign journal, not a standard nonprofit brochure.",
-          "Each page balances storytelling and action: documenting restoration progress while guiding visitors toward volunteering, donating, or planting native species.",
+          "Info coming soon.",
         ],
       },
       {
-        type: "bullets",
-        heading: "Content architecture",
-        intro: "The IA prioritizes recurring community interactions:",
-        items: [
-          "Program pages with seasonal updates and before/after visuals",
-          "Volunteer hub with upcoming events and registration",
-          "Education resources for teachers and neighborhood groups",
-          "Native plant shop integration for at-home participation",
-        ],
+        type: "infographic",
+        src: "/mininature_design_system.png",
+        alt: "DART Academy learning platform architecture diagram",
+        caption: "caption.",
       },
-      {
-        type: "stats",
-        heading: "Community signals",
-        stats: [
-          { label: "Volunteer signups", value: "+63%" },
-          { label: "Returning visitors", value: "52%" },
-          { label: "Avg. pages per session", value: "4.8" },
-        ],
-      },
+      // {
+      //   type: "bullets",
+      //   heading: "Content architecture",
+      //   intro: "Info:",
+      //   items: [
+      //     "Info coming soon.",
+      //   ],
+      // },
+      // {
+      //   type: "stats",
+      //   heading: "Community signals",
+      //   stats: [
+      //     { label: "Volunteer signups", value: "+63%" },
+      //     { label: "Returning visitors", value: "52%" },
+      //     { label: "Avg. pages per session", value: "4.8" },
+      //   ],
+      // },
     ],
   },
   "online-trolling-education": {
