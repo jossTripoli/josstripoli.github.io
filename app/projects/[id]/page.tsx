@@ -124,8 +124,59 @@ const projectData: Record<string, Project> = {
         alt: "DART Academy learning platform architecture diagram",
         caption: "High-level architecture of the DART Academy platform, including frontend, backend, infrastructure, and content systems supporting scalable, interactive learning experiences.",
       },
-
-      
+      {
+        type: "richText",
+        heading: "Learning Course Player",
+        paragraphs: [
+          "Info.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/dart/course_builder.gif",
+        alt: "DART initiative research collaboration",
+        caption: "Info",
+      },
+      {
+        type: "richText",
+        heading: "Course Builder Authoring Tools",
+        paragraphs: [
+          "Info.",
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Simulations",
+        paragraphs: [
+          "Info.",
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Curated News System",
+        paragraphs: [
+          "Info.",
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Analytics Dashboard",
+        paragraphs: [
+          "Info.",
+        ],
+      }, 
+      {
+        type: "richText",
+        heading: "Multilingual Support",
+        paragraphs: [
+        ],
+      },
+      {
+        type: "image",
+        src: "/dart/multilingual.gif",
+        alt: "DART initiative research collaboration",
+        caption: "An internationalization system with locale-aware routing supporting English, Spanish, French, and Chinese, designed to scale to additional languages in the future. Includes full localization of page content, metadata, and interface text to ensure accessibility and usability across diverse user populations. The system is production-ready, with translated content in development.",
+      },
       {
         type: "gallery",
         heading: "DART Academy Illustration Gallery",
