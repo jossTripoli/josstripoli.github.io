@@ -55,6 +55,17 @@ export type ProjectSection =
       caption?: RichTextParagraph
     }
   | {
+      type: "video"
+      src: string
+      title: string
+      poster?: string
+      caption?: RichTextParagraph
+      autoplay?: boolean
+      loop?: boolean
+      muted?: boolean
+      controls?: boolean
+    }
+  | {
       type: "gallery"
       heading: string
       intro?: string

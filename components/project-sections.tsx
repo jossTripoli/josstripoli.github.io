@@ -232,6 +232,32 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
           )
         }
 
+        if (section.type === "video") {
+          return (
+            <section key={index} className="space-y-2">
+              <div className="overflow-hidden rounded-lg border border-border bg-muted/50">
+                <video
+                  className="aspect-video w-full bg-black"
+                  controls={section.controls ?? true}
+                  autoPlay={section.autoplay}
+                  loop={section.loop}
+                  muted={section.muted ?? section.autoplay ?? false}
+                  playsInline
+                  preload="metadata"
+                  poster={section.poster}
+                  aria-label={section.title}
+                >
+                  <source src={section.src} />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              {section.caption && <p className="text-sm text-muted-foreground">{renderParagraph(section.caption)}</p>}
+            </section>
+          )
+        }
+
+
+
         if (section.type === "image") {
           return (
             <section key={index} className="space-y-2">

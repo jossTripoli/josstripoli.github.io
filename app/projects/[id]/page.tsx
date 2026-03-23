@@ -124,26 +124,66 @@ const projectData: Record<string, Project> = {
         alt: "DART Academy learning platform architecture diagram",
         caption: "High-level architecture of the DART Academy platform, including frontend, backend, infrastructure, and content systems supporting scalable, interactive learning experiences.",
       },
+
       {
         type: "richText",
-        heading: "Learning Course Player",
+        heading: "Course Builder Authoring Tools",
         paragraphs: [
-          "Info.",
+          "",
         ],
       },
       {
         type: "image",
         src: "/dart/course_builder.gif",
         alt: "DART initiative research collaboration",
-        caption: "Info",
       },
       {
         type: "richText",
-        heading: "Course Builder Authoring Tools",
+        heading: "",
         paragraphs: [
-          "Info.",
+          "A multilingual support system with locale-aware routing for English, Spanish, French, and Chinese, designed to scale to additional languages. It includes internationalization (enabling locale-based routing and language support without code changes) and localization (adapting content, metadata, interface text, and URLs for each language) to ensure accessibility across diverse user populations. The system is production-ready, with translated content currently in development.",
+        ],
+      }, 
+      {
+        type: "richText",
+        heading: "AI Voice Over Narration",
+        paragraphs: [
+          "",
         ],
       },
+      {
+        type: "video",
+        src: "/dart/dart_ai_demo.mp4",
+        title: "DART AI Voiceover demo",
+      },
+      {
+        type: "richText",
+        heading: "",
+        paragraphs: [
+          "A multilingual support system with locale-aware routing for English, Spanish, French, and Chinese, designed to scale to additional languages. It includes internationalization (enabling locale-based routing and language support without code changes) and localization (adapting content, metadata, interface text, and URLs for each language) to ensure accessibility across diverse user populations. The system is production-ready, with translated content currently in development.",
+        ],
+      }, 
+
+
+      {
+        type: "richText",
+        heading: "Learning Course Player",
+        paragraphs: [
+          "",
+        ],
+      },
+      {
+        type: "image",
+        src: "/dart/course_player.gif",
+        alt: "DART initiative research collaboration",
+      },
+      {
+        type: "richText",
+        heading: "",
+        paragraphs: [
+          "A multilingual support system with locale-aware routing for English, Spanish, French, and Chinese, designed to scale to additional languages. It includes internationalization (enabling locale-based routing and language support without code changes) and localization (adapting content, metadata, interface text, and URLs for each language) to ensure accessibility across diverse user populations. The system is production-ready, with translated content currently in development.",
+        ],
+      }, 
       {
         type: "richText",
         heading: "Simulations",
@@ -175,8 +215,15 @@ const projectData: Record<string, Project> = {
         type: "image",
         src: "/dart/multilingual.gif",
         alt: "DART initiative research collaboration",
-        caption: "An internationalization system with locale-aware routing supporting English, Spanish, French, and Chinese, designed to scale to additional languages in the future. Includes full localization of page content, metadata, and interface text to ensure accessibility and usability across diverse user populations. The system is production-ready, with translated content in development.",
+        caption: "",
       },
+      {
+        type: "richText",
+        heading: "",
+        paragraphs: [
+          "A multilingual support system with locale-aware routing for English, Spanish, French, and Chinese, designed to scale to additional languages. It includes internationalization (enabling locale-based routing and language support without code changes) and localization (adapting content, metadata, interface text, and URLs for each language) to ensure accessibility across diverse user populations. The system is production-ready, with translated content currently in development.",
+        ],
+      }, 
       {
         type: "gallery",
         heading: "DART Academy Illustration Gallery",
