@@ -137,6 +137,28 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
   return (
     <>
       {sections.map((section, index) => {
+        if (section.type === "figmaEmbed") {
+          const iframeSrc = section.src.includes("/embed")
+            ? section.src
+            : `https://www.figma.com/embed?embed_host=portfolio&url=${encodeURIComponent(section.src)}`
+
+          return (
+            <section key={index} className="space-y-3">
+              {section.heading && <h2 className="text-2xl font-bold text-foreground">{section.heading}</h2>}
+              <div className="overflow-hidden rounded-lg border border-border bg-muted/40">
+                <iframe
+                  title={section.title}
+                  src={iframeSrc}
+                  className="w-full"
+                  style={{ height: section.height ?? 560 }}
+                  allowFullScreen
+                />
+              </div>
+              {section.caption && <p className="text-sm text-muted-foreground">{renderParagraph(section.caption)}</p>}
+            </section>
+          )
+        }
+
         if (section.type === "richText") {
           return (
             <section key={index} className="space-y-4">

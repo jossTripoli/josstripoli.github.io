@@ -15,6 +15,11 @@ const projectData: Record<string, Project> = {
     description:
       "E-learning platform designed to help older adults build confidence online and recognize digital scams.",
     image: "/demo/dart.gif",
+    heroMedia: {
+      type: "banner",
+      src: "/dart/banner.png",
+      alt: "DART Academy banner with logo, tagline, and illustrated learners",
+    },
     liveUrl: "https://app.dartacademy.net/",
     tech: [
       "Next.js",
@@ -141,8 +146,7 @@ const projectData: Record<string, Project> = {
         type: "richText",
         heading: "",
         paragraphs: [
-          "A multilingual support system with locale-aware routing for English, Spanish, French, and Chinese, designed to scale to additional languages. It includes internationalization (enabling locale-based routing and language support without code changes) and localization (adapting content, metadata, interface text, and URLs for each language) to ensure accessibility across diverse user populations. The system is production-ready, with translated content currently in development.",
-        ],
+          "A course authoring system for cybersecurity and scam awareness training that enables educators to easily create interactive lessons. Built as a custom content management system, it supports continuous content creation so learners receive timely, relevant, and engaging training on emerging scams. A block-based interface makes it possible to build rich end-to-end learning experiences that combine content, interaction, and assessment.",        ],
       }, 
       {
         type: "richText",
@@ -160,7 +164,7 @@ const projectData: Record<string, Project> = {
         type: "richText",
         heading: "",
         paragraphs: [
-          "A multilingual support system with locale-aware routing for English, Spanish, French, and Chinese, designed to scale to additional languages. It includes internationalization (enabling locale-based routing and language support without code changes) and localization (adapting content, metadata, interface text, and URLs for each language) to ensure accessibility across diverse user populations. The system is production-ready, with translated content currently in development.",
+          "An AI-powered voice generation system that transforms course content into natural, instructor-ready narration. It generates speaker notes from lesson content, prepares them for voice output, and integrates directly into the editor for quick review and refinement. The system uses the OpenAI API for content generation and AWS Polly for voice synthesis, with a focus on producing clear and engaging narration that presents material in an accessible way for older adult learners. This streamlines the content creation process while enhancing the learning experience with high-quality audio narration.",
         ],
       }, 
 
@@ -181,34 +185,93 @@ const projectData: Record<string, Project> = {
         type: "richText",
         heading: "",
         paragraphs: [
-          "A multilingual support system with locale-aware routing for English, Spanish, French, and Chinese, designed to scale to additional languages. It includes internationalization (enabling locale-based routing and language support without code changes) and localization (adapting content, metadata, interface text, and URLs for each language) to ensure accessibility across diverse user populations. The system is production-ready, with translated content currently in development.",
+          "A modular course delivery system designed to guide learners smoothly through structured lessons and real-world scam scenarios. Built as a single-page application with preloaded content and seamless fading transitions, it reduces friction and creates a continuous learning experience. A sidebar supports self-paced navigation across chapters and lessons, while a presentation mode with voiceover narration allows content to be delivered in guided sessions. This helps learners stay engaged and better recognize scam patterns through practice.",
         ],
       }, 
       {
         type: "richText",
         heading: "Simulations",
         paragraphs: [
-          "Info.",
+          "Learners practice scam recognition through realistic simulations. Each module mirrors common fraud patterns and gives immediate feedback on choices.",
         ],
       },
+      {
+        type: "image",
+        src: "/dart/identity_sim.gif",
+        alt: "Identity scam simulation preview",
+        caption: {
+          text: "Identity theft phishing email inbox scam simulation — Visit the live page.",
+          links: [{ label: "Visit the live page", href: "https://app.dartacademy.net/practice/identity" }],
+        },
+      },
+      {
+        type: "image",
+        src: "/dart/tech_sim.gif",
+        alt: "Tech support popup and phone call scam simulation preview",
+        caption: {
+          text: "Tech support popup and phone call scam simulation — Visit the live page.",
+          links: [{ label: "Visit the live page", href: "https://app.dartacademy.net/practice/tech" }],
+        },
+      },
+      {
+        type: "image",
+        src: "/dart/medication_sim.gif",
+        alt: "Medication scam drug website simulation preview",
+        caption: {
+          text: "Medication scam drug website simulation preview — Visit the live page.",
+          links: [{ label: "Visit the live page", href: "https://app.dartacademy.net/practice/medication" }],
+        },
+      },
+      {
+        type: "image",
+        src: "/dart/romance_sim.gif",
+        alt: "Romance scam text message inbox choose-your-path simulation preview",
+        caption: {
+          text: "Romance scam text message inbox choose-your-path simulation preview — Visit the live page.",
+          links: [{ label: "Visit the live page", href: "https://app.dartacademy.net/practice/romance" }],
+        },
+      },
+      {
+        type: "image",
+        src: "/dart/grandparent_sim.gif",
+        alt: "Grandparent scam phonecall under distress simulation preview",
+        caption: {
+          text: "Grandparent scam emergency phonecall simulation — Visit the live page.",
+          links: [{ label: "Visit the live page", href: "https://app.dartacademy.net/practice/grandparent" }],
+        },
+      },  
       {
         type: "richText",
         heading: "Curated News System",
         paragraphs: [
-          "Info.",
+          "",
         ],
       },
       {
+        type: "image",
+        src: "/dart/news.gif",
+        alt: "Curated news system demo",
+      },
+      {
         type: "richText",
-        heading: "Analytics Dashboard",
+        heading: "",
         paragraphs: [
-          "Info.",
+          "Ensures learners are exposed to the latest scam tactics as they evolve, reinforcing training with timely, real-world context. The system automatically updates with relevant news, with the ability for teams to review and refine content as needed to maintain accuracy and quality.",
         ],
       }, 
+
+      // {
+      //   type: "richText",
+      //   heading: "Analytics Dashboard",
+      //   paragraphs: [
+      //     "Info.",
+      //   ],
+      // }, 
       {
         type: "richText",
         heading: "Multilingual Support",
         paragraphs: [
+          "",
         ],
       },
       {
@@ -278,7 +341,7 @@ const projectData: Record<string, Project> = {
     description:
       "A nonprofit web platform for urban biodiversity programs, volunteers, and educational outreach.",
     image: "/demo/mininature.gif",
-    liveUrl: "https://mininaturereserve.org/",
+    liveUrl: "https://mininature.org/",
     tech: ["Next.js", "Payload CMS", "Shopify", "TypeScript", "Tailwind CSS", "Vercel", "Lexical"],
     sections: [
       {
@@ -293,6 +356,14 @@ const projectData: Record<string, Project> = {
         src: "/mininature_design_system.png",
         alt: "DART Academy learning platform architecture diagram",
         caption: "caption.",
+      },
+      {
+        type: "figmaEmbed",
+        heading: "Interactive Figma Prototype",
+        title: "MiniNature Reserve Figma",
+        src: "https://www.figma.com/design/3T9uEsjMRCWcfE9G2Tx6q3/Mininature-Reserve?node-id=0-1&t=F7IDZ09PB62HoGBz-1",
+        caption: "Explore the MiniNature Reserve design file directly in-page.",
+        height: 620,
       },
       // {
       //   type: "bullets",
@@ -451,6 +522,18 @@ export default async function ProjectPage({
     ...(project.links ?? []),
   ]
 
+  const heroMedia = project.heroMedia ?? {
+    type: "image" as const,
+    src: project.image,
+    alt: project.title,
+  }
+  const heroWrapperClassName =
+    heroMedia.type === "banner"
+      ? "relative mb-8 overflow-hidden rounded-lg border border-border bg-card shadow-sm"
+      : "relative mb-8 aspect-video overflow-hidden rounded-lg bg-muted"
+  const heroImageClassName = heroMedia.type === "banner" ? "h-auto w-full object-cover" : "object-cover"
+  const heroAlt = heroMedia.alt || project.title
+
   return (
     <div className="min-h-screen">
       <SiteHeader sectionBasePath="/" />
@@ -459,8 +542,19 @@ export default async function ProjectPage({
 
       <div className="container mx-auto px-6 py-12">
         <div className="mx-auto max-w-5xl">
-          <div className="relative mb-8 aspect-video overflow-hidden rounded-lg bg-muted">
-            <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
+          <div className={heroWrapperClassName}>
+            {heroMedia.type === "banner" ? (
+              <Image
+                src={heroMedia.src || "/placeholder.svg"}
+                alt={heroAlt}
+                width={2048}
+                height={512}
+                priority
+                className={heroImageClassName}
+              />
+            ) : (
+              <Image src={heroMedia.src || "/placeholder.svg"} alt={heroAlt} fill className={heroImageClassName} />
+            )}
           </div>
         </div>
       </div>

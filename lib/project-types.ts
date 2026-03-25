@@ -76,17 +76,38 @@ export type ProjectSection =
         category: string
       }[]
     }
-
+  | {
+        type: "figmaEmbed"
+        heading?: string
+        src: string
+        title: string
+        caption?: RichTextParagraph
+        height?: number
+      }
+      
 export type ProjectLink = {
   label: string
   href: string
   icon: "live" | "github"
 }
 
+export type ProjectHeroMedia =
+  | {
+      type: "image"
+      src: string
+      alt?: string
+    }
+  | {
+      type: "banner"
+      src: string
+      alt?: string
+    }
+
 export type Project = {
   title: string
   description: string
   image: string
+  heroMedia?: ProjectHeroMedia
   tech: string[]
   liveUrl?: string
   githubUrl?: string
