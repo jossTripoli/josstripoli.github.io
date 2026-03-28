@@ -8,12 +8,13 @@ import { ProjectSections } from "@/components/project-sections"
 import { StickyBackLink } from "@/components/sticky-back-link"
 import { SiteHeader } from "@/components/site-header"
 import type { Project, ProjectLink } from "@/lib/project-types"
+import { text } from "stream/consumers"
 
 const projectData: Record<string, Project> = {
   "dart-academy": {
     title: "DART Academy",
     description:
-      "E-learning platform designed to help older adults build confidence online and recognize digital scams.",
+      "E-learning platform designed to empower older adults to recognize scams, improve their online awareness, and hone their digital skills.",
     image: "/demo/dart.gif",
     heroMedia: {
       type: "banner",
@@ -21,18 +22,7 @@ const projectData: Record<string, Project> = {
       alt: "DART Academy banner with logo, tagline, and illustrated learners",
     },
     liveUrl: "https://app.dartacademy.net/",
-    tech: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "PostgreSQL",
-      "Prisma ORM",
-      "Tailwind CSS",
-      "Zustand",
-      "OpenAI API",
-      "Stripe API",
-      "AWS",
-    ],
+    tech: ["Next.js", "React", "PostgreSQL", "Prisma ORM", "Node.js", "TypeScript", "Tailwind CSS", "Shadcn/ui", "Figma", "Adobe Illustrator", "Zustand", "Docker", "AWS", "TipTap", "OpenAI API", "HubSpot API", "Stripe API"],
     sections: [
       {
         type: "richText",
@@ -256,7 +246,7 @@ const projectData: Record<string, Project> = {
         type: "richText",
         heading: "",
         paragraphs: [
-          "Ensures learners are exposed to the latest scam tactics as they evolve, reinforcing training with timely, real-world context. The system automatically updates with relevant news, with the ability for teams to review and refine content as needed to maintain accuracy and quality.",
+          "The Alert Hub ensures learners are exposed to the latest scam tactics as they evolve, reinforcing training with timely, real-world context. The system automatically updates with relevant news, with the ability for teams to review and refine content as needed to maintain accuracy and quality.",
         ],
       }, 
 
@@ -339,32 +329,160 @@ const projectData: Record<string, Project> = {
   "miniature-reserve": {
     title: "MiniNature Reserve",
     description:
-      "A nonprofit web platform for urban biodiversity programs, volunteers, and educational outreach.",
+      "Nonprofit website for a community-driven initiative restoring urban biodiversity through native plant gardens and environmental education.",
     image: "/demo/mininature.gif",
     liveUrl: "https://mininature.org/",
-    tech: ["Next.js", "Payload CMS", "Shopify", "TypeScript", "Tailwind CSS", "Vercel", "Lexical"],
+    tech: ["Payload CMS", "Shopify", "Next.js", "React", "Figma", "Canva", "Tailwind CSS", "Shadcn/ui", "Node.js", "TypeScript", "Vercel", "Lexical", "ArcGIS"],
     sections: [
       {
         type: "richText",
-        heading: "About",
+        heading: "Loss of Native Ecosystems in Cities",
         paragraphs: [
-          "Info coming soon.",
+          {
+            text: "Urban development is rapidly replacing natural ecosystems with concrete, eliminating native plants and reducing biodiversity. In Ventura County, the fastest-warming county in the continental United States, this is accelerating drought, extreme heat, and wildfire risk.",
+            links: [
+              {
+                label: "fastest-warming county",
+                href: "https://www.theguardian.com/environment/2022/feb/05/americans-above-average-temperature-increase-climate-crisis",
+              },
+            ],
+          },
+          {
+            text: "Based in the region, MiniNature Reserve is a grassroots nonprofit working to restore native plants and biodiversity in urban environments. Through community-built green spaces, they transform underutilized land into ecosystems that support wildlife and improve climate resilience.",
+            links: [],
+          },
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Outgrowing a Dysfunctional Wix Site",
+        paragraphs: [
+          "MiniNature Reserve approached me to redesign and rebuild their website, moving away from Wix to a custom solution tailored to their needs. As the organization expanded and began applying for major grants, the limitations of the existing site became clear. Important information was buried, the site suffered from slow load times, and the experience broke down on mobile.",
+          "They needed a platform that could scale with their growth. It had to allow them to easily create and update content, present a modern, clean brand experience, and support e-commerce.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/mininature/mininature_before_after.png",
+        alt: "Before and after redesign of the MiniNature Reserve website's landing page.",
+        caption: "Before and after redesign of the MiniNature Reserve website's landing page.",
+      },
+      {
+        type: "richText",
+        heading: "Creating a Scalable Visual Foundation",
+        paragraphs: [
+          "I created a design system to bring consistency and structure across the site. Working within their desire for a monochromatic green palette, I paid close attention to color contrast to ensure readability and accessibility, and introduced flexible content blocks that highlight their nature and event photography instead of relying on carousel-heavy layouts. I also introduced dark mode and subtle animations to create a more modern and engaging experience.",
+          "Built around reusable components, the system allows new content to be created quickly while maintaining structure, clarity, and consistency as the site grows."
         ],
       },
       {
         type: "infographic",
-        src: "/mininature_design_system.png",
-        alt: "DART Academy learning platform architecture diagram",
-        caption: "caption.",
+        src: "/mininature/mininature_design_system.png",
+        alt: "Design system overview for the MiniNature Reserve website.",
+        caption: "Design system overview for the MiniNature Reserve website.",
+      },
+      {
+        type: "richText",
+        heading: "Clearer Storytelling, Stronger Impact",
+        paragraphs: [
+          "I redesigned the information architecture to make the site easier to navigate and understand. Pages were consolidated and content was reorganized into a clear, story-driven flow that guides users from understanding the mission to taking action.",
+          "The navigation system includes a responsive mega menu and global search, surfacing key content and reducing complexity so users can quickly find information or explore the site.",
+        ],
       },
       {
         type: "figmaEmbed",
-        heading: "Interactive Figma Prototype",
         title: "MiniNature Reserve Figma",
         src: "https://www.figma.com/design/3T9uEsjMRCWcfE9G2Tx6q3/Mininature-Reserve?node-id=0-1&t=F7IDZ09PB62HoGBz-1",
-        caption: "Explore the MiniNature Reserve design file directly in-page.",
+        caption: "Explore the full MiniNature Reserve design system and page layouts in Figma.",
         height: 620,
       },
+      {
+        type: "richText",
+        heading: "Flexible Content Management for Ongoing Growth",
+        paragraphs: [
+          "To support long-term growth, I built the platform as a modular, content-driven system with a custom CMS based on flexible content blocks. This enables non-technical team members to create and update pages without engineering support while maintaining consistency in layout and design.",
+          "The platform is built using Next.js and Payload CMS, combining a fast, SEO-friendly frontend with a robust backend for managing content, media, and publishing workflows. Features such as draft previews and live previews allow the team to confidently publish and iterate on content.",
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Flexible Content Blocks in Practice",
+        paragraphs: [
+          "The platform is built around flexible content blocks that can be reused across different pages and layouts. A single block can adapt to multiple use cases, allowing the team to create rich, varied content while maintaining consistency and reducing development overhead.",
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Making Local Impact Discoverable",
+        paragraphs: [
+          "A “Find a MiniNature Reserve Near You” feature using ArcGIS to map active locations and make them easily accessible to the community. Users can explore nearby projects, learn about each site, and connect with local restoration efforts.",
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Scalable E-commerce Integration",
+        paragraphs: [
+          "I migrated the existing e-commerce system from Wix to Shopify, creating a more reliable and scalable storefront. This separates commerce from the main platform while allowing the organization to expand into merchandise, apparel, and plant sales.",
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Publishing and Storytelling Through the Blog",
+        paragraphs: [
+          "A built-in blog system allows the team to publish updates, educational content, and community stories. Paired with a rich text editor, it supports structured, media-rich content that is easy to create and edit without technical knowledge.",
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Fast, Site-Wide Search",
+        paragraphs: [
+          "A global search system that allows users to quickly find content across pages, programs, and resources. Designed for speed and relevance, it reduces friction and helps users access information without navigating through multiple pages.",
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Dark Mode for Accessibility and Preference",
+        paragraphs: [
+          "A built-in dark mode provides a more comfortable viewing experience, especially for younger users and low-light environments. It improves readability while maintaining visual consistency across the site.",
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Fully Responsive Across Devices",
+        paragraphs: [
+          "The site is designed to be fully responsive, ensuring a seamless experience across mobile, tablet, and desktop. Navigation, layouts, and content adapt fluidly so users can access information and take action from any device.",
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Structured Team and Leadership Profiles",
+        paragraphs: [
+          "Custom team profile pages highlight contributors, advisors, and board members with clear organization and hierarchy. This makes it easy to showcase leadership, build credibility, and support grant and partnership efforts.",
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Flexible Rich Text Editing",
+        paragraphs: [
+          "The rich text editor supports formatted content, media embedding, and structured layouts, giving the team control over how information is presented. It enables clear, readable content while maintaining consistency across the site. Additional support was implemented for Spanish characters and accent marks to ensure accurate multilingual content.",
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Sharing Reports with Embedded PDFs",
+        paragraphs: [
+          "A built-in PDF viewer allows the team to embed reports and documents directly into pages. This makes it easy to share impact reports, guides, and resources without requiring downloads, improving accessibility and user experience.",
+        ],
+      },
+      // {
+      //   type: "richText",
+      //   heading: "E-commerce Integration",
+      //   paragraphs: [
+      //     "As part of the transition, I migrated existing e-commerce data from Wix into Shopify, establishing a dedicated and scalable storefront. This separates commerce from the content platform while allowing the organization to expand into merchandise, apparel, and plant sales.",
+      //   ],
+      // },
+
+
       // {
       //   type: "bullets",
       //   heading: "Content architecture",
@@ -389,7 +507,7 @@ const projectData: Record<string, Project> = {
     description:
       "Interactive learning module that teaches students how to identify, de-escalate, and report harmful online behavior.",
     image: "/demo/troll.gif",
-    tech: ["Node.js", "Express.js", "MongoDB", "Mongoose", "Semantic UI", "jQuery", "Video.js"],
+    tech: ["Node.js", "Express.js", "Passport.js", "MongoDB", "Mongoose", "Pug", "Semantic UI", "jQuery", "Intro.js", "Slick.js", "Video.js"],
     sections: [
       {
         type: "richText",
@@ -461,7 +579,7 @@ const projectData: Record<string, Project> = {
     description:
       "A collaborative meal-planning and kitchen workflow platform supporting teams, students, and community organizations.",
     image: "/demo/collaboreat.png",
-    tech: ["PHP", "MySQL", "Moodle", "JavaScript", "CSS"],
+    tech: ["React Native", "Expo", "MongoDB", "Firebase"],
     sections: [
       {
         type: "quote",

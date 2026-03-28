@@ -69,7 +69,7 @@ export default function HomePage() {
       title: "MiniNature Reserve",
       description:
         "Nonprofit website for a community-driven initiative restoring urban biodiversity through native plant gardens and environmental education.",
-      tech: ["Payload CMS", "Shopify", "Next.js", "React", "Figma", "Canva", "Tailwind CSS", "Shadcn/ui", "Node.js", "TypeScript", "Vercel", "Lexical"],
+      tech: ["Payload CMS", "Shopify", "Next.js", "React", "Figma", "Canva", "Tailwind CSS", "Shadcn/ui", "Node.js", "TypeScript", "Vercel", "Lexical", "ArcGIS"],
       image: "/demo/mininature.gif",
     },
     {
@@ -77,7 +77,7 @@ export default function HomePage() {
       title: "Online Trolling Education Module",
       description:
         "Interactive educational module teaching digital citizenship and online safety through scenario-based learning and quizzes.",
-      tech: ["Node.js", "Express.js", "Passport.js", "MongoDB", "Mongoose", "Semantic UI", "jQuery", "Intro.js", "Slick.js", "Video.js"],
+      tech: ["Node.js", "Express.js", "Passport.js", "MongoDB", "Mongoose", "Pug", "Semantic UI", "jQuery", "Intro.js", "Slick.js", "Video.js"],
       image: "/demo/troll.gif",
     },
     {
@@ -93,7 +93,7 @@ export default function HomePage() {
       title: "Collaboreat",
       description:
         "Custom Moodle learning management system with integrated assessments, progress tracking, and student analytics.",
-      tech: ["PHP", "MySQL", "Moodle", "JavaScript", "CSS"],
+      tech: ["React Native", "Expo", "MongoDB", "Firebase"],
       image: "/demo/collaboreat.png",
     },
   ]
