@@ -398,17 +398,47 @@ const projectData: Record<string, Project> = {
       },
       {
         type: "richText",
-        heading: "Flexible Content Management for Ongoing Growth",
+        heading: "Making Content Easy to Create and Update",
         paragraphs: [
-          "To support long-term growth, I built the platform as a modular, content-driven system with a custom CMS based on flexible content blocks. This enables non-technical team members to create and update pages without engineering support while maintaining consistency in layout and design.",
-          "The platform is built using Next.js and Payload CMS, combining a fast, SEO-friendly frontend with a robust backend for managing content, media, and publishing workflows. Features such as draft previews and live previews allow the team to confidently publish and iterate on content.",
+          "",
         ],
       },
       {
+        type: "image",
+        src: "/mininature/content_management.gif",
+        alt: "Demo of the custom content management system for the MiniNature Reserve website.",
+      },
+      {
         type: "richText",
-        heading: "Flexible Content Blocks in Practice",
+        heading: "",
         paragraphs: [
-          "The platform is built around flexible content blocks that can be reused across different pages and layouts. A single block can adapt to multiple use cases, allowing the team to create rich, varied content while maintaining consistency and reducing development overhead.",
+          "A flexible block-based content management system that allows the team to manage content without engineering support. It includes features like draft versioning, split-screen live preview, rich text editing, and SEO tools, enabling confident publishing while maintaining structure, consistency, and performance across the site.",
+        ],
+      },
+      // {
+      //   type: "richText",
+      //   heading: "Flexible Content Blocks in Practice",
+      //   paragraphs: [
+      //     "The platform is built around flexible content blocks that can be reused across different pages and layouts. A single block can adapt to multiple use cases, allowing the team to create rich, varied content while maintaining consistency and reducing development overhead.",
+      //   ],
+      // },
+      {
+        type: "richText",
+        heading: "Migrating E-commerce to a Scalable Shopify Platform",
+        paragraphs: [
+          "",
+        ],
+      },
+      {
+        type: "image",
+        src: "/mininature/shop_demo.gif",
+        alt: "Before and after redesign of the MiniNature Reserve website's landing page.",
+      },
+      {
+        type: "richText",
+        heading: "",
+        paragraphs: [
+          "I migrated the e-commerce system from Wix to Shopify, including all products, customers, and order history. The new system supports filtering, sorting, standard shipping, local pickup for live plants, and digital downloads, giving the team flexibility in how they sell and manage products.",
         ],
       },
       {
@@ -419,18 +449,21 @@ const projectData: Record<string, Project> = {
         ],
       },
       {
-        type: "richText",
-        heading: "Scalable E-commerce Integration",
-        paragraphs: [
-          "I migrated the existing e-commerce system from Wix to Shopify, creating a more reliable and scalable storefront. This separates commerce from the main platform while allowing the organization to expand into merchandise, apparel, and plant sales.",
-        ],
+        type: "image",
+        src: "/mininature/map.gif",
+        alt: "Interactive map showing MiniNature Reserve locations.",
       },
       {
         type: "richText",
-        heading: "Publishing and Storytelling Through the Blog",
+        heading: "Publishing and Storytelling Through the News Blog",
         paragraphs: [
           "A built-in blog system allows the team to publish updates, educational content, and community stories. Paired with a rich text editor, it supports structured, media-rich content that is easy to create and edit without technical knowledge.",
         ],
+      },
+      {
+        type: "image",
+        src: "/mininature/news_blog.gif",
+        alt: "Demo of the news blog content management system for the MiniNature Reserve website.",
       },
       {
         type: "richText",
@@ -440,11 +473,21 @@ const projectData: Record<string, Project> = {
         ],
       },
       {
+        type: "image",
+        src: "/mininature/search.gif",
+        alt: "Demo of the global search functionality on the MiniNature Reserve website.",
+      },
+      {
         type: "richText",
         heading: "Dark Mode for Accessibility and Preference",
         paragraphs: [
           "A built-in dark mode provides a more comfortable viewing experience, especially for younger users and low-light environments. It improves readability while maintaining visual consistency across the site.",
         ],
+      },
+      {
+        type: "image",
+        src: "/mininature/dark_mode.gif",
+        alt: "Demo of the dark mode feature on the MiniNature Reserve website.",
       },
       {
         type: "richText",
