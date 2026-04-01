@@ -393,7 +393,7 @@ const projectData: Record<string, Project> = {
         type: "figmaEmbed",
         title: "MiniNature Reserve Figma",
         src: "https://www.figma.com/design/3T9uEsjMRCWcfE9G2Tx6q3/Mininature-Reserve?node-id=0-1&t=F7IDZ09PB62HoGBz-1",
-        caption: "Explore the full MiniNature Reserve design system and page layouts in Figma.",
+        caption: "Explore the MiniNature Reserve page layouts design in Figma.",
         height: 620,
       },
       {
@@ -443,21 +443,9 @@ const projectData: Record<string, Project> = {
       },
       {
         type: "richText",
-        heading: "Making Local Impact Discoverable",
+        heading: "Driving Engagement Through Stories",
         paragraphs: [
-          "A “Find a MiniNature Reserve Near You” feature using ArcGIS to map active locations and make them easily accessible to the community. Users can explore nearby projects, learn about each site, and connect with local restoration efforts.",
-        ],
-      },
-      {
-        type: "image",
-        src: "/mininature/map.gif",
-        alt: "Interactive map showing MiniNature Reserve locations.",
-      },
-      {
-        type: "richText",
-        heading: "Publishing and Storytelling Through the News Blog",
-        paragraphs: [
-          "A built-in blog system allows the team to publish updates, educational content, and community stories. Paired with a rich text editor, it supports structured, media-rich content that is easy to create and edit without technical knowledge.",
+          "",
         ],
       },
       {
@@ -467,9 +455,16 @@ const projectData: Record<string, Project> = {
       },
       {
         type: "richText",
-        heading: "Fast, Site-Wide Search",
+        heading: "",
         paragraphs: [
-          "A global search system that allows users to quickly find content across pages, programs, and resources. Designed for speed and relevance, it reduces friction and helps users access information without navigating through multiple pages.",
+          "A built-in blog system allows the team to publish updates, educational content, and community stories. Paired with a rich text editor, it supports structured, media-rich content that is easy to create and edit.",
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Fast Site-Wide Search",
+        paragraphs: [
+          "",
         ],
       },
       {
@@ -479,9 +474,56 @@ const projectData: Record<string, Project> = {
       },
       {
         type: "richText",
-        heading: "Dark Mode for Accessibility and Preference",
+        heading: "",
         paragraphs: [
-          "A built-in dark mode provides a more comfortable viewing experience, especially for younger users and low-light environments. It improves readability while maintaining visual consistency across the site.",
+          "A global search system that helps users quickly find content across pages, programs, and resources. Designed for speed and relevance, it reduces friction and makes information easy to access.",
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Building Trust with a Strong Team Presence",
+        paragraphs: [
+          "",
+        ],
+      },
+     {
+        type: "image",
+        src: "/mininature/team.gif",
+        alt: "Demo of the team management feature on the MiniNature Reserve website.",
+      },
+      {
+        type: "richText",
+        heading: "",
+        paragraphs: [
+          "The site includes a team management system for contributors, advisors, and board members. Profiles include rich text bios, personal websites, and social links, with the ability to give team members access to write blog posts. This keeps the team structured, visible, and easy to manage as the organization grows.",
+        ],
+      },
+      {
+        type: "richText",
+        heading: "Making Local Impact Discoverable",
+        paragraphs: [
+          "",
+        ],
+      },
+      {
+        type: "image",
+        src: "/mininature/map.gif",
+        alt: "Interactive map showing MiniNature Reserve locations.",
+      },
+      {
+        type: "richText",
+        heading: "",
+        paragraphs: [
+          "A “Find a MiniNature Reserve Near You” feature using ArcGIS to map active locations and make them easily accessible to the community. Users can explore nearby projects, learn about each site, and connect with local restoration efforts.",
+        ],
+      },
+
+
+      {
+        type: "richText",
+        heading: "Accessible Theme Based on User Preference",
+        paragraphs: [
+          "",
         ],
       },
       {
@@ -491,32 +533,32 @@ const projectData: Record<string, Project> = {
       },
       {
         type: "richText",
-        heading: "Fully Responsive Across Devices",
+        heading: "",
         paragraphs: [
-          "The site is designed to be fully responsive, ensuring a seamless experience across mobile, tablet, and desktop. Navigation, layouts, and content adapt fluidly so users can access information and take action from any device.",
+          "The site automatically matches the user’s system preference for light or dark mode. It reduces eye strain and keeps the experience consistent across the site.",
         ],
       },
-      {
-        type: "richText",
-        heading: "Structured Team and Leadership Profiles",
-        paragraphs: [
-          "Custom team profile pages highlight contributors, advisors, and board members with clear organization and hierarchy. This makes it easy to showcase leadership, build credibility, and support grant and partnership efforts.",
-        ],
-      },
-      {
-        type: "richText",
-        heading: "Flexible Rich Text Editing",
-        paragraphs: [
-          "The rich text editor supports formatted content, media embedding, and structured layouts, giving the team control over how information is presented. It enables clear, readable content while maintaining consistency across the site. Additional support was implemented for Spanish characters and accent marks to ensure accurate multilingual content.",
-        ],
-      },
-      {
-        type: "richText",
-        heading: "Sharing Reports with Embedded PDFs",
-        paragraphs: [
-          "A built-in PDF viewer allows the team to embed reports and documents directly into pages. This makes it easy to share impact reports, guides, and resources without requiring downloads, improving accessibility and user experience.",
-        ],
-      },
+      // {
+      //   type: "richText",
+      //   heading: "Fully Responsive Across Devices",
+      //   paragraphs: [
+      //     "The site is designed to be fully responsive, ensuring a seamless experience across mobile, tablet, and desktop. Navigation, layouts, and content adapt fluidly so users can access information and take action from any device.",
+      //   ],
+      // },
+      // {
+      //   type: "richText",
+      //   heading: "Flexible Rich Text Editing",
+      //   paragraphs: [
+      //     "The rich text editor supports formatted content, media embedding, and structured layouts, giving the team control over how information is presented. It enables clear, readable content while maintaining consistency across the site. Additional support was implemented for Spanish characters and accent marks to ensure accurate multilingual content.",
+      //   ],
+      // },
+      // {
+      //   type: "richText",
+      //   heading: "Sharing Reports with Embedded PDFs",
+      //   paragraphs: [
+      //     "A built-in PDF viewer allows the team to embed reports and documents directly into pages. This makes it easy to share impact reports, guides, and resources without requiring downloads, improving accessibility and user experience.",
+      //   ],
+      // },
       // {
       //   type: "richText",
       //   heading: "E-commerce Integration",
