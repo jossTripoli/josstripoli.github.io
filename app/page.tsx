@@ -76,7 +76,7 @@ export default function HomePage() {
       id: "online-trolling-education",
       title: "Online Trolling Education Module",
       description:
-        "Interactive educational module teaching digital citizenship and online safety through scenario-based learning and quizzes.",
+        "An interactive learning module that translates disinformation research into realistic social media scenarios.",
       tech: ["Node.js", "Express.js", "Passport.js", "MongoDB", "Mongoose", "Pug", "Semantic UI", "jQuery", "Intro.js", "Slick.js", "Video.js"],
       image: "/demo/troll.gif",
     },
@@ -84,8 +84,8 @@ export default function HomePage() {
       id: "cs-documentation-site",
       title: "Lehigh University Computer Science Documentation Websites",
       description:
-        "Comprehensive documentation platform for computer science courses with search functionality, code examples, and version control.",
-      tech: ["Moodle LMS", "MkDocs", "Bootstrap", "Markdown", "HTML", "CSS", "JavaScript"],
+        "Centralized resources that replace scattered documentation and reduce repetitive faculty support through structured, easy-to-navigate sites.",
+      tech: ["Moodle LMS", "Bootstrap", "Markdown", "HTML", "CSS", "JavaScript"],
       image: "/demo/sics.gif",
     },
     {

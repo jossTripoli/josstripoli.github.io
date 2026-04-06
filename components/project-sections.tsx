@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, Expand, X } from "lucide-react"
 import { useEffect, useMemo, useState, type ReactNode } from "react"
 
 import type { ProjectSection, RichTextParagraph } from "@/lib/project-types"
-
+import { shouldOpenInNewTab } from "@/lib/link-utils"
 
 type ModalState = {
   images: { src: string; alt: string }[]
@@ -65,13 +65,15 @@ function renderParagraph(paragraph: RichTextParagraph) {
       return
     }
 
+    const openInNewTab = shouldOpenInNewTab(link.href, link.openInNewTab)
+
     nodes.push(...renderInlineStyles(before, `before-${index}`))
     nodes.push(
       <a
         key={`${link.href}-${index}`}
         href={link.href}
-        target="_blank"
-        rel="noopener noreferrer"
+        target={openInNewTab ? "_blank" : undefined}
+        rel={openInNewTab ? "noopener noreferrer" : undefined}
         className="font-medium text-primary underline underline-offset-4"
       >
         {renderInlineStyles(link.label, `link-${index}`)}

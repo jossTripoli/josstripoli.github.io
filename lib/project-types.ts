@@ -5,6 +5,7 @@ export type RichTextParagraph =
       links: {
         label: string
         href: string
+        openInNewTab?: boolean
       }[]
     }
 
@@ -89,6 +90,7 @@ export type ProjectLink = {
   label: string
   href: string
   icon: "live" | "github"
+  openInNewTab?: boolean
 }
 
 export type ProjectHeroMedia =
