@@ -101,7 +101,7 @@ export default function HomePage() {
     setSubmitMessage("")
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/joss@josstripoli.com", {
+      const response = await fetch("https://formsubmit.co/ajax/de42f05c1b7b60bca47b0b9310f4f649", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
