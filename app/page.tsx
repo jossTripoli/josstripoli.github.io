@@ -92,9 +92,9 @@ export default function HomePage() {
       id: "collaboreat",
       title: "Collaboreat",
       description:
-        "Custom Moodle learning management system with integrated assessments, progress tracking, and student analytics.",
-      tech: ["React Native", "Expo", "MongoDB", "Firebase"],
-      image: "/demo/collaboreat.png",
+        "A mobile app that helps groups decide where to eat by reducing choice overload and helping them reach a fair decision faster.",
+      tech: ["React Native", "Expo", "Firebase", "Google Maps", "Fuzzy Logic", "Algorithmic Design", "Human-Computer Interaction", "IRB-Reviewed User Testing"],
+      image: "/demo/collaboreat.gif",
     },
   ]
 

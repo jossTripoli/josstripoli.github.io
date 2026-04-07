@@ -148,7 +148,7 @@ const projectData: Record<string, Project> = {
       },
       {
         type: "video",
-        src: "/dart/dart_ai_demo.mp4",
+        src: "https://youtu.be/GzJOoxYnSfI",
         title: "DART AI Voiceover demo",
       },
       {
@@ -638,7 +638,7 @@ const projectData: Record<string, Project> = {
       },
       {
         type: "video",
-        src: "/troll/troll_practice.mp4",
+        src: "https://youtu.be/5584ww2xlso",
         title: "Online Trolling Education Module demo",
         caption: "Practice section demo with interactive social media profiles and guided walkthroughs.",
       },
@@ -674,7 +674,7 @@ const projectData: Record<string, Project> = {
       },
       {
         type: "video",
-        src: "/cse/sics_walkthrough.mp4",
+        src: "https://youtu.be/Wlt9-MJNOjg",
         title: "Lehigh University Computer Science Moodle Course Site demo",
         caption: "Demo of the Moodle course site I built to centralize resources and support for Lehigh's computer science students.",
       },
@@ -700,32 +700,114 @@ const projectData: Record<string, Project> = {
   collaboreat: {
     title: "Collaboreat",
     description:
-      "A collaborative meal-planning and kitchen workflow platform supporting teams, students, and community organizations.",
+      "A mobile app that helps groups decide where to eat by reducing choice overload and helping them reach a fair decision faster.",
     image: "/demo/collaboreat.png",
-    tech: ["React Native", "Expo", "MongoDB", "Firebase"],
+    tech: ["React Native", "Expo", "Firebase", "Google Maps", "Fuzzy Logic", "Algorithmic Design", "Human-Computer Interaction", "IRB-Reviewed User Testing"],
     sections: [
       {
-        type: "quote",
-        quote: "Collaboration is the product: every screen should help groups decide, plan, and execute together.",
-        attribution: "North-star statement for the project",
+        type: "richText",
+        heading: "",
+        paragraphs: [
+          "You’re in a new place with a group, trying to decide where to eat. Everyone has different preferences, and what should be simple turns into endless scrolling and conflicting opinions. Platforms like Yelp and Google Reviews are designed to maximize engagement, not help you decide. They rank by popularity and ratings, introducing bias and offering no meaningful way for groups to collaboratively narrow choices down together",
+          // "As part of a research initiative at Lehigh’s College of Arts and Sciences, I worked on a project exploring how to improve group decision making for everyday services like choosing a restaurant. Existing platforms rely heavily on reviews and rankings, which introduce bias and often overwhelm users with too many options.",
+          "As part of a research initiative at Lehigh's College of Arts and Sciences, we designed and built a mobile app in React Native and Firebase around three core systems: a group preference form to capture needs like budget, distance, and dietary restrictions; a fuzzy logic filtering algorithm to reduce popularity and review bias by scoring restaurants against the group's stated preferences rather than crowd-sourced rankings; and a pass-the-phone anonymous voting flow where each member independently weighs in on the shortlist, guiding the group toward a decision that balances individual preferences with overall satisfaction.",
+          // "We conducted IRB-reviewed user testing with 30 groups across seven iterations of the app, which demonstrated measurable improvements in both decision time and user satisfaction with each version.",
+          // "I contributed to building the application and iterating on the user experience through multiple versions. We tested the app with 30 groups, including touring families, and found that it reduced decision time and increased satisfaction.",
+          // "The project was presented at the Lehigh CAS Research Symposium and helped explore how recommendation systems can be designed to be more equitable, transparent, and aligned with real-world group behavior."
+        ],
+      },
+      {
+        type: "video",
+        src: "https://youtu.be/Z9c3UfipB2w",
+        title: "Collaboreat demo",
+        caption: "Demo of the Collaboreat app, showing the group preference form, fuzzy logic filtering, and anonymous voting flow.",
       },
       {
         type: "richText",
-        heading: "Product framing",
+        heading: "",
         paragraphs: [
-          "Collaboreat combines planning, assignment, and reflection in one workspace so food-centered teams can coordinate without scattered tools.",
-          "The interface emphasizes role clarity and low-friction updates, especially for part-time or rotating contributors.",
+          "We conducted IRB-reviewed user testing with 30 groups across seven iterations of the app, which demonstrated measurable improvements in both decision time and user satisfaction with each version.",
+        ],
+      },
+      // {
+      //   type: "richText",
+      //   heading: "Approach",
+      //   paragraphs: [
+      //     "Collaboreat combines three processes: **(1) group preference collection, (2) fuzzy logic filtering, and (3) collaborative voting**.",
+      //     "The preference form captures group size, distance, budget, category label match, service options, open hours, ratings, food categories, amenities, and dietary restrictions.",
+      //     "A fuzzy logic recommendation model was selected to reduce rigid thresholding and mitigate several common bias patterns, especially feedback loops, exposure bias, selection bias, and popularity bias.",
+      //     "After filtering, the system presents a short candidate set and uses an anonymous voting flow designed to reduce social psychology pitfalls such as groupthink, production blocking, and group polarization.",
+      //   ],
+      // },
+      {
+        type: "stats",
+        heading: "",
+        stats: [
+          {
+            value: "207",
+            label: "Restaurants",
+            detail: "Bethlehem, PA case study dataset",
+          },
+          {
+            value: "30",
+            label: "Groups tested",
+            detail: "Families of 2–5 participants touring Lehigh University.",
+          },
+          {
+            value: "7",
+            label: "App iterations",
+            detail: "Design evolved from early drag-and-drop ranking to a faster interest-score model.",
+          },
         ],
       },
       {
-        type: "timeline",
-        heading: "Typical team journey",
-        steps: [
-          { title: "Plan", detail: "Draft menus and ingredient needs based on event goals and constraints." },
-          { title: "Coordinate", detail: "Assign prep, purchasing, and timing responsibilities across the group." },
-          { title: "Execute", detail: "Track progress with lightweight status updates and shared checklists." },
-          { title: "Review", detail: "Capture lessons learned to improve future events and reduce waste." },
+        type: "richText",
+        heading: "",
+        paragraphs: [
+          "Findings were presented at the Lehigh CAS Research Symposium, demonstrating how recommendation systems can reduce bias and better support real-world group decision making."
         ],
+      },
+      // {
+      //   type: "richText",
+      //   heading: "Results",
+      //   paragraphs: [
+      //     "Across iterative testing, users reported more positive feedback as the workflow became simpler and more transparent.",
+      //     "By version 7, participants could use the interface intuitively, and groups reached decisions faster with higher satisfaction.",
+      //     "Limiting final choices to five options was an effective balance: enough variety for informed decisions while avoiding data overload.",
+      //   ],
+      // },
+      // {
+      //   type: "bullets",
+      //   heading: "Future work",
+      //   items: [
+      //     "Support larger groups above five members.",
+      //     "Evaluate additional group voting systems.",
+      //     "Add machine-learning models for group preference and satisfaction prediction.",
+      //     "Incorporate regional dialect handling for category labels.",
+      //     "Display winner-match statistics to explain why a result was selected.",
+      //     "Run broader usability studies across more group types.",
+      //     "Improve equitable restaurant data hosting and sourcing.",
+      //   ],
+      // },
+      // {
+      //   type: "quote",
+      //   quote:
+      //     "Ask how we mitigate bias in our system.",
+      //   attribution: "Collaboreat research poster callout",
+      // },
+      // {
+      //   type: "richText",
+      //   heading: "Team and support",
+      //   paragraphs: [
+      //     "Collaboreat was developed by Joss Tripoli, Tiana Aldroubi, Isabel Koval, and Stephen Lee-Urban, with advising support from Professor Urban.",
+      //     "This work was supported by the Lehigh University College of Arts and Sciences Summer 2022 Undergraduate Summer Research Grant.",
+      //   ],
+      // },
+      {
+        type: "infographic",
+        src: "/collaboreat/symposium_poster.png",
+        alt: "Collaboreat research poster presented at the Lehigh University 2022 Undergraduate Research Symposium.",
+        caption: "Collaboreat research poster presented at the Lehigh University 2022 Undergraduate Research Symposium.",
       },
     ],
   },

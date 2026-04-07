@@ -88,6 +88,35 @@ function renderParagraph(paragraph: RichTextParagraph) {
   return <>{nodes}</>
 }
 
+function getYouTubeEmbedUrl(src: string) {
+  try {
+    const parsedUrl = new URL(src)
+    const host = parsedUrl.hostname.replace(/^www\./, "").replace(/^m\./, "")
+    let videoId: string | null = null
+
+    if (host === "youtu.be") {
+      videoId = parsedUrl.pathname.slice(1)
+    } else if (host === "youtube.com") {
+      if (parsedUrl.pathname === "/watch") {
+        videoId = parsedUrl.searchParams.get("v")
+      } else if (parsedUrl.pathname.startsWith("/embed/")) {
+        videoId = parsedUrl.pathname.split("/")[2] ?? null
+      } else if (parsedUrl.pathname.startsWith("/shorts/") || parsedUrl.pathname.startsWith("/live/")) {
+        videoId = parsedUrl.pathname.split("/")[2] ?? null
+      }
+    }
+
+    if (!videoId) return null
+
+    const startAt = parsedUrl.searchParams.get("start") ?? parsedUrl.searchParams.get("t")
+    const startParam = startAt ? `?start=${encodeURIComponent(startAt.replace("s", ""))}` : ""
+
+    return `https://www.youtube.com/embed/${videoId}${startParam}`
+  } catch {
+    return null
+  }
+}
+
 export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
   const [modalState, setModalState] = useState<ModalState | null>(null)
   const [infographicState, setInfographicState] = useState<{ src: string; alt: string } | null>(null)
@@ -257,30 +286,42 @@ export function ProjectSections({ sections }: { sections: ProjectSection[] }) {
         }
 
         if (section.type === "video") {
+          const youtubeEmbedUrl = getYouTubeEmbedUrl(section.src)
+
           return (
             <section key={index} className="space-y-2">
               <div className="overflow-hidden rounded-lg border border-border bg-muted/50">
-                <video
-                  className="aspect-video w-full bg-black"
-                  controls={section.controls ?? true}
-                  autoPlay={section.autoplay}
-                  loop={section.loop}
-                  muted={section.muted ?? section.autoplay ?? false}
-                  playsInline
-                  preload="metadata"
-                  poster={section.poster}
-                  aria-label={section.title}
-                >
-                  <source src={section.src} />
-                  Your browser does not support the video tag.
-                </video>
+                {youtubeEmbedUrl ? (
+                  <iframe
+                    className="aspect-video w-full bg-black"
+                    src={youtubeEmbedUrl}
+                    title={section.title}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                ) : (
+                  <video
+                    className="aspect-video w-full bg-black"
+                    controls={section.controls ?? true}
+                    autoPlay={section.autoplay}
+                    loop={section.loop}
+                    muted={section.muted ?? section.autoplay ?? false}
+                    playsInline
+                    preload="metadata"
+                    poster={section.poster}
+                    aria-label={section.title}
+                  >
+                    <source src={section.src} />
+                    Your browser does not support the video tag.
+                  </video>
+                )}
               </div>
               {section.caption && <p className="text-sm text-muted-foreground">{renderParagraph(section.caption)}</p>}
             </section>
           )
         }
-
-
 
         if (section.type === "image") {
           return (
