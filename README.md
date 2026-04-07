@@ -25,3 +25,18 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Contact form configuration
+
+The contact form posts to `/api/contact`, validates Google reCAPTCHA v2, and sends mail to `joss@josstripoli.com` through Resend.
+
+Set these environment variables before running:
+
+```bash
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
+RECAPTCHA_SECRET_KEY=your_recaptcha_secret_key
+RESEND_API_KEY=your_resend_api_key
+CONTACT_SENDER_EMAIL=Portfolio Contact <onboarding@resend.dev>
+```
+
+> Note: the API route requires a server runtime (Vercel, Node host, etc.). It will not work on a purely static GitHub Pages deployment.
