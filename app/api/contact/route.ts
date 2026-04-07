@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 
-const RECIPIENT_EMAIL = "joss@josstripoli.com"
+const RECIPIENT_EMAIL = "de42f05c1b7b60bca47b0b9310f4f649"
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
