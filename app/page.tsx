@@ -203,7 +203,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <Script src="https://www.google.com/recaptcha/enterprise.js" async defer />
+      <Script src="https://www.google.com/recaptcha/api.js" async defer />
       <SiteHeader />
 
       <section className="overflow-hidden">
@@ -847,7 +847,7 @@ export default function HomePage() {
                 <Input
                   id="name"
                   placeholder="Your name"
-                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+                  className="bg-primary-foreground border-primary-foreground/30 text-primary placeholder:text-primary/50"
                   value={formState.name}
                   onChange={(event) => setFormState((current) => ({ ...current, name: event.target.value }))}
                   required
@@ -861,7 +861,7 @@ export default function HomePage() {
                   id="email"
                   type="email"
                   placeholder="your@email.com"
-                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+                  className="bg-primary-foreground border-primary-foreground/30 text-primary placeholder:text-primary/50"
                   value={formState.email}
                   onChange={(event) => setFormState((current) => ({ ...current, email: event.target.value }))}
                   required
@@ -875,7 +875,7 @@ export default function HomePage() {
                   id="message"
                   placeholder="Tell me about your project..."
                   rows={6}
-                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 resize-none"
+                  className="bg-primary-foreground border-primary-foreground/30 text-primary placeholder:text-primary/50 resize-none"
                   value={formState.message}
                   onChange={(event) => setFormState((current) => ({ ...current, message: event.target.value }))}
                   required
