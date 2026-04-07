@@ -39,4 +39,10 @@ RESEND_API_KEY=your_resend_api_key
 CONTACT_SENDER_EMAIL=Portfolio Contact <onboarding@resend.dev>
 ```
 
+You can start by copying:
+
+```bash
+cp .env.example .env
+```
+
 > Note: the API route requires a server runtime (Vercel, Node host, etc.). It will not work on a purely static GitHub Pages deployment.
