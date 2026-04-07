@@ -27,6 +27,7 @@ export default function HomePage() {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "sent" | "error">("idle")
   const [submitMessage, setSubmitMessage] = useState("")
   const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY?.trim() || "6LdEvaosAAAAAB3wtdOMfHwlJ7hCWWBqyGujHmhP"
+  const formSubmitEndpoint = "https://formsubmit.co/ajax/joss@josstripoli.com"
   // const { scrollY } = useScroll()
   // const parallaxOffset = useTransform(scrollY, [0, 500], [0, 250])
   // const imageOpacity = useTransform(scrollY, [0, 300, 500], [1, 0.5, 0])
@@ -101,18 +102,22 @@ export default function HomePage() {
     setSubmitMessage("")
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/de42f05c1b7b60bca47b0b9310f4f649", {
+      const payload = {
+        name: formState.name,
+        email: formState.email,
+        message: formState.message,
+        _subject: "New portfolio contact form message",
+      }
+
+      const response = await fetch(formSubmitEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
-          name: formState.name,
-          email: formState.email,
-          message: formState.message,
-          _subject: "New portfolio contact form message",
-          captchaToken,
+          ...payload,
+          _captcha: "false",
         }),
       })
 
