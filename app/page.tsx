@@ -26,6 +26,7 @@ export default function HomePage() {
   const [formState, setFormState] = useState({ name: "", email: "", message: "" })
   const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "sent" | "error">("idle")
   const [submitMessage, setSubmitMessage] = useState("")
+  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY?.trim() || "6LdEvaosAAAAAB3wtdOMfHwlJ7hCWWBqyGujHmhP"
   // const { scrollY } = useScroll()
   // const parallaxOffset = useTransform(scrollY, [0, 500], [0, 250])
   // const imageOpacity = useTransform(scrollY, [0, 300, 500], [1, 0.5, 0])
@@ -76,6 +77,18 @@ export default function HomePage() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if (!recaptchaSiteKey) {
+      setSubmitStatus("error")
+      setSubmitMessage("Captcha site key is missing. Please contact site owner.")
+      return
+    }
+
+    if (!window.grecaptcha) {
+      setSubmitStatus("error")
+      setSubmitMessage("Captcha is still loading. Please wait a second and try again.")
+      return
+    }
+
     const captchaToken = window.grecaptcha?.getResponse()
 
     if (!captchaToken) {
@@ -88,10 +101,19 @@ export default function HomePage() {
     setSubmitMessage("")
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://formsubmit.co/ajax/joss@josstripoli.com", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formState, captchaToken }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          message: formState.message,
+          _subject: "New portfolio contact form message",
+          captchaToken,
+        }),
       })
 
       const data = await response.json()
@@ -125,14 +147,6 @@ export default function HomePage() {
       image: "/demo/mininature.gif",
     },
     {
-      id: "collaboreat",
-      title: "Collaboreat",
-      description:
-        "A mobile app that helps groups decide where to eat by reducing choice overload and helping them reach a fair decision faster.",
-      tech: ["React Native", "Expo", "Firebase", "Google Maps", "Fuzzy Logic", "Algorithmic Design", "Human-Computer Interaction", "IRB-Reviewed User Testing"],
-      image: "/demo/collaboreat.gif",
-    },
-    {
       id: "online-trolling-education",
       title: "Online Trolling Education Module",
       description:
@@ -147,6 +161,14 @@ export default function HomePage() {
         "Centralized resources that replace scattered documentation and reduce repetitive faculty support through structured, easy-to-navigate sites.",
       tech: ["Moodle LMS", "Bootstrap", "Markdown", "HTML", "CSS", "JavaScript"],
       image: "/demo/sics.gif",
+    },
+    {
+      id: "collaboreat",
+      title: "Collaboreat",
+      description:
+        "A mobile app that helps groups decide where to eat by reducing choice overload and helping them reach a fair decision faster.",
+      tech: ["React Native", "Expo", "Firebase", "Google Maps", "Fuzzy Logic", "Algorithmic Design", "Human-Computer Interaction", "IRB-Reviewed User Testing"],
+      image: "/demo/collaboreat.gif",
     },
   ]
 
@@ -181,7 +203,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <Script src="https://www.google.com/recaptcha/api.js" async defer />
+      <Script src="https://www.google.com/recaptcha/enterprise.js" async defer />
       <SiteHeader />
 
       <section className="overflow-hidden">
@@ -601,7 +623,7 @@ export default function HomePage() {
             external: true,
           },
           {
-            href: "https://github.com/s",
+            href: "https://github.com/jossTripoli",
             label: "GitHub",
             icon: <Github className="h-5 w-5" />,
             external: true,
@@ -861,7 +883,11 @@ export default function HomePage() {
               </div>
               <div>
                 <p className="mb-3 text-sm font-medium text-primary-foreground">Are you a human?</p>
-                <div className="g-recaptcha" data-sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ""} />
+                <div
+                  className="g-recaptcha"
+                  data-sitekey={recaptchaSiteKey}
+                  data-action="CONTACT_FORM"
+                />
               </div>
               {submitMessage && (
                 <p className="text-sm text-primary-foreground" role="status" aria-live="polite">
