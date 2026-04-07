@@ -588,115 +588,6 @@ const projectData: Record<string, Project> = {
       // },
     ],
   },
-  "online-trolling-education": {
-    title: "Online Trolling Education Module",
-    description:
-      "An interactive learning module that translates disinformation research into realistic social media scenarios.",
-    image: "/demo/troll.gif",
-    tech: ["Node.js", "Express.js", "Passport.js", "MongoDB", "Mongoose", "Pug", "Semantic UI", "jQuery", "Intro.js", "Slick.js", "Video.js"],
-    sections: [
-      {
-        type: "richText",
-        heading: "",
-        paragraphs: [
-          // "What does it actually take to spot a troll? This project set out to answer that question by putting learners inside the feed.",
-          {
-            text: "As part of Lehigh University's Human Computer Interaction & Social Computing Lab, I worked with a team of researchers to build a prototype for an experiential-learning platform to help older adults recognize and resist online disinformation.",
-            links: [
-              {
-                label: "Lehigh University's Human Computer Interaction & Social Computing Lab",
-                href: "https://engineering.lehigh.edu/cse/departmental-research-areas/human-computer-interaction-social-computing",
-              },
-            ],
-          },
-          {
-            text: "We adapted the Cornell Social Media Lab's Social Media Test Drive platform and the Clemson Media Forensics Hub's Spot the Troll quiz curriculum into a structured four-stage learning arc: Learn, Practice, Play, Reflect. This expanded the quiz format into a fuller educational experience with contextualized explanations.",
-            links: [
-              {
-                label: "Cornell Social Media Lab's Social Media Test Drive",
-                href: "https://socialmediatestdrive.org/",
-              },
-              {
-                label: "Clemson Media Forensics Hub's Spot the Troll quiz",
-                href: "https://spotthetroll.org/",
-              },
-            ],
-          },
-          "I developed the Practice section, creating realistic, coded, responsive Twitter-style profiles and guided walkthroughs that train learners to recognize patterns of deceptive behavior and build resistance to online manipulation.",
-          // "The prototype demonstrated feasibility and helped secure NSF funding for a larger platform that later evolved into DART Academy.",
-          {
-            text: "The prototype demonstrated feasibility and helped secure an NSF Convergence Accelerator grant for a larger platform that later evolved into DART Academy.",
-            links: [
-              {
-                label: "DART Academy",
-                href: "/projects/dart-academy",
-                openInNewTab: false,
-              },
-            ],
-          },
-        ],
-      },
-      {
-        type: "video",
-        src: "https://youtu.be/5584ww2xlso",
-        title: "Online Trolling Education Module demo",
-        caption: "Practice section demo with interactive social media profiles and guided walkthroughs.",
-      },
-    ],
-  },
-  "cs-documentation-site": {
-    title: "Lehigh University Computer Science Documentation Websites",
-    description:
-      "Centralized resources that replace scattered documentation and reduce repetitive faculty support through structured, easy-to-navigate sites.",
-    image: "/demo/sics.gif",
-    liveUrl: "https://docs.cse.lehigh.edu/",
-    tech: ["Moodle LMS", "Bootstrap", "Markdown", "HTML", "CSS", "JavaScript"],
-    sections: [
-      {
-        type: "richText",
-        heading: "Success in CS Moodle Course Site",
-        paragraphs: [
-          "After identifying inconsistencies in course expectations and gaps in the CS curriculum, I built a custom Moodle Course Site to address them.",
-          "I surveyed thirteen computer science professors to compile key course expectations and created documentation covering computing principles, software engineering tools, and effective learning habits to help students succeed in Lehigh's rigorous academic program.",
-          // "Beyond documentation, I worked with faculty and administration to install the \"Level UP XP\" gamification plugin, organized a sticker design contest for the department, and launched a Piazza Q&A page to increase peer-to-peer support.",
-          "",
-          {
-            text: "As of May 2023, the site had 1,684 enrolled participants out of Lehigh's 5,624 undergraduates. My work also contributed to the development of CSE 098: Success In CS, a 1-credit course that better prepares students for higher-level CS courses.",
-            links: [
-              {
-                label: "CSE 098: Success In CS",
-                href: "https://engineering.lehigh.edu/fall-2025-courses",
-              },
-            ],
-          },
-
-        ],
-      },
-      {
-        type: "video",
-        src: "https://youtu.be/Wlt9-MJNOjg",
-        title: "Lehigh University Computer Science Moodle Course Site demo",
-        caption: "Demo of the Moodle course site I built to centralize resources and support for Lehigh's computer science students.",
-      },
-      {
-        type: "richText",
-        heading: "Lehigh Computer Science Docs",
-        paragraphs: [
-          "In collaboration with Lehigh’s systems manager, I consolidated scattered resources previously maintained as Google Docs into a centralized website. I translated and restructured this content into Markdown, creating a consistent, version-controlled documentation system covering development environments, SSH access, IDEs, and course-related tools.",
-          "The platform served as a single source of truth for students, faculty, and staff, reducing repetitive inquiries and improving operational efficiency. It enabled users to independently set up and navigate technical environments while streamlining onboarding and fostering a more self-sufficient academic community.",
-        ],
-      },
-      {
-        type: "image",
-        src: "/cse/cse_documentation.gif",
-        alt: "Demo of the Lehigh University Computer Science documentation website I built to centralize resources for students, faculty, and staff.",
-        caption: {
-          text: "Markdown-based documentation system showcasing structured guides for technical tools — Visit the live page.",
-          links: [{ label: "Visit the live page", href: "https://docs.cse.lehigh.edu/" }],
-        },
-      },
-    ],
-  },
   collaboreat: {
     title: "Collaboreat",
     description:
@@ -808,6 +699,115 @@ const projectData: Record<string, Project> = {
         src: "/collaboreat/symposium_poster.png",
         alt: "Collaboreat research poster presented at the Lehigh University 2022 Undergraduate Research Symposium.",
         caption: "Collaboreat research poster presented at the Lehigh University 2022 Undergraduate Research Symposium.",
+      },
+    ],
+  },
+  "online-trolling-education": {
+    title: "Online Trolling Education Module",
+    description:
+      "An interactive learning module that translates disinformation research into realistic social media scenarios.",
+    image: "/demo/troll.gif",
+    tech: ["Node.js", "Express.js", "Passport.js", "MongoDB", "Mongoose", "Pug", "Semantic UI", "jQuery", "Intro.js", "Slick.js", "Video.js"],
+    sections: [
+      {
+        type: "richText",
+        heading: "",
+        paragraphs: [
+          // "What does it actually take to spot a troll? This project set out to answer that question by putting learners inside the feed.",
+          {
+            text: "As part of Lehigh University's Human Computer Interaction & Social Computing Lab, I worked with a team of researchers to build a prototype for an experiential-learning platform to help older adults recognize and resist online disinformation.",
+            links: [
+              {
+                label: "Lehigh University's Human Computer Interaction & Social Computing Lab",
+                href: "https://engineering.lehigh.edu/cse/departmental-research-areas/human-computer-interaction-social-computing",
+              },
+            ],
+          },
+          {
+            text: "We adapted the Cornell Social Media Lab's Social Media Test Drive platform and the Clemson Media Forensics Hub's Spot the Troll quiz curriculum into a structured four-stage learning arc: Learn, Practice, Play, Reflect. This expanded the quiz format into a fuller educational experience with contextualized explanations.",
+            links: [
+              {
+                label: "Cornell Social Media Lab's Social Media Test Drive",
+                href: "https://socialmediatestdrive.org/",
+              },
+              {
+                label: "Clemson Media Forensics Hub's Spot the Troll quiz",
+                href: "https://spotthetroll.org/",
+              },
+            ],
+          },
+          "I developed the Practice section, creating realistic, coded, responsive Twitter-style profiles and guided walkthroughs that train learners to recognize patterns of deceptive behavior and build resistance to online manipulation.",
+          // "The prototype demonstrated feasibility and helped secure NSF funding for a larger platform that later evolved into DART Academy.",
+          {
+            text: "The prototype demonstrated feasibility and helped secure an NSF Convergence Accelerator grant for a larger platform that later evolved into DART Academy.",
+            links: [
+              {
+                label: "DART Academy",
+                href: "/projects/dart-academy",
+                openInNewTab: false,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        type: "video",
+        src: "https://youtu.be/5584ww2xlso",
+        title: "Online Trolling Education Module demo",
+        caption: "Practice section demo with interactive social media profiles and guided walkthroughs.",
+      },
+    ],
+  },
+  "cs-documentation-site": {
+    title: "Lehigh University Computer Science Documentation Websites",
+    description:
+      "Centralized resources that replace scattered documentation and reduce repetitive faculty support through structured, easy-to-navigate sites.",
+    image: "/demo/sics.gif",
+    liveUrl: "https://docs.cse.lehigh.edu/",
+    tech: ["Moodle LMS", "Bootstrap", "Markdown", "HTML", "CSS", "JavaScript"],
+    sections: [
+      {
+        type: "richText",
+        heading: "Success in CS Moodle Course Site",
+        paragraphs: [
+          "After identifying inconsistencies in course expectations and gaps in the CS curriculum, I built a custom Moodle Course Site to address them.",
+          "I surveyed thirteen computer science professors to compile key course expectations and created documentation covering computing principles, software engineering tools, and effective learning habits to help students succeed in Lehigh's rigorous academic program.",
+          // "Beyond documentation, I worked with faculty and administration to install the \"Level UP XP\" gamification plugin, organized a sticker design contest for the department, and launched a Piazza Q&A page to increase peer-to-peer support.",
+          "",
+          {
+            text: "As of May 2023, the site had 1,684 enrolled participants out of Lehigh's 5,624 undergraduates. My work also contributed to the development of CSE 098: Success In CS, a 1-credit course that better prepares students for higher-level CS courses.",
+            links: [
+              {
+                label: "CSE 098: Success In CS",
+                href: "https://engineering.lehigh.edu/fall-2025-courses",
+              },
+            ],
+          },
+
+        ],
+      },
+      {
+        type: "video",
+        src: "https://youtu.be/Wlt9-MJNOjg",
+        title: "Lehigh University Computer Science Moodle Course Site demo",
+        caption: "Demo of the Moodle course site I built to centralize resources and support for Lehigh's computer science students.",
+      },
+      {
+        type: "richText",
+        heading: "Lehigh Computer Science Docs",
+        paragraphs: [
+          "In collaboration with Lehigh’s systems manager, I consolidated scattered resources previously maintained as Google Docs into a centralized website. I translated and restructured this content into Markdown, creating a consistent, version-controlled documentation system covering development environments, SSH access, IDEs, and course-related tools.",
+          "The platform served as a single source of truth for students, faculty, and staff, reducing repetitive inquiries and improving operational efficiency. It enabled users to independently set up and navigate technical environments while streamlining onboarding and fostering a more self-sufficient academic community.",
+        ],
+      },
+      {
+        type: "image",
+        src: "/cse/cse_documentation.gif",
+        alt: "Demo of the Lehigh University Computer Science documentation website I built to centralize resources for students, faculty, and staff.",
+        caption: {
+          text: "Markdown-based documentation system showcasing structured guides for technical tools — Visit the live page.",
+          links: [{ label: "Visit the live page", href: "https://docs.cse.lehigh.edu/" }],
+        },
       },
     ],
   },

@@ -12,8 +12,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Joss Tripoli - Full-Stack Software Engineer",
   description:
-    "Full-stack software engineer specializing in educational technology. Building production learning platforms with interactive simulations and large-scale content systems.",
-  generator: "v0.app",
+    "I build web and mobile applications, from platforms that teach older adults to spot scams to nonprofit marketing and ecommerce websites.",
   icons: {
     icon: [
       {
@@ -42,10 +41,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <Script
-          async
           src="https://www.googletagmanager.com/gtag/js?id=G-1NLEJZJXKK"
         />
-        <Script id="google-analytics">
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
