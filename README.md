@@ -25,3 +25,30 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Contact form configuration
+
+The contact form uses Google reCAPTCHA on the client and submits through FormSubmit to deliver messages to `joss@josstripoli.com` (works with Porkbun-hosted inboxes).
+
+Set these environment variables before running:
+
+```bash
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6LdEvaosAAAAAB3wtdOMfHwlJ7hCWWBqyGujHmhP
+```
+
+You can start by copying:
+
+```bash
+cp .env.example .env
+```
+
+### GitHub Pages / GitHub Actions
+
+For client-side values (like `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`), set a repository variable in GitHub:
+
+- **Settings → Secrets and variables → Actions → Variables**
+- Add `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
+
+This workflow passes that variable into the build step, so it is baked into the static site bundle.
+
+> Note: FormSubmit can be used from static GitHub Pages deployments (no custom server runtime needed).

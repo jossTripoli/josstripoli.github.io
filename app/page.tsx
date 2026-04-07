@@ -2,16 +2,31 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import Script from "next/script"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { ArrowUp, Linkedin, Github, Mail, ExternalLink } from 'lucide-react'
-import { useState, useEffect, useId, useRef } from "react"
+import { FormEvent, MouseEvent, useState, useEffect, useId, useRef } from "react"
 import { motion, useScroll, useTransform } from "motion/react"
 import { SiteHeader } from "@/components/site-header"
+import { getScrollBehavior, scrollToHash } from "@/lib/scroll"
+
+declare global {
+  interface Window {
+    grecaptcha?: {
+      getResponse: () => string
+      reset: () => void
+    }
+  }
+}
 
 export default function HomePage() {
   const [showScrollTop, setShowScrollTop] = useState(false)
+  const [formState, setFormState] = useState({ name: "", email: "", message: "" })
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "sent" | "error">("idle")
+  const [submitMessage, setSubmitMessage] = useState("")
+  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY?.trim() || "6LdEvaosAAAAAB3wtdOMfHwlJ7hCWWBqyGujHmhP"
   // const { scrollY } = useScroll()
   // const parallaxOffset = useTransform(scrollY, [0, 500], [0, 250])
   // const imageOpacity = useTransform(scrollY, [0, 300, 500], [1, 0.5, 0])
@@ -52,7 +67,66 @@ export default function HomePage() {
   }, [])
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
+    window.scrollTo({ top: 0, behavior: getScrollBehavior() })
+  }
+
+  const onCTASectionClick = (event: MouseEvent<HTMLAnchorElement>, hash: "#work" | "#contact") => {
+    event.preventDefault()
+    scrollToHash(hash)
+  }
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!recaptchaSiteKey) {
+      setSubmitStatus("error")
+      setSubmitMessage("Captcha site key is missing. Please contact site owner.")
+      return
+    }
+
+    if (!window.grecaptcha) {
+      setSubmitStatus("error")
+      setSubmitMessage("Captcha is still loading. Please wait a second and try again.")
+      return
+    }
+
+    const captchaToken = window.grecaptcha?.getResponse()
+
+    if (!captchaToken) {
+      setSubmitStatus("error")
+      setSubmitMessage("Please verify that you are human before sending your message.")
+      return
+    }
+
+    setSubmitStatus("sending")
+    setSubmitMessage("")
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/joss@josstripoli.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          message: formState.message,
+          _subject: "New portfolio contact form message",
+          captchaToken,
+        }),
+      })
+
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.error || "Unable to send message.")
+
+      setSubmitStatus("sent")
+      setSubmitMessage("Thanks! Your message has been sent.")
+      setFormState({ name: "", email: "", message: "" })
+      window.grecaptcha?.reset()
+    } catch (error) {
+      setSubmitStatus("error")
+      setSubmitMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.")
+    }
   }
 
   const projects = [
@@ -129,6 +203,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
+      <Script src="https://www.google.com/recaptcha/enterprise.js" async defer />
       <SiteHeader />
 
       <section className="overflow-hidden">
@@ -531,10 +606,10 @@ export default function HomePage() {
         transition={{ delay: heroTimings.ctas.delay, duration: heroTimings.ctas.duration, ease: "easeOut" }}
       >
         <Button size="lg" className="rounded-full uppercase tracking-wide shadow-lg shadow-secondary-purple" asChild>
-          <a href="#work">View selected work</a>
+          <a href="#work" onClick={(event) => onCTASectionClick(event, "#work")}>View selected work</a>
         </Button>
         <Button size="lg" variant="outline" className="rounded-full uppercase tracking-wide shadow-sm" asChild>
-          <a href="#contact">Contact</a>
+          <a href="#contact" onClick={(event) => onCTASectionClick(event, "#contact")}>Contact</a>
         </Button>
       </motion.div>
 
@@ -729,7 +804,7 @@ export default function HomePage() {
 
       <motion.section
         id="contact"
-        className="bg-primary py-20"
+        className="bg-primary py-20 pb-16"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -738,14 +813,14 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="max-w-2xl mx-auto">
             <motion.div
-              className="relative inline-block mb-8 mx-auto block text-center"
+              className="relative inline-block mb-8"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground">Let's Connect</h2>
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 h-1 bg-primary-foreground/80"></div>
+              <div className="absolute -bottom-2 left-0 w-20 h-1 bg-primary-foreground/80"></div>
             </motion.div>
             <motion.p
               className="text-lg text-primary-foreground/90 text-center mb-12 leading-relaxed"
@@ -763,8 +838,9 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
+              onSubmit={handleSubmit}
             >
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <label htmlFor="name" className="text-sm font-medium text-primary-foreground">
                   Name
                 </label>
@@ -772,9 +848,12 @@ export default function HomePage() {
                   id="name"
                   placeholder="Your name"
                   className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+                  value={formState.name}
+                  onChange={(event) => setFormState((current) => ({ ...current, name: event.target.value }))}
+                  required
                 />
               </div>
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <label htmlFor="email" className="text-sm font-medium text-primary-foreground">
                   Email
                 </label>
@@ -783,9 +862,12 @@ export default function HomePage() {
                   type="email"
                   placeholder="your@email.com"
                   className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+                  value={formState.email}
+                  onChange={(event) => setFormState((current) => ({ ...current, email: event.target.value }))}
+                  required
                 />
               </div>
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <label htmlFor="message" className="text-sm font-medium text-primary-foreground">
                   Message
                 </label>
@@ -794,21 +876,38 @@ export default function HomePage() {
                   placeholder="Tell me about your project..."
                   rows={6}
                   className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 resize-none"
+                  value={formState.message}
+                  onChange={(event) => setFormState((current) => ({ ...current, message: event.target.value }))}
+                  required
                 />
               </div>
+              <div>
+                <p className="mb-3 text-sm font-medium text-primary-foreground">Are you a human?</p>
+                <div
+                  className="g-recaptcha"
+                  data-sitekey={recaptchaSiteKey}
+                  data-action="CONTACT_FORM"
+                />
+              </div>
+              {submitMessage && (
+                <p className="text-sm text-primary-foreground" role="status" aria-live="polite">
+                  {submitMessage}
+                </p>
+              )}
               <Button
                 type="submit"
                 size="lg"
                 className="w-full bg-primary-foreground text-primary hover:bg-primary-foreground/90"
+                disabled={submitStatus === "sending"}
               >
-                Send Message
+                {submitStatus === "sending" ? "Sending..." : "Send Message"}
               </Button>
             </motion.form>
           </div>
         </div>
       </motion.section>
 
-      <footer className="border-t border-border mt-20">
+      <footer className="border-t border-border">
         <div className="max-w-6xl mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
