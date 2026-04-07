@@ -708,9 +708,9 @@ const projectData: Record<string, Project> = {
         type: "richText",
         heading: "",
         paragraphs: [
-          "You’re in a new place with a group, trying to decide where to eat. Everyone has different preferences, and what should be simple turns into endless scrolling and conflicting opinions. Platforms like Yelp and Google Reviews are designed to maximize engagement, not help you decide. They rank by popularity and ratings, introducing bias and offering no meaningful way for groups to collaboratively narrow choices down together",
+          "You’re in a new place with a group, trying to decide where to eat. Everyone has different preferences, and what should be simple turns into endless scrolling and conflicting opinions. Platforms like Yelp and Google Reviews are designed to maximize engagement, not help you decide. They rank by popularity and ratings, introducing bias and offering no meaningful way for groups to collaboratively narrow choices down together.",
           // "As part of a research initiative at Lehigh’s College of Arts and Sciences, I worked on a project exploring how to improve group decision making for everyday services like choosing a restaurant. Existing platforms rely heavily on reviews and rankings, which introduce bias and often overwhelm users with too many options.",
-          "As part of a research initiative at Lehigh's College of Arts and Sciences, we designed and built a mobile app in React Native and Firebase around three core systems: a group preference form to capture needs like budget, distance, and dietary restrictions; a fuzzy logic filtering algorithm to reduce popularity and review bias by scoring restaurants against the group's stated preferences rather than crowd-sourced rankings; and a pass-the-phone anonymous voting flow where each member independently weighs in on the shortlist, guiding the group toward a decision that balances individual preferences with overall satisfaction.",
+          "As part of a grant-funded research project at Lehigh University, we designed and built a mobile app in React Native and Firebase around three core systems: a group preference form to capture needs like budget, distance, and dietary restrictions; a fuzzy logic filtering algorithm to reduce popularity and review bias by scoring restaurants against the group's stated preferences rather than crowd-sourced rankings; and a pass-the-phone anonymous voting flow where each member independently weighs in on the shortlist, guiding the group toward a decision that balances individual preferences with overall satisfaction.",
           // "We conducted IRB-reviewed user testing with 30 groups across seven iterations of the app, which demonstrated measurable improvements in both decision time and user satisfaction with each version.",
           // "I contributed to building the application and iterating on the user experience through multiple versions. We tested the app with 30 groups, including touring families, and found that it reduced decision time and increased satisfaction.",
           // "The project was presented at the Lehigh CAS Research Symposium and helped explore how recommendation systems can be designed to be more equitable, transparent, and aligned with real-world group behavior."
@@ -816,9 +816,9 @@ const projectData: Record<string, Project> = {
 const projectOrder = [
   "dart-academy",
   "miniature-reserve",
+  "collaboreat",
   "online-trolling-education",
   "cs-documentation-site",
-  "collaboreat",
 ] as const
 
 export async function generateStaticParams() {

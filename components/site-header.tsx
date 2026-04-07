@@ -3,7 +3,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
-import { useState } from "react"
+import { MouseEvent, useState } from "react"
+import { scrollToHash } from "@/lib/scroll"
 
 type SiteHeaderProps = {
   sectionBasePath?: "" | "/"
@@ -13,6 +14,11 @@ export function SiteHeader({ sectionBasePath = "" }: SiteHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const hrefFor = (section: "about" | "work" | "contact") => `${sectionBasePath}#${section}`
+  const handleSectionClick = (event: MouseEvent<HTMLAnchorElement>, hash: "#about" | "#work" | "#contact") => {
+    if (sectionBasePath) return
+    event.preventDefault()
+    scrollToHash(hash)
+  }
 
   return (
     <header className="top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
@@ -27,13 +33,25 @@ export function SiteHeader({ sectionBasePath = "" }: SiteHeaderProps) {
           </Link>
 
           <div className="hidden md:flex gap-8">
-            <a href={hrefFor("about")} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+            <a
+              href={hrefFor("about")}
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              onClick={(event) => handleSectionClick(event, "#about")}
+            >
               About
             </a>
-            <a href={hrefFor("work")} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+            <a
+              href={hrefFor("work")}
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              onClick={(event) => handleSectionClick(event, "#work")}
+            >
               Work
             </a>
-            <a href={hrefFor("contact")} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+            <a
+              href={hrefFor("contact")}
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              onClick={(event) => handleSectionClick(event, "#contact")}
+            >
               Contact
             </a>
           </div>
@@ -60,7 +78,10 @@ export function SiteHeader({ sectionBasePath = "" }: SiteHeaderProps) {
                 className={`px-2 py-1 text-sm text-muted-foreground transition-all hover:text-foreground ${
                   mobileMenuOpen ? "translate-y-0 opacity-100 delay-100" : "-translate-y-2 opacity-0"
                 } duration-300`}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(event) => {
+                  handleSectionClick(event, "#about")
+                  setMobileMenuOpen(false)
+                }}
               >
                 About
               </a>
@@ -69,7 +90,10 @@ export function SiteHeader({ sectionBasePath = "" }: SiteHeaderProps) {
                 className={`px-2 py-1 text-sm text-muted-foreground transition-all hover:text-foreground ${
                   mobileMenuOpen ? "translate-y-0 opacity-100 delay-150" : "-translate-y-2 opacity-0"
                 } duration-300`}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(event) => {
+                  handleSectionClick(event, "#work")
+                  setMobileMenuOpen(false)
+                }}
               >
                 Work
               </a>
@@ -78,7 +102,10 @@ export function SiteHeader({ sectionBasePath = "" }: SiteHeaderProps) {
                 className={`px-2 py-1 text-sm text-muted-foreground transition-all hover:text-foreground ${
                   mobileMenuOpen ? "translate-y-0 opacity-100 delay-200" : "-translate-y-2 opacity-0"
                 } duration-300`}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(event) => {
+                  handleSectionClick(event, "#contact")
+                  setMobileMenuOpen(false)
+                }}
               >
                 Contact
               </a>
