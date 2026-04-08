@@ -152,6 +152,14 @@ export default function HomePage() {
       image: "/demo/mininature.gif",
     },
     {
+      id: "collaboreat",
+      title: "Collaboreat",
+      description:
+        "A mobile app that helps groups decide where to eat by reducing choice overload and helping them reach a fair decision faster.",
+      tech: ["React Native", "Expo", "Firebase", "Google Maps", "Fuzzy Logic", "Algorithmic Design", "Human-Computer Interaction", "IRB-Reviewed User Testing"],
+      image: "/demo/collaboreat.gif",
+    },
+    {
       id: "online-trolling-education",
       title: "Online Trolling Education Module",
       description:
@@ -166,14 +174,6 @@ export default function HomePage() {
         "Centralized resources that replace scattered documentation and reduce repetitive faculty support through structured, easy-to-navigate sites.",
       tech: ["Moodle LMS", "Bootstrap", "Markdown", "HTML", "CSS", "JavaScript"],
       image: "/demo/sics.gif",
-    },
-    {
-      id: "collaboreat",
-      title: "Collaboreat",
-      description:
-        "A mobile app that helps groups decide where to eat by reducing choice overload and helping them reach a fair decision faster.",
-      tech: ["React Native", "Expo", "Firebase", "Google Maps", "Fuzzy Logic", "Algorithmic Design", "Human-Computer Interaction", "IRB-Reviewed User Testing"],
-      image: "/demo/collaboreat.gif",
     },
   ]
 
