@@ -920,7 +920,7 @@ export default function HomePage() {
             </p>
             <div className="flex gap-6">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/joss-tripoli"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -928,7 +928,7 @@ export default function HomePage() {
                 LinkedIn
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/jossTripoli"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -936,7 +936,7 @@ export default function HomePage() {
                 GitHub
               </a>
               <a
-                href="mailto:joss@example.com"
+                href="mailto:joss@josstripoli.com"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 Email
