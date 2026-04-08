@@ -316,7 +316,7 @@ const projectData: Record<string, Project> = {
           { src: "/dart/gallery/dont-close-browser.svg", alt: "Cross through mouse clicking the top right x button in the browser demonstrating not to click fake popups", category: "Scam" },
           { src: "/dart/gallery/romace_word_cloud.png", alt: "Word cloud of the emotional effects of romance scams", category: "Decorative" },
           { src: "/dart/gallery/emotional_words.png", alt: "Emotional words", category: "Decorative" },
-          { src: "/dart/gallery/cert.png", alt: "Certificate example", category: "Decorative" },
+          { src: "/dart/gallery/cert.png", alt: "Certificate example", category: "Gamification" },
 
           // { src: "/dart/gallery/fake_site.png", alt: "Certificate example", category: "Decorative" },
           // { src: "/dart/gallery/aging_scam.png", alt: "Certificate example", category: "Decorative" },
