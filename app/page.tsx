@@ -15,8 +15,16 @@ import { getScrollBehavior, scrollToHash } from "@/lib/scroll"
 declare global {
   interface Window {
     grecaptcha?: {
-      getResponse: () => string
-      reset: () => void
+      ready: (callback: () => void) => void
+      render: (
+        container: HTMLElement | string,
+        parameters: {
+          sitekey: string
+          action?: string
+        },
+      ) => number
+      getResponse: (widgetId?: number) => string
+      reset: (widgetId?: number) => void
     }
   }
 }
@@ -26,6 +34,8 @@ export default function HomePage() {
   const [formState, setFormState] = useState({ name: "", email: "", message: "" })
   const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "sent" | "error">("idle")
   const [submitMessage, setSubmitMessage] = useState("")
+  const recaptchaContainerRef = useRef<HTMLDivElement | null>(null)
+  const recaptchaWidgetIdRef = useRef<number | null>(null)
   const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY?.trim() || "6LdEvaosAAAAAB3wtdOMfHwlJ7hCWWBqyGujHmhP"
   const formSubmitEndpoint = "https://formsubmit.co/ajax/joss@josstripoli.com"
   // const { scrollY } = useScroll()
@@ -67,6 +77,28 @@ export default function HomePage() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    if (typeof window === "undefined" || !recaptchaSiteKey) return
+
+    const initializeRecaptcha = () => {
+      if (!window.grecaptcha || !recaptchaContainerRef.current || recaptchaWidgetIdRef.current !== null) return
+
+      window.grecaptcha.ready(() => {
+        if (!recaptchaContainerRef.current || recaptchaWidgetIdRef.current !== null) return
+
+        recaptchaWidgetIdRef.current = window.grecaptcha!.render(recaptchaContainerRef.current, {
+          sitekey: recaptchaSiteKey,
+          action: "CONTACT_FORM",
+        })
+      })
+    }
+
+    initializeRecaptcha()
+    const intervalId = window.setInterval(initializeRecaptcha, 250)
+
+    return () => window.clearInterval(intervalId)
+  }, [recaptchaSiteKey])
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: getScrollBehavior() })
   }
@@ -90,7 +122,14 @@ export default function HomePage() {
       return
     }
 
-    const captchaToken = window.grecaptcha?.getResponse()
+    let captchaToken = ""
+    try {
+      captchaToken = window.grecaptcha.getResponse(recaptchaWidgetIdRef.current ?? undefined)
+    } catch {
+      setSubmitStatus("error")
+      setSubmitMessage("Captcha needs to be reloaded. Please refresh and try again.")
+      return
+    }
 
     if (!captchaToken) {
       setSubmitStatus("error")
@@ -127,7 +166,7 @@ export default function HomePage() {
       setSubmitStatus("sent")
       setSubmitMessage("Thanks! Your message has been sent.")
       setFormState({ name: "", email: "", message: "" })
-      window.grecaptcha?.reset()
+      window.grecaptcha?.reset(recaptchaWidgetIdRef.current ?? undefined)
     } catch (error) {
       setSubmitStatus("error")
       setSubmitMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.")
@@ -208,7 +247,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <Script src="https://www.google.com/recaptcha/api.js" async defer />
+      <Script id="recaptcha-api-script" src="https://www.google.com/recaptcha/api.js?render=explicit" async defer />
       <SiteHeader />
 
       <section className="overflow-hidden">
@@ -889,9 +928,8 @@ export default function HomePage() {
               <div>
                 {/* <p className="mb-3 text-sm font-medium text-primary-foreground">Are you a human?</p> */}
                 <div
+                  ref={recaptchaContainerRef}
                   className="g-recaptcha"
-                  data-sitekey={recaptchaSiteKey}
-                  data-action="CONTACT_FORM"
                 />
               </div>
               {submitMessage && (
