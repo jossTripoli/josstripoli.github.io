@@ -22,7 +22,7 @@ const projectData: Record<string, Project> = {
       src: "/dart/banner.png",
       alt: "DART Academy banner with logo, tagline, and illustrated learners",
     },
-    liveUrl: "https://app.dartacademy.net/",
+    liveUrl: "https://dartacademy.net/",
     tech: ["Next.js", "React", "PostgreSQL", "Prisma ORM", "Node.js", "TypeScript", "Tailwind CSS", "Shadcn/ui", "Figma", "Adobe Illustrator", "Zustand", "Docker", "AWS", "TipTap", "OpenAI API", "HubSpot API", "Stripe API"],
     sections: [
       {
@@ -30,11 +30,11 @@ const projectData: Record<string, Project> = {
         heading: "The Rising Threat of Online Scams",
         paragraphs: [
           {
-            text: "Online scams are a rapidly growing threat, particularly for older adults. In a single year, 147,127 Americans aged 60+ reported being victims of online scams, resulting in $4.8 billion in losses, according to the FBI's Annual Internet Crime Report.",
+            text: "Online scams are a rapidly growing threat, particularly for older adults. In a single year, 201,266 Americans aged 60+ reported being victims of online scams, resulting in $7.7 billion in losses, according to the FBI's Annual Internet Crime Report.",
             links: [
               {
                 label: "FBI's Annual Internet Crime Report",
-                href: "https://www.fbi.gov/news/press-releases/fbi-releases-annual-internet-crime-report",
+                href: "https://www.fbi.gov/news/press-releases/cryptocurrency-and-ai-scams-bilk-americans-of-billions",
               },
             ],
           },
@@ -58,7 +58,7 @@ const projectData: Record<string, Project> = {
           links: [
             {
               label: "FBI Internet Crime Report",
-              href: "https://www.fbi.gov/news/press-releases/fbi-releases-annual-internet-crime-report",
+              href: "https://www.fbi.gov/news/press-releases/cryptocurrency-and-ai-scams-bilk-americans-of-billions",
             },
           ],
         },
@@ -192,7 +192,7 @@ const projectData: Record<string, Project> = {
         alt: "Identity scam simulation preview",
         caption: {
           text: "Identity theft phishing email inbox scam simulation — Visit the live page.",
-          links: [{ label: "Visit the live page", href: "https://app.dartacademy.net/practice/identity" }],
+          links: [{ label: "Visit the live page", href: "https://dartacademy.net/practice/identity" }],
         },
       },
       {
@@ -201,7 +201,7 @@ const projectData: Record<string, Project> = {
         alt: "Tech support popup and phone call scam simulation preview",
         caption: {
           text: "Tech support popup and phone call scam simulation — Visit the live page.",
-          links: [{ label: "Visit the live page", href: "https://app.dartacademy.net/practice/tech" }],
+          links: [{ label: "Visit the live page", href: "https://dartacademy.net/practice/tech" }],
         },
       },
       {
@@ -210,7 +210,7 @@ const projectData: Record<string, Project> = {
         alt: "Medication scam drug website simulation preview",
         caption: {
           text: "Medication scam drug website simulation preview — Visit the live page.",
-          links: [{ label: "Visit the live page", href: "https://app.dartacademy.net/practice/medication" }],
+          links: [{ label: "Visit the live page", href: "https://dartacademy.net/practice/medication" }],
         },
       },
       {
@@ -219,7 +219,7 @@ const projectData: Record<string, Project> = {
         alt: "Romance scam text message inbox choose-your-path simulation preview",
         caption: {
           text: "Romance scam text message inbox choose-your-path simulation preview — Visit the live page.",
-          links: [{ label: "Visit the live page", href: "https://app.dartacademy.net/practice/romance" }],
+          links: [{ label: "Visit the live page", href: "https://dartacademy.net/practice/romance" }],
         },
       },
       {
@@ -228,7 +228,7 @@ const projectData: Record<string, Project> = {
         alt: "Grandparent scam phonecall under distress simulation preview",
         caption: {
           text: "Grandparent scam emergency phonecall simulation — Visit the live page.",
-          links: [{ label: "Visit the live page", href: "https://app.dartacademy.net/practice/grandparent" }],
+          links: [{ label: "Visit the live page", href: "https://dartacademy.net/practice/grandparent" }],
         },
       },  
       {
