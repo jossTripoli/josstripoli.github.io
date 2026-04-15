@@ -268,7 +268,7 @@ const projectData: Record<string, Project> = {
       {
         type: "image",
         src: "/dart/multilingual.gif",
-        alt: "DART initiative research collaboration",
+        alt: "Demo of the multilingual support system for the DART Academy platform, showing locale-aware routing and content in multiple languages.",
         caption: "",
       },
       {
@@ -278,6 +278,27 @@ const projectData: Record<string, Project> = {
           "A multilingual support system with locale-aware routing for English, Spanish, French, and Chinese, designed to scale to additional languages. It includes internationalization (enabling locale-based routing and language support without code changes) and localization (adapting content, metadata, interface text, and URLs for each language) to ensure accessibility across diverse user populations. The system is production-ready, with translated content currently in development.",
         ],
       }, 
+      {
+        type: "richText",
+        heading: "Dontation Management System",
+        paragraphs: [
+          "",
+        ],
+      },
+      {
+        type: "image",
+        src: "/dart/donation_demo.gif",
+        alt: "Demo of the donation management system for the DART Academy platform, showing seamless integration with payment gateways and real-time tracking.",
+        caption: "",
+      },
+      {
+        type: "richText",
+        heading: "",
+        paragraphs: [
+          "A custom donor management system built as an alternative to third-party donation platforms, reducing overhead while providing greater flexibility and control. Contributions are kept in sync across the platform database, Stripe, and HubSpot for reliable tracking and reporting. Four giving tiers structure the experience: Supporter ($10), Contributor ($25), Advocate ($50), and Champion ($100), each tied to a specific impact statement. Donors can contribute through one-time, monthly, or annual giving, with support for custom amounts. The system includes donor-only access to exclusive downloads such as a top scam tips checklist, stickers, and printable course PDFs for offline learning, along with early releases of new courses and profile badge recognition. An admin layer provides tools for managing donor status, tier progression, and engagement analytics.",
+        ],
+      }, 
+
       {
         type: "gallery",
         heading: "DART Academy Illustration Gallery",
