@@ -298,7 +298,6 @@ const projectData: Record<string, Project> = {
           "A custom donor management system built as an alternative to third-party donation platforms, reducing overhead while providing greater flexibility and control. Contributions are kept in sync across the platform database, Stripe, and HubSpot for reliable tracking and reporting. Four giving tiers structure the experience: Supporter ($10), Contributor ($25), Advocate ($50), and Champion ($100), each tied to a specific impact statement. Donors can contribute through one-time, monthly, or annual giving, with support for custom amounts. The system includes donor-only access to exclusive downloads such as a top scam tips checklist, stickers, and printable course PDFs for offline learning, along with early releases of new courses and profile badge recognition. An admin layer provides tools for managing donor status, tier progression, and engagement analytics.",
         ],
       }, 
-
       {
         type: "gallery",
         heading: "DART Academy Illustration Gallery",
@@ -388,6 +387,12 @@ const projectData: Record<string, Project> = {
         src: "/mininature/mininature_before_after.png",
         alt: "Before and after redesign of the MiniNature Reserve website's landing page.",
         caption: "Before and after redesign of the MiniNature Reserve website's landing page.",
+      },
+      {
+        type: "image",
+        src: "/mininature/lighthouse_report.png",
+        alt: "Lighthouse performance report for the MiniNature Reserve website.",
+        caption: "Lighthouse audit showing near perfect scores for the new MiniNature Reserve website, with 98 Performance, 98 Accessibility, 100 Best Practices, and 92 SEO, highlighting fast load times, zero blocking, and a highly optimized user experience.",
       },
       {
         type: "richText",
