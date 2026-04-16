@@ -280,7 +280,7 @@ const projectData: Record<string, Project> = {
       }, 
       {
         type: "richText",
-        heading: "Dontation Management System",
+        heading: "Donation Management System",
         paragraphs: [
           "",
         ],
@@ -297,7 +297,28 @@ const projectData: Record<string, Project> = {
         paragraphs: [
           "A custom donor management system built as an alternative to third-party donation platforms, reducing overhead while providing greater flexibility and control. Contributions are kept in sync across the platform database, Stripe, and HubSpot for reliable tracking and reporting. Four giving tiers structure the experience: Supporter ($10), Contributor ($25), Advocate ($50), and Champion ($100), each tied to a specific impact statement. Donors can contribute through one-time, monthly, or annual giving, with support for custom amounts. The system includes donor-only access to exclusive downloads such as a top scam tips checklist, stickers, and printable course PDFs for offline learning, along with early releases of new courses and profile badge recognition. An admin layer provides tools for managing donor status, tier progression, and engagement analytics.",
         ],
+      },
+      {
+        type: "richText",
+        heading: "Gamification",
+        paragraphs: [
+          "",
+        ],
+      },
+      {
+        type: "image",
+        src: "/dart/gamification.gif",
+        alt: "Demo of the gamification system for the DART Academy platform, showing points, rank progression, and leaderboard visibility.",
+        caption: "",
+      },
+      {
+        type: "richText",
+        heading: "",
+        paragraphs: [
+          "A gamification system that drives learner engagement through points, rank progression, and leaderboard visibility. Learners earn points for completing lessons, quizzes, and practice activities, progressing through rank tiers from Novice to Legendary as they build skills over time. Leaderboards highlight top performers while showing each learner’s relative position, encouraging continued participation. Progress tracking gives learners a clear sense of advancement across lessons and courses. Immediate feedback reinforces learning in real time, while completion certificates mark key milestones and can be downloaded and printed as a tangible record of achievement.",
+        ],
       }, 
+
       {
         type: "gallery",
         heading: "DART Academy Illustration Gallery",
