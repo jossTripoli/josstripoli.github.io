@@ -751,6 +751,7 @@ const projectData: Record<string, Project> = {
   },
   "online-trolling-education": {
     title: "Online Trolling Education Module",
+    githubUrl: "https://github.com/jossTripoli/DART-Academy-Research-Prototype",
     description:
       "An interactive learning module that translates disinformation research into realistic social media scenarios.",
     image: "/demo/troll.gif",
