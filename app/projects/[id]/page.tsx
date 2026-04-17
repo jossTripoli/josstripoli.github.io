@@ -750,10 +750,10 @@ const projectData: Record<string, Project> = {
     ],
   },
   "online-trolling-education": {
-    title: "Online Trolling Education Module",
+    title: "Disinformation Education Platform",
     githubUrl: "https://github.com/jossTripoli/DART-Academy-Research-Prototype",
     description:
-      "An interactive learning module that translates disinformation research into realistic social media scenarios.",
+      "An interactive learning platform that translates disinformation research into realistic social media scenarios.",
     image: "/demo/troll.gif",
     tech: ["Node.js", "Express.js", "Passport.js", "MongoDB", "Mongoose", "Pug", "Semantic UI", "jQuery", "Intro.js", "Slick.js", "Video.js"],
     sections: [
@@ -804,6 +804,20 @@ const projectData: Record<string, Project> = {
         title: "Online Trolling Education Module demo",
         caption: "Practice section demo with interactive social media profiles and guided walkthroughs.",
       },
+      {
+        type: "richText",
+        heading: "",
+        paragraphs: [
+          "Beyond the trolling simulation, I built an early version of the full platform—an initial iteration of DART Academy—with modular lessons, quizzes, multimedia content, AI chatbot, unlockable achievements, and user progress tracking.",
+        ],
+      },
+      {
+        type: "video",
+        src: "https://youtu.be/lr6VE_fOAkY",
+        title: "Platform demo",
+        caption: "Early demo of the disinformation training platform prototype with interactive simulations and guided learning.",
+      },
+
     ],
   },
   "cs-documentation-site": {

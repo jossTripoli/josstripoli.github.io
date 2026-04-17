@@ -200,9 +200,9 @@ export default function HomePage() {
     },
     {
       id: "online-trolling-education",
-      title: "Online Trolling Education Module",
+      title: "Disinformation Education Platform",
       description:
-        "An interactive learning module that translates disinformation research into realistic social media scenarios.",
+        "An interactive learning platform that translates disinformation research into realistic social media scenarios.",
       tech: ["Node.js", "Express.js", "Passport.js", "MongoDB", "Mongoose", "Pug", "Semantic UI", "jQuery", "Intro.js", "Slick.js", "Video.js"],
       image: "/demo/troll.gif",
     },
