@@ -786,16 +786,6 @@ const projectData: Record<string, Project> = {
           },
           "I developed the Practice section, creating realistic, coded, responsive Twitter-style profiles and guided walkthroughs that train learners to recognize patterns of deceptive behavior and build resistance to online manipulation.",
           // "The prototype demonstrated feasibility and helped secure NSF funding for a larger platform that later evolved into DART Academy.",
-          {
-            text: "The prototype demonstrated feasibility and helped secure an NSF Convergence Accelerator grant for a larger platform that later evolved into DART Academy.",
-            links: [
-              {
-                label: "DART Academy",
-                href: "/projects/dart-academy",
-                openInNewTab: false,
-              },
-            ],
-          },
         ],
       },
       {
@@ -808,7 +798,17 @@ const projectData: Record<string, Project> = {
         type: "richText",
         heading: "",
         paragraphs: [
-          "Beyond the trolling simulation, I built an early version of the full platform—an initial iteration of DART Academy—with modular lessons, quizzes, multimedia content, AI chatbot, unlockable achievements, and user progress tracking.",
+          "Beyond the trolling simulation, I built an early version of the full platform with modular lessons, quizzes, multimedia content, AI chatbot, unlockable achievements, and user progress tracking.",
+          {
+            text: "The prototype demonstrated feasibility and helped secure an NSF Convergence Accelerator grant for a larger platform that evolved into DART Academy.",
+            links: [
+              {
+                label: "DART Academy",
+                href: "/projects/dart-academy",
+                openInNewTab: false,
+              },
+            ],
+          },
         ],
       },
       {
