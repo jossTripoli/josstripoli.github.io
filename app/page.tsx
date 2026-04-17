@@ -59,6 +59,7 @@ export default function HomePage() {
   // const mobileParallax = useTransform(scrollYProgress, [0, 1], [0, 150])
   const mobileOpacity = useTransform(scrollYProgress, [0, 0.17, 0.2, 0.33], [0, 1, 1, 0])
 
+  // Simple check to disable parallax on mobile for better performance and UX
   const [isMobile, setIsMobile] = useState(false)
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768)
