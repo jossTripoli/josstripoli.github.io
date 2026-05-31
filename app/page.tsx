@@ -188,7 +188,7 @@ export default function HomePage() {
       title: "MiniNature Reserve",
       description:
         "Nonprofit website for a community-driven initiative restoring urban biodiversity through native plant gardens and environmental education.",
-      tech: ["Payload CMS", "Shopify", "Next.js", "React", "Figma", "Canva", "Tailwind CSS", "Shadcn/ui", "Node.js", "TypeScript", "Vercel", "Lexical", "ArcGIS"],
+      tech: ["Payload CMS", "PostgreSQL", "Shopify", "Next.js", "React", "Figma", "Canva", "Tailwind CSS", "Shadcn/ui", "Node.js", "TypeScript", "Vercel", "Lexical", "ArcGIS"],
       image: "/demo/mininature.gif",
     },
     {
