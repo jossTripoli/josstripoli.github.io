@@ -180,7 +180,7 @@ export default function HomePage() {
       title: "DART Academy",
       description:
         "E-learning platform designed to empower older adults to recognize scams, improve their online awareness, and hone their digital skills.",
-      tech: ["Next.js", "React", "PostgreSQL", "Prisma ORM", "Node.js", "TypeScript", "Tailwind CSS", "Shadcn/ui", "Figma", "Adobe Illustrator", "Zustand", "Docker", "AWS", "TipTap", "OpenAI API", "HubSpot API", "Stripe API"],
+      tech: ["Next.js", "React", "PostgreSQL", "Prisma ORM", "Node.js", "TypeScript", "Tailwind CSS", "Shadcn/ui", "Figma", "WordPress", "Adobe Illustrator", "Zustand", "Docker", "AWS", "TipTap", "OpenAI API", "HubSpot API", "Stripe API"],
       image: "/demo/dart.gif",
     },
     {

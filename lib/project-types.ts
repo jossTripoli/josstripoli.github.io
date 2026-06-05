@@ -89,7 +89,7 @@ export type ProjectSection =
 export type ProjectLink = {
   label: string
   href: string
-  icon: "live" | "github"
+  icon: "live" | "github" | "globe" | "external"
   openInNewTab?: boolean
 }
 
@@ -112,6 +112,7 @@ export type Project = {
   heroMedia?: ProjectHeroMedia
   tech: string[]
   liveUrl?: string
+  marketingUrl?: string
   githubUrl?: string
   links?: ProjectLink[]
   sections: ProjectSection[]

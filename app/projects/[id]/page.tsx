@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { notFound } from "next/navigation"
-import { ArrowLeft, ArrowRight, ExternalLink, Github, Globe } from "lucide-react"
+import { ArrowLeft, ArrowRight, ExternalLink, Github, Globe, Megaphone } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { ProjectSections } from "@/components/project-sections"
@@ -23,7 +23,8 @@ const projectData: Record<string, Project> = {
       alt: "DART Academy banner with logo, tagline, and illustrated learners",
     },
     liveUrl: "https://dartacademy.net/",
-    tech: ["Next.js", "React", "PostgreSQL", "Prisma ORM", "Node.js", "TypeScript", "Tailwind CSS", "Shadcn/ui", "Figma", "Adobe Illustrator", "Zustand", "Docker", "AWS", "TipTap", "OpenAI API", "HubSpot API", "Stripe API"],
+    marketingUrl: "https://dartcollective.net/dart-academy/",
+    tech: ["Next.js", "React", "PostgreSQL", "Prisma ORM", "Node.js", "TypeScript", "Tailwind CSS", "Shadcn/ui", "Figma", "WordPress", "Adobe Illustrator", "Zustand", "Docker", "AWS", "TipTap", "OpenAI API", "HubSpot API", "Stripe API"],
     sections: [
       {
         type: "richText",
@@ -903,6 +904,7 @@ export default async function ProjectPage({
 
   const actionLinks: ProjectLink[] = [
     ...(project.liveUrl ? [{ label: "Live Site", href: project.liveUrl, icon: "live" as const }] : []),
+    ...(project.marketingUrl ? [{ label: "Marketing", href: project.marketingUrl, icon: "github" as const }] : []),
     ...(project.githubUrl ? [{ label: "GitHub", href: project.githubUrl, icon: "github" as const }] : []),
     ...(project.links ?? []),
   ]
@@ -952,7 +954,7 @@ export default async function ProjectPage({
             {actionLinks.length > 0 && (
               <div className="flex flex-wrap gap-3 pt-2">
                 {actionLinks.map((link) => {
-                  const Icon = link.icon === "github" ? Github : Globe
+                  const Icon = link.label === "Marketing" ? Megaphone : link.icon === "github" ? Github : Globe
                   const openInNewTab = shouldOpenInNewTab(link.href, link.openInNewTab)
                   return (
                     <Button key={link.href + link.label} className="h-12 px-10 text-xl" variant={link.icon === "github" ? "outline" : "default"} asChild>
