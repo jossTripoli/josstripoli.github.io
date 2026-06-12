@@ -180,7 +180,7 @@ export default function HomePage() {
       title: "DART Academy",
       description:
         "E-learning platform designed to empower older adults to recognize scams, improve their online awareness, and hone their digital skills.",
-      tech: ["Next.js", "React", "PostgreSQL", "Prisma ORM", "Node.js", "TypeScript", "Tailwind CSS", "Shadcn/ui", "Figma", "WordPress", "Adobe Illustrator", "Zustand", "Docker", "AWS", "TipTap", "OpenAI API", "HubSpot API", "Stripe API"],
+      tech: ["Next.js", "React", "PostgreSQL", "Prisma ORM", "Node.js", "TypeScript", "Tailwind CSS", "Shadcn/ui", "Figma", "WordPress", "Adobe Illustrator", "Zustand", "Docker", "AWS", "TipTap", "OpenAI API", "HubSpot API", "Stripe API", "Google Analytics (GA4)"],
       image: "/demo/dart.gif",
     },
     {
@@ -188,7 +188,7 @@ export default function HomePage() {
       title: "MiniNature Reserve",
       description:
         "Nonprofit website for a community-driven initiative restoring urban biodiversity through native plant gardens and environmental education.",
-      tech: ["Payload CMS", "PostgreSQL", "Shopify", "Next.js", "React", "Figma", "Canva", "Tailwind CSS", "Shadcn/ui", "Node.js", "TypeScript", "Vercel", "Lexical", "ArcGIS"],
+      tech: ["Payload CMS", "PostgreSQL", "Shopify", "Next.js", "React", "Figma", "Canva", "Tailwind CSS", "Shadcn/ui", "Node.js", "TypeScript", "Vercel", "Lexical", "ArcGIS", "Vercel Web Analytics"],
       image: "/demo/mininature.gif",
     },
     {
