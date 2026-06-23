@@ -412,9 +412,9 @@ const projectData: Record<string, Project> = {
       },
       {
         type: "image",
-        src: "/mininature/lighthouse_report.png",
+        src: "/mininature/mininature_lighthouse_report.png",
         alt: "Lighthouse performance report for the MiniNature Reserve website.",
-        caption: "Lighthouse audit showing near perfect scores for the new MiniNature Reserve website, with 98 Performance, 98 Accessibility, 100 Best Practices, and 92 SEO, highlighting fast load times, zero blocking, and a highly optimized user experience.",
+        caption: "Lighthouse audit showing near perfect scores for the new MiniNature Reserve website, with 98 Performance, 98 Accessibility, 100 Best Practices, and 100 SEO, highlighting fast load times, zero blocking, and a highly optimized user experience.",
       },
       {
         type: "richText",
