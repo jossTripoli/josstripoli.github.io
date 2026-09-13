@@ -12,6 +12,7 @@ import { motion, useScroll, useTransform } from "motion/react"
 import { SiteHeader } from "@/components/site-header"
 import { getScrollBehavior, scrollToHash } from "@/lib/scroll"
 
+
 declare global {
   interface Window {
     grecaptcha?: {
