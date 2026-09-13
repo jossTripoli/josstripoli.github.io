@@ -28,7 +28,7 @@ export function SiteHeader({ sectionBasePath = "" }: SiteHeaderProps) {
             <div className="flex items-center gap-2">
               <Image src="/initials-logo.svg" alt="Logo" width={80} height={80} className="w-14 h-14" />
               <span className="ml-2">Joss Tripoli</span>
-              <span className="rounded-full bg-secondary-purple px-3 py-1 text-xs tracking-wide text-primary">Portfolio</span>
+              {/* <span className="rounded-full bg-secondary-purple px-3 py-1 text-xs tracking-wide text-primary">Portfolio</span> */}
             </div>
           </Link>
 
