@@ -1,27 +1,30 @@
-# Deploy Next.js to GitHub Pages
+# Joss Tripoli — Portfolio
 
-This is a Next.js template which can be deployed to GitHub Pages as a static site.
+Personal portfolio website showcasing my work across full-stack development, product design, and UI/UX.
 
-## Deploying to GitHub Pages
+**Live site:** [josstripoli.com](https://josstripoli.com)
 
-1.  Create a new public GitHub repository
-2.  Push the starter code to the `main` branch
-3.  On GitHub, go to **Settings** > **Pages** > **Source**, and choose **GitHub Actions** as the source
-4.  Make a commit and push it to see the changes on GitHub Pages
+## About
 
-Congratulations! You should have a URL like:
+I'm a designer and developer focused on building thoughtful, accessible digital experiences. My work spans product design, frontend and backend development, interactive learning systems, content management platforms, and research-driven applications.
+
+This portfolio features projects I’ve built for clients, including full-stack development, CMS systems, e-commerce, and scalable user experiences.
+
+### Local Development
 
 ```bash
-https://<github-user-name>.github.io/<github-project-name>/
+pnpm install
+pnpm dev
 ```
 
-For more information, see our [deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying/static-exports).
+The development server will start at `http://localhost:3000`.
 
-## Learn More
+### Production Build
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This repository contains the source code for my personal portfolio. Please do not reproduce the site's content, design, or project materials without permission.
