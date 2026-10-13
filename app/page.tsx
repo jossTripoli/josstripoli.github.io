@@ -720,8 +720,6 @@ export default function HomePage() {
         transition={{ duration: 0.8, ease: "easeOut" }}
       > */}
       <section id="about" className="relative bg-primary py-20">
-        {/* <div className="pointer-events-none absolute left-0 right-0 -top-12 h-12 bg-linear-to-b from-primary/0 to-primary" /> */}
-
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-[2fr_1fr] items-center gap-10 md:gap-12">
             <div>
@@ -732,7 +730,6 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                {/* <h3 className="text-base uppercase tracking-widest text-primary-foreground mb-4">About</h3> */}
                 <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground">Designing & Building Web Applications</h2>
                 <div className="absolute -bottom-3 left-0 w-20 h-1 bg-[#ECE5FF]"></div>
               </motion.div>
@@ -750,17 +747,11 @@ export default function HomePage() {
                 <p>
                   I bring a strong foundation in UI/UX design and user-centered product development, combining customer discovery, Figma prototyping, and full-stack engineering to turn complex ideas into intuitive, accessible applications.
                 </p>
-                {/* <p>
-                  I’m a full-stack software engineer with significant experience in education technology. I’ve assembled and led a development team to build a production learning platform. This work included interactive simulations, AI-powered virtual instructors, gamification features, assessments, analytics, and custom management systems for multimedia learning content, scam-awareness news articles, donations, and learner engagement.
-                </p>
-                <p>
-                  I’ve also built mobile apps and a range of marketing, ecommerce, and technical documentation websites. These projects use modern Content Management Systems (CMS) such as Payload, WordPress, and Shopify to help businesses launch and grow online.
-                </p> */}
               </motion.div>
             </div>
 
             <motion.div
-              className="relative w-full h-72 md:h-[22rem]"
+              className="relative w-full h-72 md:h-88"
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true }}
