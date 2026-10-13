@@ -745,7 +745,7 @@ export default function HomePage() {
               >
 
                 <p>
-                  I'm a full-stack software engineer with 4+ years of experience designing and developing applications across research, higher education, startups, and nonprofits. As a founding engineer and technical lead, I built an NSF-funded learning platform serving thousands of users, managed AWS infrastructure and CI/CD pipelines, and led a team of engineers through development and launch. The platform features interactive simulations, AI-powered virtual instructors, gamification, assessments, analytics, and custom management systems for multimedia learning content, scam-awareness news articles, donations, and learner engagement.
+                  I'm a full-stack software engineer with 4+ years of experience designing and developing applications across research, higher education, startups, and nonprofits. As a founding engineer and technical lead, I built an NSF-funded learning platform serving thousands of users, managed AWS infrastructure and CI/CD pipelines, and led a team of engineers through development and launch. The platform features interactive simulations, AI-powered virtual instructors, gamification, assessments, analytics, and custom systems for content management, donations, and learner engagement.
                 </p>
                 <p>
                   I bring a strong foundation in UI/UX design and user-centered product development, combining customer discovery, Figma prototyping, and full-stack engineering to turn complex ideas into intuitive, accessible applications.
